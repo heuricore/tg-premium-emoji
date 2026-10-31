@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "short_name": "demo",
+  "title": "Demo pack",
+  "fetched_at": "2026-11-01T00:00:00Z",
+  "preview": { "cell": 144, "cols": 5, "per_sheet": 20 },
+  "emoji": [
+    {
+      "n": 1,
+      "id": "5000000000000000001",
+      "file_unique_id": "AAA1",
+      "fallback": "😀",
+      "format": "static",
+      "repaint": false,
+      "name": "grin",
+      "description": "A grinning face",
+      "tags": ["face", "smile"],
+      "fits": ["text"],
+      "confidence": "high",
+      "by": "human",
+      "frame_suspect": false
+    },
+    {
+      "n": 2,
+      "id": "5000000000000000002",
+      "file_unique_id": "AAA2",
+      "fallback": "🔥",
+      "format": "tgs",
+      "repaint": false,
+      "name": null,
+      "description": null,
+      "tags": [],
+      "confidence": null,
+      "frame_suspect": false
+    },
+    {
+      "n": 3,
+      "id": "5000000000000000003",
+      "file_unique_id": "AAA3",
+      "fallback": "⭐",
+      "format": "webm",
+      "repaint": true,
+      "name": null,
+      "description": null,
+      "tags": [],
+      "confidence": null,
+      "frame_suspect": true
+    }
+  ]
+}

@@ -27,6 +27,11 @@ pub struct Cli {
 
 #[derive(Debug, Subcommand)]
 pub enum Command {
+    /// Validate catalogs against the schemas and semantic rules
+    Validate {
+        /// Catalog directory (default: every discovered catalog)
+        path: Option<PathBuf>,
+    },
     /// Regenerate the JSON Schemas (developer tool)
     #[command(hide = true)]
     Schema {

@@ -1,9 +1,5 @@
 version: "3"
 
-vars:
-  ZIG_DIR:
-    sh: ls -d .tools/zig/lib/python3*/site-packages/ziglang 2>/dev/null | head -n1
-
 tasks:
   setup:
     desc: Create the zig toolchain used to compile C++ when no system compiler exists
@@ -18,21 +14,25 @@ tasks:
       - cargo fmt --all --check
 
   clippy:
+    deps: [setup]
     cmds:
       - |
         if command -v c++ >/dev/null 2>&1; then
           cargo clippy --workspace --all-targets --locked -- -D warnings
         else
-          PATH="$(pwd)/{{.ZIG_DIR}}:$PATH" cargo-zigbuild clippy --workspace --all-targets --locked -- -D warnings
+          zig_dir=$(echo "$PWD"/.tools/zig/lib/python3*/site-packages/ziglang)
+          PATH="$zig_dir:$PATH" cargo-zigbuild clippy --workspace --all-targets --locked -- -D warnings
         fi
 
   test:
+    deps: [setup]
     cmds:
       - |
         if command -v c++ >/dev/null 2>&1; then
           cargo test --workspace --locked
         else
-          PATH="$(pwd)/{{.ZIG_DIR}}:$PATH" cargo-zigbuild test --workspace --locked
+          zig_dir=$(echo "$PWD"/.tools/zig/lib/python3*/site-packages/ziglang)
+          PATH="$zig_dir:$PATH" cargo-zigbuild test --workspace --locked
         fi
 
   check:

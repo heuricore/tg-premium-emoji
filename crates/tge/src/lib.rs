@@ -1,8 +1,11 @@
 pub mod cli;
+pub mod commands;
 pub mod error;
 pub mod model;
 pub mod output;
+pub mod paths;
 pub mod schema;
+pub mod store;
 pub mod validate;
 
 use std::process::ExitCode;
@@ -10,9 +13,14 @@ use std::process::ExitCode;
 use cli::{Cli, Command};
 use error::Error;
 use output::Ctx;
+use paths::Env;
+use store::catalogs::Catalogs;
 
 pub fn run(cli: Cli) -> ExitCode {
-    let ctx = Ctx { json: cli.json };
+    let ctx = Ctx {
+        json: cli.json,
+        env: Env::from_cli(&cli),
+    };
     match dispatch(&ctx, cli.command) {
         Ok(()) => ExitCode::SUCCESS,
         Err(err) => {
@@ -31,6 +39,8 @@ pub fn run(cli: Cli) -> ExitCode {
 fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
     match command {
         None => Err(Error::Usage("no command given, try --help".into())),
+        Some(Command::Catalogs) => commands::catalogs::run(ctx),
+        Some(Command::Doctor { prune }) => commands::doctor::run(ctx, prune),
         Some(Command::Schema { out }) => {
             schema::write_all(&out)?;
             ctx.emit(
@@ -40,12 +50,16 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
             Ok(())
         }
         Some(Command::Validate { path }) => {
-            let Some(path) = path else {
-                return Err(Error::Usage(
-                    "catalog discovery is not available yet, pass a catalog PATH".into(),
-                ));
+            let issues = match path {
+                Some(path) => validate::validate_catalog_dir(&path),
+                None => {
+                    let (catalogs, mut issues) = Catalogs::discover(&ctx.env);
+                    for catalog in &catalogs.catalogs {
+                        issues.extend(validate::validate_catalog_dir(&catalog.dir));
+                    }
+                    issues
+                }
             };
-            let issues = validate::validate_catalog_dir(&path);
             let errors = issues
                 .iter()
                 .filter(|i| i.severity == validate::Severity::Error)

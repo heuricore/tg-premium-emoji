@@ -1,8 +1,11 @@
 use serde_json::Value;
 
+use crate::paths::Env;
+
 #[derive(Debug, Clone)]
 pub struct Ctx {
     pub json: bool,
+    pub env: Env,
 }
 
 impl Ctx {

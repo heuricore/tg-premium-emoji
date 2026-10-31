@@ -32,6 +32,14 @@ pub enum Command {
         /// Catalog directory (default: every discovered catalog)
         path: Option<PathBuf>,
     },
+    /// List the discovered catalogs
+    Catalogs,
+    /// Check the installation and state directory
+    Doctor {
+        /// Remove installed versions other than the one `bin/latest` points to
+        #[arg(long)]
+        prune: bool,
+    },
     /// Regenerate the JSON Schemas (developer tool)
     #[command(hide = true)]
     Schema {

@@ -4,6 +4,8 @@ pub enum Error {
     Usage(String),
     #[error("{0} validation issue(s) found")]
     Invalid(usize),
+    #[error("{0}")]
+    Runtime(String),
     #[error(transparent)]
     Io(#[from] std::io::Error),
     #[error(transparent)]

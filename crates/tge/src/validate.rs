@@ -36,7 +36,7 @@ pub struct Issue {
 }
 
 impl Issue {
-    fn error(file: &Path, message: impl Into<String>) -> Self {
+    pub(crate) fn error(file: &Path, message: impl Into<String>) -> Self {
         Self {
             severity: Severity::Error,
             file: file.to_path_buf(),

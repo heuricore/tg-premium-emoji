@@ -1,0 +1,13 @@
+{
+  "name": "tg-premium-emoji",
+  "version": "0.0.1",
+  "description": "Design Telegram bots and channels with premium (custom) emoji: render packs, label emoji, search by meaning, apply styles.",
+  "author": {
+    "name": "HeuriCore",
+    "url": "https://github.com/heuricore"
+  },
+  "homepage": "https://github.com/heuricore/tg-premium-emoji",
+  "repository": "https://github.com/heuricore/tg-premium-emoji",
+  "license": "MIT",
+  "skills": ["./skills"]
+}

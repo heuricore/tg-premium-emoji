@@ -1,6 +1,8 @@
 pub mod cli;
 pub mod error;
+pub mod model;
 pub mod output;
+pub mod schema;
 
 use std::process::ExitCode;
 
@@ -23,9 +25,16 @@ pub fn run(cli: Cli) -> ExitCode {
     }
 }
 
-fn dispatch(_ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
+fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
     match command {
         None => Err(Error::Usage("no command given, try --help".into())),
-        Some(never) => match never {},
+        Some(Command::Schema { out }) => {
+            schema::write_all(&out)?;
+            ctx.emit(
+                &format!("schemas written to {}", out.display()),
+                serde_json::json!({ "out": out }),
+            );
+            Ok(())
+        }
     }
 }

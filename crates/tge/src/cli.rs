@@ -25,6 +25,13 @@ pub struct Cli {
     pub command: Option<Command>,
 }
 
-/// Subcommands are added by later tasks.
 #[derive(Debug, Subcommand)]
-pub enum Command {}
+pub enum Command {
+    /// Regenerate the JSON Schemas (developer tool)
+    #[command(hide = true)]
+    Schema {
+        /// Output directory
+        #[arg(long, value_name = "DIR")]
+        out: PathBuf,
+    },
+}

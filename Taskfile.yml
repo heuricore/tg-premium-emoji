@@ -35,6 +35,18 @@ tasks:
           PATH="$zig_dir:$PATH" cargo-zigbuild test --workspace --locked
         fi
 
+  schema:
+    desc: Regenerate schemas/ from the Rust model
+    deps: [setup]
+    cmds:
+      - |
+        if command -v c++ >/dev/null 2>&1; then
+          cargo run -q -p tge --locked -- schema --out schemas
+        else
+          zig_dir=$(echo "$PWD"/.tools/zig/lib/python3*/site-packages/ziglang)
+          PATH="$zig_dir:$PATH" cargo-zigbuild run -q -p tge --locked -- schema --out schemas
+        fi
+
   check:
     desc: Format, lint and test (later tasks append steps)
     cmds:

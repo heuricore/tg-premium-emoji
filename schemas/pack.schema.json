@@ -1,0 +1,199 @@
+{
+  "$defs": {
+    "By": {
+      "enum": [
+        "agent",
+        "human"
+      ],
+      "type": "string"
+    },
+    "Confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "type": "string"
+    },
+    "Emoji": {
+      "additionalProperties": false,
+      "properties": {
+        "by": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/By"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Confidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "maxLength": 300,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fallback": {
+          "type": "string"
+        },
+        "file_unique_id": {
+          "type": "string"
+        },
+        "fits": {
+          "items": {
+            "$ref": "#/$defs/Fit"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "format": {
+          "$ref": "#/$defs/Format"
+        },
+        "frame_suspect": {
+          "type": "boolean"
+        },
+        "gone": {
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "^[0-9]{1,20}$",
+          "type": "string"
+        },
+        "n": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "name": {
+          "maxLength": 64,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "repaint": {
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "maxLength": 40,
+            "type": "string"
+          },
+          "maxItems": 24,
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "file_unique_id",
+        "fallback",
+        "format",
+        "repaint",
+        "tags",
+        "frame_suspect"
+      ],
+      "type": "object"
+    },
+    "Fit": {
+      "enum": [
+        "text",
+        "heading",
+        "list_item",
+        "button",
+        "status",
+        "divider"
+      ],
+      "type": "string"
+    },
+    "Format": {
+      "enum": [
+        "static",
+        "tgs",
+        "webm"
+      ],
+      "type": "string"
+    },
+    "PreviewLayout": {
+      "additionalProperties": false,
+      "properties": {
+        "cell": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "cols": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "per_sheet": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cell",
+        "cols",
+        "per_sheet"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://raw.githubusercontent.com/heuricore/tg-premium-emoji/main/schemas/pack.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "emoji": {
+      "items": {
+        "$ref": "#/$defs/Emoji"
+      },
+      "maxItems": 200,
+      "type": "array"
+    },
+    "fetched_at": {
+      "type": "string"
+    },
+    "preview": {
+      "$ref": "#/$defs/PreviewLayout"
+    },
+    "schema_version": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "short_name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "short_name",
+    "title",
+    "fetched_at",
+    "preview",
+    "emoji"
+  ],
+  "title": "Pack",
+  "type": "object"
+}

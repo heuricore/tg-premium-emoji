@@ -1,7 +1,9 @@
 //! Decoding emoji sources into straight RGBA frames.
 
+mod font;
 pub mod frames;
 pub mod scale;
+pub mod sheet;
 pub mod tgs;
 pub mod webm;
 pub mod webp;

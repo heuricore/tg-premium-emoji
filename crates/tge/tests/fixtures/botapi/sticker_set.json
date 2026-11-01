@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "result": {
+    "name": "demo_pack",
+    "title": "Demo Pack",
+    "sticker_type": "custom_emoji",
+    "future_field": {"ignored": true},
+    "stickers": [
+      {
+        "file_id": "FILE-A",
+        "file_unique_id": "UNIQ-A",
+        "custom_emoji_id": "5368324170671202286",
+        "emoji": "😀",
+        "is_animated": true,
+        "is_video": false,
+        "type": "custom_emoji",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "file_id": "FILE-B",
+        "file_unique_id": "UNIQ-B",
+        "custom_emoji_id": "5368324170671202287",
+        "emoji": "🔥",
+        "is_animated": false,
+        "is_video": true,
+        "type": "custom_emoji"
+      },
+      {
+        "file_id": "FILE-C",
+        "file_unique_id": "UNIQ-C",
+        "custom_emoji_id": "5368324170671202288",
+        "emoji": "⭐",
+        "is_animated": false,
+        "is_video": false,
+        "needs_repainting": true,
+        "type": "custom_emoji"
+      }
+    ]
+  }
+}

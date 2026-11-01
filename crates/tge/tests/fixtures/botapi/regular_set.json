@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "result": {
+    "name": "plain_stickers",
+    "title": "Plain Stickers",
+    "sticker_type": "regular",
+    "stickers": [
+      {
+        "file_id": "FILE-R",
+        "file_unique_id": "UNIQ-R",
+        "emoji": "😀",
+        "is_animated": false,
+        "is_video": false
+      }
+    ]
+  }
+}

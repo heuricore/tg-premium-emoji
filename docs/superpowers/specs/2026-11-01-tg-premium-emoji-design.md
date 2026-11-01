@@ -391,7 +391,7 @@ download it; otherwise a clear error.
 ### 5.9 Labeling (done by the agent through the `pack-build` skill)
 
 - `tge pack preview <pack>` prints sheet paths; the agent opens them with its file-reading tool.
-- `tge label <pack> --json <file|->`: a batch of edits `[{ "n" | "id", "name"?, "description"?,
+- `tge label <pack> --edits <file|->`: a batch of edits `[{ "n" | "id", "name"?, "description"?,
   "tags"?, "fits"?, "confidence"? }]`. Only the given fields change; `null` clears. The
   `--by human` flag is set when a human dictated the edit. Emoji with `by: human` are not changed
   without `--force`; the command reports which ones were skipped.

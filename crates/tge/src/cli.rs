@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use clap::{Parser, Subcommand};
 
-use crate::model::pack::{Fit, Format};
+use crate::model::pack::{By, Fit, Format};
 
 #[derive(Debug, Parser)]
 #[command(name = "tge", version, about = "Telegram premium emoji catalog tool")]
@@ -76,6 +76,30 @@ pub enum Command {
         #[arg(long, default_value = "LABEL")]
         text: String,
     },
+    /// Apply a batch of label edits to a pack
+    Label {
+        /// Pack short name
+        pack: String,
+        /// JSON array of edits, a file path or `-` for stdin
+        #[arg(long, value_name = "FILE|-")]
+        edits: String,
+        /// Who made the edits (`human` protects them from later agent edits)
+        #[arg(long, value_enum, default_value_t = By::Agent)]
+        by: By,
+        /// Let agent edits overwrite emoji labeled by a human
+        #[arg(long)]
+        force: bool,
+    },
+    /// List groups of look-alike emoji within a pack
+    Similar {
+        /// Pack short name
+        pack: String,
+    },
+    /// Show what is left to label in one pack or in all visible packs
+    Report {
+        /// Pack short name (default: all visible packs)
+        pack: Option<String>,
+    },
     /// Work with emoji packs
     Pack {
         #[command(subcommand)]
@@ -100,6 +124,11 @@ pub enum PackCommand {
         /// Catalog to write into (default: local); not together with --catalog-dir
         #[arg(long, value_enum)]
         catalog: Option<CatalogChoice>,
+    },
+    /// Print the preview sheets of a pack with the emoji numbers each one shows
+    Preview {
+        /// Pack short name
+        short_name: String,
     },
 }
 

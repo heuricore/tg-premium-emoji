@@ -71,6 +71,21 @@ pub fn validate_value(kind: DocKind, value: &Value) -> Vec<String> {
     messages
 }
 
+/// Schema and semantic errors of an in-memory pack (no preview-sheet check). Semantics run only
+/// when the schema is clean.
+pub fn pack_issues(pack: &Pack, file: &Path) -> Vec<Issue> {
+    let mut issues = Vec::new();
+    match serde_json::to_value(pack) {
+        Ok(value) => {
+            if schema_issues(DocKind::Pack, &value, file, &mut issues) {
+                check_pack_semantics(pack, file, &mut issues);
+            }
+        }
+        Err(e) => issues.push(Issue::error(file, e.to_string())),
+    }
+    issues
+}
+
 pub fn validate_catalog_dir(dir: &Path) -> Vec<Issue> {
     let mut issues = Vec::new();
 

@@ -25,7 +25,7 @@ use crate::render::frames::{
 use crate::render::sheet::{ICON, compose, page_of, sheet_file_name, write_png};
 use crate::render::{Media, Rgba};
 use crate::store::atomic::{update_json, write_atomic};
-use crate::store::catalogs::{Catalogs, WriteTarget};
+use crate::store::catalogs::{Catalogs, WriteTarget, pack_folder};
 use crate::validate::MAX_PACK_JSON_BYTES;
 
 const PREVIEW: &str = "preview";
@@ -209,7 +209,8 @@ fn write_pack(
 ) -> Result<(PathBuf, Pack, MergeReport), Error> {
     let catalog_dir = Catalogs::writable_dir(env, target)?;
     let packs = catalog_dir.join("packs");
-    let pack_dir = packs.join(pack_folder(&packs, name)?);
+    let folder = pack_folder(&packs, name)?.unwrap_or_else(|| name.to_string());
+    let pack_dir = packs.join(folder);
     let suspect: HashMap<String, bool> = icons
         .iter()
         .map(|(id, icon)| (id.clone(), icon.frame_suspect()))
@@ -234,30 +235,6 @@ fn write_pack(
         swap.commit();
     }
     Ok((catalog_dir, pack, report))
-}
-
-/// The folder in `packs` whose name matches `name` ignoring ASCII case (an exact match first),
-/// else `name` itself.
-fn pack_folder(packs: &Path, name: &str) -> Result<String, Error> {
-    let entries = match fs::read_dir(packs) {
-        Ok(entries) => entries,
-        Err(err) if err.kind() == io::ErrorKind::NotFound => return Ok(name.to_string()),
-        Err(err) => return Err(err.into()),
-    };
-    let mut matches: Vec<String> = entries
-        .filter_map(Result::ok)
-        .filter(|e| e.path().is_dir())
-        .filter_map(|e| e.file_name().into_string().ok())
-        .filter(|folder| folder.eq_ignore_ascii_case(name))
-        .collect();
-    matches.sort();
-    if matches.iter().any(|m| m == name) {
-        return Ok(name.to_string());
-    }
-    Ok(matches
-        .into_iter()
-        .next()
-        .unwrap_or_else(|| name.to_string()))
 }
 
 /// Staging folders left by a build that was killed mid-swap. Called under the pack's lock, so no

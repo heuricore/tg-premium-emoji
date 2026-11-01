@@ -78,8 +78,11 @@ pub enum Confidence {
     Low,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(
+    Serialize, Deserialize, JsonSchema, clap::ValueEnum, Clone, Copy, Debug, PartialEq, Eq,
+)]
 #[serde(rename_all = "snake_case")]
+#[value(rename_all = "snake_case")]
 pub enum By {
     Agent,
     Human,

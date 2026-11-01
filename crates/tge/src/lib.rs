@@ -2,13 +2,16 @@ pub mod botapi;
 pub mod cli;
 pub mod commands;
 pub mod error;
+pub mod label;
 pub mod merge;
 pub mod model;
 pub mod output;
 pub mod paths;
 pub mod render;
+pub mod report;
 pub mod schema;
 pub mod search;
+pub mod similar;
 pub mod snippet;
 pub mod store;
 pub mod validate;
@@ -69,6 +72,14 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
         Some(Command::Snippet { pack, target, text }) => {
             commands::snippet::run(ctx, &pack, &target, &text)
         }
+        Some(Command::Label {
+            pack,
+            edits,
+            by,
+            force,
+        }) => commands::label::run(ctx, &pack, &edits, by, force),
+        Some(Command::Similar { pack }) => commands::similar::run(ctx, &pack),
+        Some(Command::Report { pack }) => commands::report::run(ctx, pack.as_deref()),
         Some(Command::Pack {
             command:
                 PackCommand::Build {
@@ -76,6 +87,9 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
                     catalog,
                 },
         }) => commands::pack_build::run(ctx, &short_name, catalog),
+        Some(Command::Pack {
+            command: PackCommand::Preview { short_name },
+        }) => commands::pack_preview::run(ctx, &short_name),
         Some(Command::Schema { out }) => {
             schema::write_all(&out)?;
             ctx.emit(

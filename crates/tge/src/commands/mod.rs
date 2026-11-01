@@ -1,5 +1,9 @@
 pub mod catalogs;
 pub mod doctor;
 pub mod find;
+pub mod label;
 pub mod pack_build;
+pub mod pack_preview;
+pub mod report;
+pub mod similar;
 pub mod snippet;

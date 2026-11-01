@@ -1,4 +1,5 @@
 use std::fs;
+use std::io;
 use std::path::{Path, PathBuf};
 
 use serde::Serialize;
@@ -53,6 +54,34 @@ impl Catalog {
         dirs.sort();
         dirs.iter().filter_map(|d| load_pack(d)).collect()
     }
+
+    /// The folder of the pack `short_name` under this catalog, matched ignoring ASCII case.
+    pub fn pack_dir(&self, short_name: &str) -> Option<PathBuf> {
+        let packs = self.dir.join("packs");
+        let folder = pack_folder(&packs, short_name).ok()??;
+        Some(packs.join(folder))
+    }
+}
+
+/// The folder in `packs` whose name matches `name` ignoring ASCII case (an exact match first).
+/// `Ok(None)` when there is none or `packs` does not exist.
+pub fn pack_folder(packs: &Path, name: &str) -> io::Result<Option<String>> {
+    let entries = match fs::read_dir(packs) {
+        Ok(entries) => entries,
+        Err(err) if err.kind() == io::ErrorKind::NotFound => return Ok(None),
+        Err(err) => return Err(err),
+    };
+    let mut matches: Vec<String> = entries
+        .filter_map(Result::ok)
+        .filter(|e| e.path().is_dir())
+        .filter_map(|e| e.file_name().into_string().ok())
+        .filter(|folder| folder.eq_ignore_ascii_case(name))
+        .collect();
+    matches.sort();
+    if matches.iter().any(|m| m == name) {
+        return Ok(Some(name.to_string()));
+    }
+    Ok(matches.into_iter().next())
 }
 
 fn load_pack(dir: &Path) -> Option<Pack> {
@@ -109,6 +138,12 @@ impl Catalogs {
                 .find(|p| p.short_name.eq_ignore_ascii_case(short_name))
                 .map(|p| (c, p))
         })
+    }
+
+    /// `find_pack`, with the "not found" runtime error commands report.
+    pub fn require_pack(&self, short_name: &str) -> Result<(&Catalog, Pack), Error> {
+        self.find_pack(short_name)
+            .ok_or_else(|| Error::Runtime(format!("pack '{short_name}' not found")))
     }
 
     pub fn visible_packs(&self) -> Vec<(&Catalog, Pack)> {
@@ -210,5 +245,27 @@ fn load_meta(dir: &Path, required: bool) -> Result<Option<CatalogMeta>, Vec<Issu
     match serde_json::from_value(value) {
         Ok(meta) => Ok(Some(meta)),
         Err(e) => fail(e.to_string()),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn pack_folder_ignores_case_and_prefers_exact() {
+        let dir = tempfile::tempdir().unwrap();
+        fs::create_dir_all(dir.path().join("Demo")).unwrap();
+        assert_eq!(
+            pack_folder(dir.path(), "demo").unwrap().as_deref(),
+            Some("Demo")
+        );
+        assert_eq!(pack_folder(dir.path(), "other").unwrap(), None);
+        fs::create_dir_all(dir.path().join("demo")).unwrap();
+        assert_eq!(
+            pack_folder(dir.path(), "demo").unwrap().as_deref(),
+            Some("demo")
+        );
+        assert_eq!(pack_folder(&dir.path().join("none"), "demo").unwrap(), None);
     }
 }

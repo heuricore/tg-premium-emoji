@@ -2,6 +2,8 @@ use std::path::PathBuf;
 
 use clap::{Parser, Subcommand};
 
+use crate::model::pack::{Fit, Format};
+
 #[derive(Debug, Parser)]
 #[command(name = "tge", version, about = "Telegram premium emoji catalog tool")]
 pub struct Cli {
@@ -39,6 +41,40 @@ pub enum Command {
         /// Remove installed versions other than the one `bin/latest` points to
         #[arg(long)]
         prune: bool,
+    },
+    /// Search labeled emoji across the visible packs
+    Find {
+        /// Search words (Russian or English)
+        #[arg(required = true)]
+        query: Vec<String>,
+        /// Only this pack (short name)
+        #[arg(long)]
+        pack: Option<String>,
+        /// Only this catalog (id)
+        #[arg(long)]
+        catalog: Option<String>,
+        /// Only emoji that fit this context
+        #[arg(long, value_enum)]
+        fits: Option<Fit>,
+        /// Only emoji with this repaint flag
+        #[arg(long)]
+        repaint: Option<bool>,
+        /// Only emoji of this format
+        #[arg(long, value_enum)]
+        format: Option<Format>,
+        /// Maximum number of hits
+        #[arg(long, default_value_t = 10)]
+        limit: usize,
+    },
+    /// Print ready-to-paste snippets for one emoji
+    Snippet {
+        /// Pack short name
+        pack: String,
+        /// Emoji number `n`, or the custom emoji id (all digits, longer than 4)
+        target: String,
+        /// Button label
+        #[arg(long, default_value = "LABEL")]
+        text: String,
     },
     /// Regenerate the JSON Schemas (developer tool)
     #[command(hide = true)]

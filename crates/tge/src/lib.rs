@@ -43,6 +43,29 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
         None => Err(Error::Usage("no command given, try --help".into())),
         Some(Command::Catalogs) => commands::catalogs::run(ctx),
         Some(Command::Doctor { prune }) => commands::doctor::run(ctx, prune),
+        Some(Command::Find {
+            query,
+            pack,
+            catalog,
+            fits,
+            repaint,
+            format,
+            limit,
+        }) => commands::find::run(
+            ctx,
+            commands::find::Args {
+                query,
+                pack,
+                catalog,
+                fits,
+                repaint,
+                format,
+                limit,
+            },
+        ),
+        Some(Command::Snippet { pack, target, text }) => {
+            commands::snippet::run(ctx, &pack, &target, &text)
+        }
         Some(Command::Schema { out }) => {
             schema::write_all(&out)?;
             ctx.emit(

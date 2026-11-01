@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "id": "demo",
+  "name": "Demo catalog",
+  "version": "0.1.0",
+  "author": "tge tests",
+  "license": "MIT",
+  "description": "Minimal catalog used by the validation tests"
+}

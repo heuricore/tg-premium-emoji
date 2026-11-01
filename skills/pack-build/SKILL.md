@@ -52,7 +52,8 @@ It writes to the personal `local` catalog; add `--catalog project` to write into
 `.tg-premium-emoji/` instead. To work on a catalog folder directly (for example the repository
 source of the built-in catalog), pass the global `--catalog-dir <dir>` to every command of the
 session. It prints counts: new, changed (image replaced), gone, returned, total, and any emoji
-that failed to decode.
+that failed to decode. A set with more than 1000 emoji is refused unless `--no-limit` is passed; ask
+the user before using it.
 
 Rebuilding the same pack is a rescan, safe at any time: labels are kept and matched by id. New
 emoji arrive unlabeled. An emoji whose image was replaced keeps its labels but drops to `low` (unless

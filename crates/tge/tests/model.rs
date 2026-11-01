@@ -46,10 +46,14 @@ fn schema_constraints_present() {
         r#""maxLength":64"#,
         r#""maxLength":40"#,
         r#""maxItems":24"#,
-        r#""maxItems":200"#,
     ] {
         assert!(s.contains(needle), "missing {needle}");
     }
+    assert_eq!(
+        s.matches("maxItems").count(),
+        1,
+        "emoji list must be unbounded"
+    );
     let c = tge::schema::generate(DocKind::Catalog).to_string();
     assert!(c.contains(r#""^[a-z0-9][a-z0-9_-]{0,63}$""#));
 }

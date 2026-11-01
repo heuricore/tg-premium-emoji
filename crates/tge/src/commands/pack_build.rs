@@ -12,7 +12,7 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 use serde_json::json;
 
-use crate::botapi::BotApi;
+use crate::botapi::{BotApi, MAX_STICKERS};
 use crate::cli::CatalogChoice;
 use crate::error::Error;
 use crate::merge::{FetchedEmoji, MergeReport, merge};
@@ -32,7 +32,12 @@ const PREVIEW: &str = "preview";
 /// Prefix of the staging folders next to `preview/`.
 const STAGING: &str = ".preview-";
 
-pub fn run(ctx: &Ctx, short_name: &str, catalog: Option<CatalogChoice>) -> Result<(), Error> {
+pub fn run(
+    ctx: &Ctx,
+    short_name: &str,
+    catalog: Option<CatalogChoice>,
+    no_limit: bool,
+) -> Result<(), Error> {
     if !is_set_name(short_name) {
         return Err(Error::Usage(format!(
             "'{short_name}' is not a set name (1-64 English letters, digits or _)"
@@ -51,7 +56,7 @@ pub fn run(ctx: &Ctx, short_name: &str, catalog: Option<CatalogChoice>) -> Resul
         ));
     }
     let (name, title) = (set.name.clone(), set.title.clone());
-    let fetched = set.into_fetched()?;
+    let fetched = set.into_fetched((!no_limit).then_some(MAX_STICKERS))?;
     if let Some(bad) = fetched
         .iter()
         .find(|f| !is_file_unique_id(&f.file_unique_id))

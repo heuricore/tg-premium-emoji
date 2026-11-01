@@ -2,7 +2,7 @@ use std::sync::{Arc, Mutex};
 use std::thread::JoinHandle;
 use std::time::{Duration, Instant};
 
-use tge::botapi::{BotApi, StickerSet, redact};
+use tge::botapi::{BotApi, MAX_STICKERS, StickerSet, redact};
 use tge::merge::FetchedEmoji;
 use tge::model::pack::Format;
 
@@ -101,7 +101,9 @@ fn good_sticker() -> serde_json::Value {
 
 #[test]
 fn fetched_mapping() {
-    let fetched = parse_set(SET_FIXTURE).into_fetched().unwrap();
+    let fetched = parse_set(SET_FIXTURE)
+        .into_fetched(Some(MAX_STICKERS))
+        .unwrap();
     assert_eq!(
         fetched,
         vec![
@@ -138,7 +140,9 @@ fn fetched_mapping() {
 
 #[test]
 fn regular_set_is_rejected() {
-    let err = parse_set(REGULAR_FIXTURE).into_fetched().unwrap_err();
+    let err = parse_set(REGULAR_FIXTURE)
+        .into_fetched(Some(MAX_STICKERS))
+        .unwrap_err();
     let text = err.to_string();
     assert!(text.contains("plain_stickers"), "{text}");
     assert!(text.contains("regular"), "{text}");
@@ -149,14 +153,14 @@ fn bad_stickers_are_rejected_with_position() {
     let mut no_id = good_sticker();
     no_id.as_object_mut().unwrap().remove("custom_emoji_id");
     let err = set_with(serde_json::json!([good_sticker(), no_id]), "custom_emoji")
-        .into_fetched()
+        .into_fetched(Some(MAX_STICKERS))
         .unwrap_err();
     assert!(err.to_string().contains("sticker 2"), "{err}");
 
     let mut bad_id = good_sticker();
     bad_id["custom_emoji_id"] = "12ab".into();
     let err = set_with(serde_json::json!([bad_id]), "custom_emoji")
-        .into_fetched()
+        .into_fetched(Some(MAX_STICKERS))
         .unwrap_err();
     assert!(err.to_string().contains("sticker 1"), "{err}");
 
@@ -164,14 +168,14 @@ fn bad_stickers_are_rejected_with_position() {
     long_id["custom_emoji_id"] = "1".repeat(21).into();
     assert!(
         set_with(serde_json::json!([long_id]), "custom_emoji")
-            .into_fetched()
+            .into_fetched(Some(MAX_STICKERS))
             .is_err()
     );
 
     let mut no_emoji = good_sticker();
     no_emoji["emoji"] = "".into();
     let err = set_with(serde_json::json!([no_emoji]), "custom_emoji")
-        .into_fetched()
+        .into_fetched(Some(MAX_STICKERS))
         .unwrap_err();
     assert!(err.to_string().contains("sticker 1"), "{err}");
 
@@ -179,26 +183,32 @@ fn bad_stickers_are_rejected_with_position() {
     missing_emoji.as_object_mut().unwrap().remove("emoji");
     assert!(
         set_with(serde_json::json!([missing_emoji]), "custom_emoji")
-            .into_fetched()
+            .into_fetched(Some(MAX_STICKERS))
             .is_err()
     );
 }
 
 #[test]
-fn more_than_200_stickers_are_rejected() {
-    let many: Vec<_> = (0..201).map(|_| good_sticker()).collect();
-    assert!(
-        set_with(serde_json::Value::Array(many), "custom_emoji")
-            .into_fetched()
-            .is_err()
-    );
-    let ok: Vec<_> = (0..200).map(|_| good_sticker()).collect();
+fn more_than_1000_stickers_are_rejected() {
+    let many = || serde_json::Value::Array((0..1001).map(|_| good_sticker()).collect());
+    let err = set_with(many(), "custom_emoji")
+        .into_fetched(Some(MAX_STICKERS))
+        .unwrap_err();
+    assert!(err.to_string().contains("--no-limit"), "{err}");
     assert_eq!(
-        set_with(serde_json::Value::Array(ok), "custom_emoji")
-            .into_fetched()
+        set_with(many(), "custom_emoji")
+            .into_fetched(None)
             .unwrap()
             .len(),
-        200
+        1001
+    );
+    let ok: Vec<_> = (0..1000).map(|_| good_sticker()).collect();
+    assert_eq!(
+        set_with(serde_json::Value::Array(ok), "custom_emoji")
+            .into_fetched(Some(MAX_STICKERS))
+            .unwrap()
+            .len(),
+        1000
     );
 }
 

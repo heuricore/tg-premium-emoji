@@ -165,7 +165,6 @@
       "items": {
         "$ref": "#/$defs/Emoji"
       },
-      "maxItems": 200,
       "type": "array"
     },
     "fetched_at": {

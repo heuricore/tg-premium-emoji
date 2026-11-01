@@ -9,7 +9,6 @@ pub struct Pack {
     pub title: String,
     pub fetched_at: String,
     pub preview: PreviewLayout,
-    #[schemars(length(max = 200))]
     pub emoji: Vec<Emoji>,
 }
 

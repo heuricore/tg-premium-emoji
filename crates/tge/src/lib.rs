@@ -85,8 +85,9 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
                 PackCommand::Build {
                     short_name,
                     catalog,
+                    no_limit,
                 },
-        }) => commands::pack_build::run(ctx, &short_name, catalog),
+        }) => commands::pack_build::run(ctx, &short_name, catalog, no_limit),
         Some(Command::Pack {
             command: PackCommand::Preview { short_name },
         }) => commands::pack_preview::run(ctx, &short_name),

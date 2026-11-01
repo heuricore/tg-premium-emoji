@@ -279,8 +279,8 @@ Emoji fields (each one is read by something; source given):
 (separator).
 
 Schema limits (our call, the builder may adjust from real data): `name` up to 64 characters,
-`description` up to 300, up to 24 tags of 40 characters, a pack up to 200 emoji (Telegram's limit
-for a custom emoji set). File size limits are checked on load: `pack.json` up to 2 MB,
+`description` up to 300, up to 24 tags of 40 characters, a pack up to 1000 emoji by default (real sets
+exceed Telegram's documented 200: `tgiosicons` has 399); `tge pack build --no-limit` lifts it. File size limits are checked on load: `pack.json` up to 2 MB,
 `STYLE.md` up to 64 KB, PNG up to 4 MB.
 
 Labeling language (our call): `name` and `description` in English, `tags` in Russian and English.

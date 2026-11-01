@@ -393,6 +393,43 @@ fn rescan_marks_gone() {
 }
 
 #[test]
+fn oversized_set_needs_no_limit() {
+    let sandbox = Sandbox::new();
+    let disc = demo_stickers().remove(2);
+    sandbox.state().stickers = (0..1001u64)
+        .map(|i| Sticker {
+            id: Box::leak(format!("{}", 5_100_000_000_000_000_000u64 + i).into_boxed_str()),
+            file_id: disc.file_id,
+            unique: disc.unique.clone(),
+            emoji: disc.emoji,
+            animated: disc.animated,
+            video: disc.video,
+            repaint: disc.repaint,
+            bytes: disc.bytes.clone(),
+        })
+        .collect();
+    let out = sandbox
+        .command()
+        .args(["pack", "build", "demo"])
+        .assert()
+        .code(1)
+        .get_output()
+        .clone();
+    let stderr = String::from_utf8(out.stderr).unwrap();
+    assert!(stderr.contains("--no-limit"), "{stderr}");
+    assert!(!sandbox.pack_dir().join("pack.json").exists());
+    assert!(!sandbox.local().exists(), "the catalog was touched");
+    assert_eq!(sandbox.state().get_file_calls, 0);
+
+    sandbox
+        .command()
+        .args(["pack", "build", "demo", "--no-limit"])
+        .assert()
+        .success();
+    assert_eq!(sandbox.pack()["emoji"].as_array().unwrap().len(), 1001);
+}
+
+#[test]
 fn failed_download_writes_nothing() {
     let sandbox = Sandbox::new();
     sandbox.state().fail_get_file = Some(2);

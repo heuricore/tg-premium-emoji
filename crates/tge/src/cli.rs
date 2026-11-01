@@ -142,6 +142,9 @@ pub enum PackCommand {
         /// Catalog to write into (default: local); not together with --catalog-dir
         #[arg(long, value_enum)]
         catalog: Option<CatalogChoice>,
+        /// Accept sets with more than 1000 emoji
+        #[arg(long)]
+        no_limit: bool,
     },
     /// Print the preview sheets of a pack with the emoji numbers each one shows
     Preview {

@@ -13,7 +13,7 @@ const MAX_API_BODY: u64 = 4 * 1024 * 1024;
 const MAX_DOWNLOAD: u64 = 20 * 1024 * 1024;
 const MAX_RETRIES: u32 = 5;
 const MAX_RETRY_AFTER: u64 = 60;
-const MAX_STICKERS: usize = 200;
+pub const MAX_STICKERS: usize = 1000;
 
 pub struct BotApi {
     token: String,
@@ -89,16 +89,19 @@ fn is_emoji_id(id: &str) -> bool {
 }
 
 impl StickerSet {
-    pub fn into_fetched(self) -> Result<Vec<FetchedEmoji>, Error> {
+    /// `limit` is the largest accepted sticker count, `None` lifts it.
+    pub fn into_fetched(self, limit: Option<usize>) -> Result<Vec<FetchedEmoji>, Error> {
         if self.sticker_type != "custom_emoji" {
             return Err(Error::Runtime(format!(
                 "sticker set {} has type {}, only custom_emoji sets are supported",
                 self.name, self.sticker_type
             )));
         }
-        if self.stickers.len() > MAX_STICKERS {
+        if let Some(max) = limit
+            && self.stickers.len() > max
+        {
             return Err(Error::Runtime(format!(
-                "sticker set {} has {} stickers, the limit is {MAX_STICKERS}",
+                "sticker set {} has {} stickers, the limit is {max}; pass --no-limit to build it anyway",
                 self.name,
                 self.stickers.len()
             )));

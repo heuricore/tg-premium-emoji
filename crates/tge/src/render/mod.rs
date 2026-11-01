@@ -1,5 +1,7 @@
 //! Decoding emoji sources into straight RGBA frames.
 
+pub mod frames;
+pub mod scale;
 pub mod tgs;
 pub mod webm;
 pub mod webp;
@@ -56,17 +58,22 @@ impl Media {
         }
     }
 
-    /// Frame `index` (0-based, below `frame_count`). tgs is rendered at `size`×`size`; raster
-    /// formats come at their native size.
+    /// Frame `index` (0-based, below `frame_count`) as a `size`×`size` image. tgs is rendered at
+    /// that size; raster formats are fitted inside it with their aspect ratio kept, centred on a
+    /// transparent canvas.
     pub fn frame(&mut self, index: usize, size: u32) -> Result<Rgba, Error> {
         let count = self.frame_count();
         match self {
             Media::Tgs(anim) => anim.render(index, size),
+            _ if size == 0 || size > tgs::MAX_SIZE => Err(Error::Runtime(format!(
+                "render size {size} is outside 1..={}",
+                tgs::MAX_SIZE
+            ))),
             _ if index >= count => Err(Error::Runtime(format!(
                 "frame {index} is out of range, the source has {count} frame(s)"
             ))),
-            Media::Webm(frames) => Ok(webm::to_rgba(&frames[index])),
-            Media::Static(img) => Ok(img.clone()),
+            Media::Webm(frames) => Ok(scale::fit_square(&webm::to_rgba(&frames[index]), size)),
+            Media::Static(img) => Ok(scale::fit_square(img, size)),
         }
     }
 }
@@ -80,4 +87,52 @@ fn check_source_size(kind: &str, w: u32, h: u32) -> Result<(), Error> {
         )));
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn opaque(w: u32, h: u32) -> Rgba {
+        Rgba {
+            w,
+            h,
+            px: [10, 20, 30, 255].repeat(w as usize * h as usize),
+        }
+    }
+
+    #[test]
+    fn square_raster_is_resized_to_size() {
+        let mut media = Media::Static(opaque(100, 100));
+        let out = media.frame(0, 64).unwrap();
+        assert_eq!((out.w, out.h), (64, 64));
+        assert!(
+            out.px
+                .as_chunks::<4>()
+                .0
+                .iter()
+                .all(|p| *p == [10, 20, 30, 255])
+        );
+    }
+
+    #[test]
+    fn non_square_raster_is_centred_with_transparent_bands() {
+        let mut media = Media::Static(opaque(100, 50));
+        let out = media.frame(0, 64).unwrap();
+        assert_eq!((out.w, out.h), (64, 64));
+        let alpha = |x: usize, y: usize| out.px[(y * 64 + x) * 4 + 3];
+        assert_eq!(alpha(32, 0), 0);
+        assert_eq!(alpha(32, 63), 0);
+        assert_eq!(alpha(0, 32), 255);
+        assert_eq!(alpha(63, 32), 255);
+        assert_eq!(alpha(32, 32), 255);
+    }
+
+    #[test]
+    fn raster_size_bounds_are_enforced() {
+        let mut media = Media::Static(opaque(4, 4));
+        assert!(media.frame(0, 0).is_err());
+        assert!(media.frame(0, tgs::MAX_SIZE + 1).is_err());
+        assert!(media.frame(1, 8).is_err());
+    }
 }

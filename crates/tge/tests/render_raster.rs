@@ -146,8 +146,8 @@ fn webm_frame_count_and_size() {
     assert_eq!(media.frame_count(), 60);
     for index in [0, 59] {
         let img = media.frame(index, 128).unwrap();
-        assert_eq!((img.w, img.h), (100, 100));
-        assert_eq!(img.px.len(), 100 * 100 * 4);
+        assert_eq!((img.w, img.h), (128, 128));
+        assert_eq!(img.px.len(), 128 * 128 * 4);
     }
     assert!(media.frame(60, 128).is_err());
 }
@@ -299,10 +299,11 @@ fn webp_roundtrip() {
     let bytes = encode_webp(&rgba, 100, 100, ColorType::Rgba8);
     let mut media = Media::open(Format::Static, &bytes).unwrap();
     assert_eq!(media.frame_count(), 1);
-    let img = media.frame(0, 128).unwrap();
+    let img = media.frame(0, 100).unwrap();
     assert_eq!((img.w, img.h), (100, 100));
     assert!(img.px == rgba, "pixels differ");
-    assert!(media.frame(1, 128).is_err());
+    assert!(media.frame(1, 100).is_err());
+    assert_eq!(media.frame(0, 128).unwrap().w, 128);
 }
 
 #[test]

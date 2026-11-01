@@ -14,7 +14,7 @@ use crate::error::Error;
 pub const MAX_JSON_BYTES: usize = 16 * 1024 * 1024;
 
 /// Largest rendered side; keeps rlottie's `int` geometry far from overflow.
-const MAX_SIZE: u32 = 4096;
+pub(super) const MAX_SIZE: u32 = 4096;
 
 /// Built without LOTTIE_THREAD_SUPPORT or LOTTIE_THREAD_SAFE, rlottie rasterizes every animation
 /// through one process-wide outline and stroker (`RleTaskScheduler` in `vraster.cpp`), so two

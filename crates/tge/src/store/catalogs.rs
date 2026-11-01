@@ -124,17 +124,16 @@ impl Catalogs {
         out
     }
 
-    /// Directory a write command may modify; created with a generated `catalog.json`
-    /// when missing. Never the built-in catalog.
-    pub fn writable_dir(env: &Env, target: WriteTarget) -> Result<PathBuf, Error> {
-        let (dir, id) = match target {
-            WriteTarget::Local => (local_dir(env), "local"),
-            WriteTarget::Project => (
-                find_project_catalog(&env.cwd).unwrap_or_else(|| env.cwd.join(PROJECT_DIR)),
-                "project",
-            ),
+    /// Directory a write command would modify, resolved without creating anything. Never the
+    /// built-in catalog.
+    pub fn target_dir(env: &Env, target: WriteTarget) -> Result<PathBuf, Error> {
+        let dir = match target {
+            WriteTarget::Local => local_dir(env),
+            WriteTarget::Project => {
+                find_project_catalog(&env.cwd).unwrap_or_else(|| env.cwd.join(PROJECT_DIR))
+            }
             WriteTarget::Explicit => match &env.catalog_dir {
-                Some(dir) => (dir.clone(), "custom"),
+                Some(dir) => dir.clone(),
                 None => return Err(Error::Usage("--catalog-dir is required".into())),
             },
         };
@@ -146,6 +145,17 @@ impl Catalogs {
                 builtin.display()
             )));
         }
+        Ok(dir)
+    }
+
+    /// `target_dir`, created with a generated `catalog.json` when missing.
+    pub fn writable_dir(env: &Env, target: WriteTarget) -> Result<PathBuf, Error> {
+        let dir = Self::target_dir(env, target)?;
+        let id = match target {
+            WriteTarget::Local => "local",
+            WriteTarget::Project => "project",
+            WriteTarget::Explicit => "custom",
+        };
         let catalog_path = dir.join("catalog.json");
         if !catalog_path.exists() {
             fs::create_dir_all(&dir)?;

@@ -76,6 +76,11 @@ pub enum Command {
         #[arg(long, default_value = "LABEL")]
         text: String,
     },
+    /// Work with emoji packs
+    Pack {
+        #[command(subcommand)]
+        command: PackCommand,
+    },
     /// Regenerate the JSON Schemas (developer tool)
     #[command(hide = true)]
     Schema {
@@ -83,4 +88,23 @@ pub enum Command {
         #[arg(long, value_name = "DIR")]
         out: PathBuf,
     },
+}
+
+#[derive(Debug, Subcommand)]
+pub enum PackCommand {
+    /// Download a custom emoji set through the Bot API (BOT_TOKEN), render its preview sheets and
+    /// write pack.json, keeping existing labels
+    Build {
+        /// Set name, as in t.me/addemoji/<SHORT_NAME>
+        short_name: String,
+        /// Catalog to write into (default: local); not together with --catalog-dir
+        #[arg(long, value_enum)]
+        catalog: Option<CatalogChoice>,
+    },
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, clap::ValueEnum)]
+pub enum CatalogChoice {
+    Local,
+    Project,
 }

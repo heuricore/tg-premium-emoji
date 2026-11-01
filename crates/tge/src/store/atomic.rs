@@ -1,6 +1,6 @@
 use std::ffi::OsString;
 use std::fs::{self, File, OpenOptions};
-use std::io::{self, Write};
+use std::io::{self, Read, Write};
 use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicU64, Ordering};
 
@@ -71,15 +71,42 @@ fn lock_exclusive(path: &Path) -> io::Result<File> {
     Ok(file)
 }
 
+/// `Ok(None)` when the file does not exist; never reads more than `max_bytes + 1` bytes.
+fn read_bounded(path: &Path, max_bytes: u64) -> Result<Option<Vec<u8>>, Error> {
+    let file = match File::open(path) {
+        Ok(file) => file,
+        Err(err) if err.kind() == io::ErrorKind::NotFound => return Ok(None),
+        Err(err) => return Err(err.into()),
+    };
+    let too_big = || {
+        Error::Runtime(format!(
+            "{} is larger than {max_bytes} bytes",
+            path.display()
+        ))
+    };
+    if file.metadata()?.len() > max_bytes {
+        return Err(too_big());
+    }
+    let mut bytes = Vec::new();
+    file.take(max_bytes.saturating_add(1))
+        .read_to_end(&mut bytes)?;
+    if bytes.len() as u64 > max_bytes {
+        return Err(too_big());
+    }
+    Ok(Some(bytes))
+}
+
+/// Reads `path` (at most `max_bytes`, else `Err` with the file untouched), passes it to `f`
+/// and writes the result atomically, all under the file's lock.
 pub fn update_json<T: DeserializeOwned + Serialize>(
     path: &Path,
+    max_bytes: u64,
     f: impl FnOnce(Option<T>) -> Result<T, Error>,
 ) -> Result<T, Error> {
     let _lock = lock_exclusive(path)?;
-    let current = match fs::read(path) {
-        Ok(bytes) => Some(serde_json::from_slice(&bytes)?),
-        Err(err) if err.kind() == io::ErrorKind::NotFound => None,
-        Err(err) => return Err(err.into()),
+    let current = match read_bounded(path, max_bytes)? {
+        Some(bytes) => Some(serde_json::from_slice(&bytes)?),
+        None => None,
     };
     let updated = f(current)?;
     let mut text = serde_json::to_string_pretty(&updated)?;

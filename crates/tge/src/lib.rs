@@ -15,7 +15,7 @@ pub mod validate;
 
 use std::process::ExitCode;
 
-use cli::{Cli, Command};
+use cli::{Cli, Command, PackCommand};
 use error::Error;
 use output::Ctx;
 use paths::Env;
@@ -69,6 +69,13 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
         Some(Command::Snippet { pack, target, text }) => {
             commands::snippet::run(ctx, &pack, &target, &text)
         }
+        Some(Command::Pack {
+            command:
+                PackCommand::Build {
+                    short_name,
+                    catalog,
+                },
+        }) => commands::pack_build::run(ctx, &short_name, catalog),
         Some(Command::Schema { out }) => {
             schema::write_all(&out)?;
             ctx.emit(

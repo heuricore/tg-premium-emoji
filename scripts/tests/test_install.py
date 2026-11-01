@@ -312,3 +312,77 @@ def test_latest_as_real_directory_is_refused(server, env):
 
 def test_python38_syntax():
     ast.parse(SCRIPT.read_text(encoding="utf-8"), feature_version=(3, 8))
+
+
+TOP = "tge-v0.1.0-windows-x64"
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        TOP + "/D:/evil.exe",
+        TOP + "\\D:evil.exe",
+        TOP + "/tge.exe:stream",
+        TOP + "/.. /evil",
+        TOP + "/evil.",
+        TOP + "/a?b",
+        "C:/x",
+        "/abs/x",
+        TOP + "/../x",
+    ],
+)
+def test_split_member_rejects_unsafe_names(name):
+    with pytest.raises(INSTALL.InstallError):
+        INSTALL.split_member(name)
+
+
+def test_plan_members_accepts_normal_layout():
+    entries = [
+        (TOP + "/", False, True, None),
+        (TOP + "/tge.exe", True, False, "a"),
+        (TOP + "/catalog/pack.json", True, False, "b"),
+    ]
+    plan = INSTALL.plan_members(entries, TOP)
+    assert [p[0] for p in plan] == [["tge.exe"], ["catalog", "pack.json"]]
+
+
+def make_zip(entries):
+    """entries: list of (name, data, external_attr or None)."""
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as zf:
+        for name, data, attr in entries:
+            if attr is None:
+                zf.writestr(name, data)
+            else:
+                info = zipfile.ZipInfo(name)
+                info.external_attr = attr
+                zf.writestr(info, data)
+    return buf.getvalue()
+
+
+def test_read_zip_accepts_writestr_permission_only_mode():
+    data = make_zip([(TOP + "/tge.exe", b"x", None), (TOP + "/catalog/", b"", None)])
+    plan = INSTALL.read_zip(data, TOP)
+    assert (["tge.exe"], False) in [(p[0], p[1]) for p in plan]
+
+
+def test_read_zip_accepts_zero_mode_bits():
+    data = make_zip([(TOP + "/tge.exe", b"x", 0)])
+    assert INSTALL.read_zip(data, TOP)[0][0] == ["tge.exe"]
+
+
+def test_read_zip_rejects_symlink_mode():
+    link_attr = (0o120777) << 16
+    data = make_zip([(TOP + "/tge.exe", b"x", None), (TOP + "/link", b"/etc/passwd", link_attr)])
+    with pytest.raises(INSTALL.InstallError):
+        INSTALL.read_zip(data, TOP)
+
+
+@pytest.mark.skipif(sys.platform != "win32", reason="Windows directory links")
+def test_windows_update_replaces_link(server, env):
+    server.add_release("0.0.1")
+    assert run(env).returncode == 0
+    server.add_release("0.0.2")
+    assert run(env, "--update").returncode == 0
+    assert latest_version(env) == "0.0.2"
+    assert (env["home"] / "bin" / "latest" / BIN_NAME).is_file()

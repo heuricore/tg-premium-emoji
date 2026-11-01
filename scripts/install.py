@@ -16,7 +16,6 @@ import platform
 import re
 import shutil
 import stat
-import subprocess
 import sys
 import tarfile
 import urllib.request
@@ -25,6 +24,7 @@ from pathlib import Path
 
 DEFAULT_API = "https://api.github.com/repos/heuricore/tg-premium-emoji/releases"
 HTTP_TIMEOUT = 60
+UNSAFE_COMPONENT = re.compile(r'[:<>"|?*\x00-\x1f]')
 SEMVER_TAG = re.compile(r"^v(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?$")
 
 
@@ -132,6 +132,9 @@ def split_member(name):
     parts = [p for p in normalized.split("/") if p not in ("", ".")]
     if ".." in parts:
         raise InstallError("unsafe archive member path: %s" % name)
+    for part in parts:
+        if UNSAFE_COMPONENT.search(part) or part[-1] in ". ":
+            raise InstallError("unsafe archive member path: %s" % name)
     return parts
 
 
@@ -174,12 +177,12 @@ def read_zip(data, top):
         raise InstallError("cannot read archive: %s" % exc)
     entries = []
     for info in zf.infolist():
-        mode = info.external_attr >> 16
+        kind = stat.S_IFMT(info.external_attr >> 16)
         is_dir = info.filename.endswith("/")
-        if mode:
-            is_file, is_dir = stat.S_ISREG(mode), stat.S_ISDIR(mode)
-        else:
+        if kind == 0:
             is_file = not is_dir
+        else:
+            is_file, is_dir = kind == stat.S_IFREG, kind == stat.S_IFDIR
         entries.append((info.filename, is_file, is_dir, info))
     plan = plan_members(entries, top)
     return [(parts, is_dir, None if is_dir else zf.open(info)) for parts, is_dir, info in plan]
@@ -187,8 +190,11 @@ def read_zip(data, top):
 
 def write_tree(plan, dest):
     dest.mkdir(parents=True)
+    root = os.path.abspath(str(dest))
     for parts, is_dir, source in plan:
         target = dest.joinpath(*parts)
+        if os.path.commonpath([root, os.path.abspath(str(target))]) != root:
+            raise InstallError("archive member escapes the install directory: %s" % "/".join(parts))
         if is_dir:
             target.mkdir(parents=True, exist_ok=True)
             continue
@@ -248,12 +254,49 @@ def install(release, home):
 
 
 def is_link(path):
-    """True for a symlink or a Windows junction (readlink works on both)."""
+    """True for a symlink or a Windows junction (a reparse point)."""
     try:
-        os.readlink(str(path))
-        return True
+        info = os.lstat(str(path))
     except OSError:
         return False
+    if stat.S_ISLNK(info.st_mode):
+        return True
+    return bool(getattr(info, "st_file_attributes", 0) & 0x400)
+
+
+def make_windows_link(target, link):
+    """Create a directory link: a symlink if allowed, else a junction."""
+    try:
+        os.symlink(str(target), str(link), target_is_directory=True)
+        return
+    except (OSError, NotImplementedError):
+        pass
+    create_junction = None
+    if os.name == "nt":
+        import _winapi
+
+        create_junction = getattr(_winapi, "CreateJunction", None)
+    if create_junction is None:
+        raise InstallError("cannot create a directory link %s: no symlink privilege and no junction support" % link)
+    try:
+        create_junction(os.path.abspath(str(target)), str(link))
+    except OSError as exc:
+        raise InstallError("cannot create junction %s: %s" % (link, exc))
+
+
+def point_latest_windows(bin_dir, ver):
+    latest = bin_dir / "latest"
+    temp = bin_dir / ("latest.tmp-%d" % os.getpid())
+    if os.path.lexists(str(temp)):
+        os.rmdir(str(temp))
+    make_windows_link(bin_dir / ver, temp)
+    try:
+        if os.path.lexists(str(latest)):
+            os.rmdir(str(latest))
+        os.rename(str(temp), str(latest))
+    except OSError:
+        os.rmdir(str(temp))
+        raise
 
 
 def check_latest_is_link(home):
@@ -272,15 +315,7 @@ def point_latest(home, ver):
     check_latest_is_link(home)
     try:
         if os.name == "nt":
-            if is_link(latest):
-                os.rmdir(str(latest))
-            result = subprocess.run(
-                ["cmd", "/c", "mklink", "/J", str(latest), str(target)],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-            )
-            if result.returncode != 0:
-                raise InstallError("cannot create junction %s: %s" % (latest, result.stderr.decode(errors="replace").strip()))
+            point_latest_windows(bin_dir, ver)
         else:
             temp = bin_dir / ".latest.tmp"
             if os.path.lexists(str(temp)):

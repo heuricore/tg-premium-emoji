@@ -50,9 +50,15 @@ tasks:
           PATH="$zig_dir:$PATH" cargo-zigbuild run -q -p tge --locked --target "$host" -- schema --out schemas
         fi
 
+  scripts-test:
+    desc: Test the Python helper scripts
+    cmds:
+      - uv run --with pytest pytest scripts/tests -q
+
   check:
     desc: Format, lint and test (later tasks append steps)
     cmds:
       - task: fmt
       - task: clippy
       - task: test
+      - task: scripts-test

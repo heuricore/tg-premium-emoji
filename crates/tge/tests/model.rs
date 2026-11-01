@@ -9,6 +9,7 @@ fn sample_emoji() -> Emoji {
         fallback: "\u{1F600}".into(),
         format: Format::Static,
         repaint: false,
+        animated: false,
         name: None,
         description: None,
         tags: vec![],

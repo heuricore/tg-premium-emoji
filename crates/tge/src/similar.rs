@@ -85,6 +85,7 @@ mod tests {
             fallback: "x".into(),
             format: Format::Static,
             repaint: false,
+            animated: false,
             name: name.map(str::to_string),
             description: None,
             tags: tags.iter().map(|t| t.to_string()).collect(),

@@ -13,6 +13,7 @@ pub struct Args {
     pub catalog: Option<String>,
     pub fits: Option<Fit>,
     pub repaint: Option<bool>,
+    pub animated: Option<bool>,
     pub format: Option<Format>,
     pub limit: usize,
 }
@@ -47,6 +48,7 @@ fn passes_filters(emoji: &Emoji, args: &Args) -> bool {
     args.fits
         .is_none_or(|f| emoji.fits.as_deref().is_some_and(|fits| fits.contains(&f)))
         && args.repaint.is_none_or(|r| emoji.repaint == r)
+        && args.animated.is_none_or(|a| emoji.animated == a)
         && args.format.is_none_or(|f| emoji.format == f)
 }
 
@@ -129,6 +131,7 @@ pub fn run(ctx: &Ctx, args: Args) -> Result<(), Error> {
             "description": e.description,
             "fits": e.fits,
             "fallback": e.fallback,
+            "animated": e.animated,
             "confidence": confidence,
             "html": html,
             "markdown_v2": markdown_v2(&e.id, &e.fallback),

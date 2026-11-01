@@ -18,6 +18,10 @@
     "Emoji": {
       "additionalProperties": false,
       "properties": {
+        "animated": {
+          "default": false,
+          "type": "boolean"
+        },
         "by": {
           "anyOf": [
             {

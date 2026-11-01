@@ -59,6 +59,9 @@ pub enum Command {
         /// Only emoji with this repaint flag
         #[arg(long)]
         repaint: Option<bool>,
+        /// Only emoji that move (true) or are still (false)
+        #[arg(long)]
+        animated: Option<bool>,
         /// Only emoji of this format
         #[arg(long, value_enum)]
         format: Option<Format>,
@@ -75,6 +78,14 @@ pub enum Command {
         /// Button label
         #[arg(long, default_value = "LABEL")]
         text: String,
+    },
+    /// Print the full record of one or more emoji, with preview cell and snippets
+    Show {
+        /// Pack short name
+        pack: String,
+        /// Emoji numbers `n` or custom emoji ids (all digits, longer than 4)
+        #[arg(required = true)]
+        targets: Vec<String>,
     },
     /// Apply a batch of label edits to a pack
     Label {

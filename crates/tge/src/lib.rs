@@ -55,6 +55,7 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
             catalog,
             fits,
             repaint,
+            animated,
             format,
             limit,
         }) => commands::find::run(
@@ -65,10 +66,12 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
                 catalog,
                 fits,
                 repaint,
+                animated,
                 format,
                 limit,
             },
         ),
+        Some(Command::Show { pack, targets }) => commands::show::run(ctx, &pack, &targets),
         Some(Command::Snippet { pack, target, text }) => {
             commands::snippet::run(ctx, &pack, &target, &text)
         }

@@ -29,6 +29,7 @@ pub fn merge(
     title: &str,
     fetched: &[FetchedEmoji],
     suspect: &HashMap<String, bool>,
+    animated: &HashMap<String, bool>,
     now: &str,
 ) -> (Pack, MergeReport) {
     let old = existing.map(|p| p.emoji).unwrap_or_default();
@@ -46,6 +47,7 @@ pub fn merge(
             continue;
         }
         let frame_suspect = suspect.get(&f.id).copied().unwrap_or(false);
+        let animated = animated.get(&f.id).copied().unwrap_or(false);
         let emoji = match old_by_id.get(f.id.as_str()) {
             None => {
                 report.added.push(f.id.clone());
@@ -56,6 +58,7 @@ pub fn merge(
                     fallback: f.fallback.clone(),
                     format: f.format,
                     repaint: f.repaint,
+                    animated,
                     name: None,
                     description: None,
                     tags: Vec::new(),
@@ -82,6 +85,7 @@ pub fn merge(
                 emoji.fallback = f.fallback.clone();
                 emoji.format = f.format;
                 emoji.repaint = f.repaint;
+                emoji.animated = animated;
                 emoji.frame_suspect = frame_suspect;
                 emoji.gone = false;
                 emoji
@@ -146,6 +150,7 @@ mod tests {
             fallback: "x".into(),
             format: Format::Static,
             repaint: false,
+            animated: false,
             name: Some(format!("name-{id}")),
             description: Some(format!("desc-{id}")),
             tags: vec![format!("tag-{id}")],
@@ -169,7 +174,7 @@ mod tests {
     }
 
     fn run(existing: Option<Pack>, f: &[FetchedEmoji]) -> (Pack, MergeReport) {
-        merge(existing, "p", "P", f, &HashMap::new(), NOW)
+        merge(existing, "p", "P", f, &HashMap::new(), &HashMap::new(), NOW)
     }
 
     fn find<'a>(p: &'a Pack, id: &str) -> &'a Emoji {
@@ -186,8 +191,10 @@ mod tests {
             "Title",
             &[fetched(1, "1", "u1"), fetched(2, "2", "u2")],
             &sus,
+            &HashMap::from([("2".to_string(), true)]),
             NOW,
         );
+        assert!(find(&p, "2").animated && !find(&p, "1").animated);
         assert_eq!(p.schema_version, 1);
         assert_eq!(p.short_name, "pk");
         assert_eq!(p.title, "Title");

@@ -150,6 +150,25 @@ fn find_filters_by_repaint_and_format() {
 }
 
 #[test]
+fn find_filters_by_animated() {
+    let sandbox = Sandbox::new();
+    let ns = |doc: &Value| -> Vec<Value> {
+        doc["hits"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|h| h["n"].clone())
+            .collect()
+    };
+    let doc = sandbox.json(&["find", "check", "cross", "--animated", "true"]);
+    assert_eq!(ns(&doc), [2]);
+    assert_eq!(doc["hits"][0]["animated"], true);
+    let doc = sandbox.json(&["find", "check", "cross", "--animated", "false"]);
+    assert_eq!(ns(&doc), [1]);
+    assert_eq!(doc["hits"][0]["animated"], false);
+}
+
+#[test]
 fn find_rejects_query_without_words() {
     let out = Sandbox::new()
         .cmd(&["find", "!!!"])

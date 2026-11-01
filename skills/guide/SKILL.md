@@ -58,7 +58,8 @@ versions other than `latest`; old versions do no harm otherwise.
 
 | Command | What it does |
 |---|---|
-| `tge find <words...> [--pack --catalog --fits --repaint --format --limit]` | Search labeled emoji by meaning (Russian or English); prints ids and snippets |
+| `tge find <words...> [--pack --catalog --fits --repaint --animated --format --limit]` | Search labeled emoji by meaning (Russian or English); prints ids and snippets |
+| `tge show <pack> <n\|id>...` | The full record of one or more emoji: every field, preview sheet and cell, snippets. Use it instead of reading `pack.json` |
 | `tge snippet <pack> <n\|id> [--text LABEL]` | HTML, MarkdownV2 and button snippets for one emoji |
 | `tge pack build <short_name> [--catalog local\|project]` | Download a set (needs `BOT_TOKEN`), render previews, write `pack.json`, keep labels |
 | `tge pack preview <pack>` | Absolute paths of the preview sheets with the `n` range on each |

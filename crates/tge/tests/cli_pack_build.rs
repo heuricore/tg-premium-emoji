@@ -347,6 +347,12 @@ fn first_build_creates_valid_pack() {
         ]
     );
     assert_eq!(emoji(&pack, ID_WEBP)["repaint"], true);
+    assert_eq!(emoji(&pack, ID_TGS)["animated"], true);
+    assert_eq!(emoji(&pack, ID_WEBP)["animated"], false);
+    let animated: Vec<(&Value, &Value)> =
+        frames.iter().map(|f| (&f["id"], &f["animated"])).collect();
+    assert_eq!(animated[0], (&json!(ID_TGS), &json!(true)));
+    assert_eq!(animated[2], (&json!(ID_WEBP), &json!(false)));
     assert!(emoji(&pack, ID_TGS)["confidence"].is_null());
 
     let sheet = sandbox.pack_dir().join("preview/demo_1.png");

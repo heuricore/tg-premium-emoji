@@ -98,6 +98,9 @@ not find. On exit 3 it lists the issues: fix the batch and resend it. If an issu
 of the pack your batch did not touch, the pack already had a problem: run `tge validate`, report
 it to the user, and do not hand-edit `pack.json`.
 
+To inspect one emoji (its current labels, flags, preview cell), run `tge show <pack> <n>` instead
+of reading `pack.json`. `animated` says whether it moves; `format: tgs` alone does not.
+
 ## 4. Similar groups
 
 ```bash

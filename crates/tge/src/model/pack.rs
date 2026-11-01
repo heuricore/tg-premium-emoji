@@ -38,6 +38,8 @@ pub struct Emoji {
     pub fallback: String,
     pub format: Format,
     pub repaint: bool,
+    #[serde(default)]
+    pub animated: bool,
     #[schemars(length(max = 64))]
     pub name: Option<String>,
     #[schemars(length(max = 300))]

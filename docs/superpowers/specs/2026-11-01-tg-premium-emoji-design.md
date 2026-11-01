@@ -265,6 +265,7 @@ Emoji fields (each one is read by something; source given):
 | `fallback` | string | the `emoji` field of Sticker |
 | `format` | `static` / `tgs` / `webm` | from `is_animated` and `is_video` |
 | `repaint` | bool | from `needs_repainting` |
+| `animated` | bool | set by `pack build`: sampled frames differ; `format: tgs` alone does not mean motion |
 | `name` | string or null | null: not labeled or not recognized |
 | `description` | string or null | distinguishing description that tells this emoji apart from similar ones in the pack |
 | `tags` | array of strings | synonyms, ru/en, spelling variants |
@@ -397,6 +398,9 @@ download it; otherwise a clear error.
   without `--force`; the command reports which ones were skipped.
 - Pass 1: names, tags, confidence from the previews. Not recognized: `name: null`,
   `confidence: low`, invent nothing.
+- `tge show <pack> <n|id>...`: the full record of each emoji (every stored field, catalog, pack,
+  preview sheet path and cell, snippets); `--json` is always an array. By id it also shows `gone`
+  emoji. Use it instead of reading `pack.json`.
 - `tge similar <pack>`: groups of emoji with close names and tags within the pack.
 - Pass 2: for each group the agent writes distinguishing `description`s, looking at the
   neighbours.
@@ -406,7 +410,7 @@ download it; otherwise a clear error.
 
 ### 5.10 Search
 
-`tge find <query> [--pack --catalog --style --fits --repaint --format --limit --json]`. BM25 over
+`tge find <query> [--pack --catalog --style --fits --repaint --animated --format --limit --json]`. BM25 over
 filled fields with weights: `name` above `tags`, above `description`; `fits` as a filter and a
 weak signal. Tokenization: lowercase, ё → е, split on non-letters; a query token of 4 or more
 characters also matches as a prefix (Russian morphology without a stemmer). No index on disk,

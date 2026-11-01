@@ -26,6 +26,7 @@
       "fallback": "❌",
       "format": "tgs",
       "repaint": true,
+      "animated": true,
       "name": "cross",
       "description": null,
       "tags": ["крестик", "cancel"],

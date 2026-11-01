@@ -52,7 +52,8 @@ For every element (a message line, a heading, a button, a status, a list marker)
    tge find order paid success --fits status
    ```
    Useful filters: `--fits text|heading|list_item|button|status|divider`, `--pack`,
-   `--repaint true` (monochrome emoji that take the text colour), `--format static|tgs|webm`,
+   `--repaint true` (monochrome emoji that take the text colour), `--animated true|false`
+   (whether it moves), `--format static|tgs|webm`,
    `--limit N` (default 10). No hits: try synonyms, the other language, fewer filters.
 3. **Choose by meaning, not by rank.** Read every hit's name, description and confidence (and
    `fits` in the JSON); the first hit only matched the words best. Prefer `high` over `medium`;
@@ -73,6 +74,10 @@ The user names an emoji from a catalog (pack and number, or an id from earlier `
 use it as is. Get its snippet with `tge snippet <pack> <n|id>`. A raw id the user typed and that
 no catalog holds is theirs to vouch for: copy it exactly, and say it is not in the catalog.
 Slots of a style (`style:slot`) arrive in Phase 2.
+
+To inspect an emoji (labels, flags, preview cell) run `tge show <pack> <n|id>`; do not read
+`pack.json`. The `animated` field, not `format`, says whether it moves: `format: tgs` is only a
+Lottie file and may be still.
 
 ## Mode 3: mixed
 

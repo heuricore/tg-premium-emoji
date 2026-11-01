@@ -133,6 +133,8 @@ struct Rendered {
     image: Rgba,
     /// Coverage figures of the sampled frames, or the error that left the icon empty.
     stats: Result<FrameStats, String>,
+    /// A tgs or webm source whose sampled frames are not all identical.
+    animated: bool,
 }
 
 impl Rendered {
@@ -162,13 +164,15 @@ fn render_all(
         let bytes = fs::read(path)
             .map_err(|e| Error::Runtime(format!("cannot read {}: {e}", path.display())))?;
         let rendered = match render_icon(f.format, &bytes, f.repaint) {
-            Ok((image, stats)) => Rendered {
+            Ok((image, stats, moves)) => Rendered {
                 image,
                 stats: Ok(stats),
+                animated: f.format != Format::Static && moves,
             },
             Err(err) => Rendered {
                 image: Rgba::new(ICON, ICON),
                 stats: Err(err.to_string()),
+                animated: false,
             },
         };
         icons.insert(f.id.clone(), rendered);
@@ -177,8 +181,12 @@ fn render_all(
 }
 
 /// The best of up to `SAMPLES` evenly spaced frames (a static image has one), whitened for
-/// `repaint` emoji.
-fn render_icon(format: Format, bytes: &[u8], repaint: bool) -> Result<(Rgba, FrameStats), Error> {
+/// `repaint` emoji. The flag says whether any sampled frame differs from the first one.
+fn render_icon(
+    format: Format,
+    bytes: &[u8],
+    repaint: bool,
+) -> Result<(Rgba, FrameStats, bool), Error> {
     let mut media = Media::open(format, bytes)?;
     let mut frames = Vec::new();
     for index in sample_positions(media.frame_count(), SAMPLES) {
@@ -194,13 +202,14 @@ fn render_icon(format: Format, bytes: &[u8], repaint: bool) -> Result<(Rgba, Fra
     if frames.is_empty() {
         return Err(Error::Runtime("the source has no frames".into()));
     }
+    let moves = frames.iter().any(|f| *f != frames[0]);
     let coverages: Vec<f32> = frames.iter().map(coverage).collect();
     let stats = pick_best(&coverages);
     let mut image = frames.swap_remove(stats.best_index);
     if repaint {
         whiten(&mut image);
     }
-    Ok((image, stats))
+    Ok((image, stats, moves))
 }
 
 /// Phase C: merge, swap in the new preview folder and write `pack.json`, under the pack's lock.
@@ -220,6 +229,10 @@ fn write_pack(
     let suspect: HashMap<String, bool> = icons
         .iter()
         .map(|(id, icon)| (id.clone(), icon.frame_suspect()))
+        .collect();
+    let animated: HashMap<String, bool> = icons
+        .iter()
+        .map(|(id, icon)| (id.clone(), icon.animated))
         .collect();
     let now = utc_now();
     // a pack that exists only in a lower catalog must not be shadowed by an unlabeled copy
@@ -248,6 +261,7 @@ fn write_pack(
                 title,
                 fetched,
                 &suspect,
+                &animated,
                 &now,
             );
             report = merged;
@@ -397,9 +411,11 @@ fn emit(
         ),
     ];
     for emoji in pack.emoji.iter().filter(|e| e.n.is_some()) {
+        let animated = emoji.animated;
         match icons.get(&emoji.id).map(|icon| &icon.stats) {
             Some(Ok(s)) => frames.push(json!({
                 "id": emoji.id,
+                "animated": animated,
                 "best_index": s.best_index,
                 "best": s.best,
                 "median": s.median,

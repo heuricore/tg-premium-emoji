@@ -5,6 +5,7 @@ pub mod model;
 pub mod output;
 pub mod paths;
 pub mod schema;
+pub mod search;
 pub mod store;
 pub mod validate;
 

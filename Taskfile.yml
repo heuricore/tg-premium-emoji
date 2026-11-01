@@ -21,7 +21,8 @@ tasks:
           cargo clippy --workspace --all-targets --locked -- -D warnings
         else
           zig_dir=$(echo "$PWD"/.tools/zig/lib/python3*/site-packages/ziglang)
-          PATH="$zig_dir:$PATH" cargo-zigbuild clippy --workspace --all-targets --locked -- -D warnings
+          host=$(rustc -vV | sed -n 's/^host: //p')
+          PATH="$zig_dir:$PATH" cargo-zigbuild clippy --workspace --all-targets --locked --target "$host" -- -D warnings
         fi
 
   test:
@@ -32,7 +33,8 @@ tasks:
           cargo test --workspace --locked
         else
           zig_dir=$(echo "$PWD"/.tools/zig/lib/python3*/site-packages/ziglang)
-          PATH="$zig_dir:$PATH" cargo-zigbuild test --workspace --locked
+          host=$(rustc -vV | sed -n 's/^host: //p')
+          PATH="$zig_dir:$PATH" cargo-zigbuild test --workspace --locked --target "$host"
         fi
 
   schema:
@@ -44,7 +46,8 @@ tasks:
           cargo run -q -p tge --locked -- schema --out schemas
         else
           zig_dir=$(echo "$PWD"/.tools/zig/lib/python3*/site-packages/ziglang)
-          PATH="$zig_dir:$PATH" cargo-zigbuild run -q -p tge --locked -- schema --out schemas
+          host=$(rustc -vV | sed -n 's/^host: //p')
+          PATH="$zig_dir:$PATH" cargo-zigbuild run -q -p tge --locked --target "$host" -- schema --out schemas
         fi
 
   check:

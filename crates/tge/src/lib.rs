@@ -4,6 +4,7 @@ pub mod error;
 pub mod model;
 pub mod output;
 pub mod paths;
+pub mod render;
 pub mod schema;
 pub mod search;
 pub mod snippet;

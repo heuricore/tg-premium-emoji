@@ -2,7 +2,7 @@
   "schema_version": 1,
   "short_name": "tgiosicons",
   "title": "Telegram iOS Icons",
-  "fetched_at": "2026-11-01T15:51:17Z",
+  "fetched_at": "2026-11-01T18:20:43Z",
   "preview": {
     "cell": 144,
     "cols": 5,
@@ -16,6 +16,7 @@
       "fallback": "✈️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "Telegram paper plane",
       "description": "Solid white paper plane pointing up-right with a folded notch; filled, no circle around it.",
       "tags": [
@@ -42,6 +43,7 @@
       "fallback": "🍏",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "Apple logo",
       "description": "Solid white apple silhouette with a bite on the right and a leaf on top; filled.",
       "tags": [
@@ -66,6 +68,7 @@
       "fallback": "⭐️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "star with tail",
       "description": "Filled five-point star with a swooshing tail curving to the lower left, like the Telegram Stars symbol; no badge.",
       "tags": [
@@ -93,6 +96,7 @@
       "fallback": "⭐️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "star with lock",
       "description": "Filled tailed star like the Telegram Stars icon with a small filled padlock badge in the lower right corner.",
       "tags": [
@@ -120,6 +124,7 @@
       "fallback": "🎁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gift box with star",
       "description": "Outline gift box with a bow on top and a small filled star on the front; rounded square body, thick stroke.",
       "tags": [
@@ -146,6 +151,7 @@
       "fallback": "🔣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "command key",
       "description": "Outline Mac command key symbol: four loops joined at a central square, thick stroke.",
       "tags": [
@@ -173,6 +179,7 @@
       "fallback": "🖥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "rounded square split by curved line",
       "description": "Outline rounded square divided into two halves by one curved zigzag line running top to bottom; no icon or text inside. Meaning not clear.",
       "tags": [
@@ -197,6 +204,7 @@
       "fallback": "⚙️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gear with play-like center",
       "description": "Outline gear with many small teeth (denser, thinner than the other gears) and a three-spoke wheel/triangle symbol in the center; no dot, no ring, no badge.",
       "tags": [
@@ -222,6 +230,7 @@
       "fallback": "⚙",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gear with hollow center",
       "description": "Outline gear with rounded teeth and a hollow ring (empty circle outline) in the center; no badge. Differs from the dot-center gear by the ring.",
       "tags": [
@@ -248,6 +257,7 @@
       "fallback": "⚙️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gear with dot center",
       "description": "Outline gear with rounded teeth and a small filled dot in the center; no badge. Plain base of the badged gears (HD, SD, FHD); differs from the ring-center gear by the solid dot.",
       "tags": [
@@ -274,6 +284,7 @@
       "fallback": "⚙️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gear with A badge",
       "description": "Outline gear with a center dot and a filled rounded badge with the letter A in the lower right; auto mode.",
       "tags": [
@@ -301,6 +312,7 @@
       "fallback": "⚙️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gear with HD badge",
       "description": "Outline gear with center dot and a white filled rounded badge reading HD at the lower right. Badge text is two letters, shorter than FHD, different letters from SD.",
       "tags": [
@@ -328,6 +340,7 @@
       "fallback": "⚙️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gear with SD badge",
       "description": "Outline gear with center dot and a white filled rounded badge reading SD at the lower right. Same layout as the HD gear; only the badge text differs.",
       "tags": [
@@ -355,6 +368,7 @@
       "fallback": "⚙️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gear with FHD badge",
       "description": "Outline gear with center dot and a wider white filled rounded badge reading FHD (three letters) at the lower right. Same layout as the HD and SD gears.",
       "tags": [
@@ -382,6 +396,7 @@
       "fallback": "🎛",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sliders with ring knobs",
       "description": "Two thin horizontal lines, each with a hollow circle (ring) knob: top knob at the left end, bottom knob at the right end. Ring knobs distinguish it from the bar-knob sliders.",
       "tags": [
@@ -409,6 +424,7 @@
       "fallback": "🎛",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sliders with bar knobs",
       "description": "Two thin horizontal lines crossed by a short vertical bar each: top bar at the left, bottom bar at the right, so the knobs look like plus-style ticks. No rings, unlike the ring-knob sliders.",
       "tags": [
@@ -435,6 +451,7 @@
       "fallback": "📰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "quote with text lines",
       "description": "Three horizontal lines, top one short, with a filled double quotation mark at the top right.",
       "tags": [
@@ -461,6 +478,7 @@
       "fallback": "📰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out quote with lines",
       "description": "Same as quote with text lines but with a diagonal slash across it: remove quote formatting.",
       "tags": [
@@ -487,6 +505,7 @@
       "fallback": "📰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "double quotation mark",
       "description": "Large solid double comma-shaped quotation mark alone, no lines.",
       "tags": [
@@ -514,6 +533,7 @@
       "fallback": "📰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sort ascending lines with up arrow",
       "description": "Three horizontal lines of increasing length from top to bottom with an up arrow at the right.",
       "tags": [
@@ -539,6 +559,7 @@
       "fallback": "📰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sort descending lines with down arrow",
       "description": "Three horizontal lines of decreasing length from top to bottom with a down arrow at the right; counterpart of the up version.",
       "tags": [
@@ -564,6 +585,7 @@
       "fallback": "📝",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out media with text lines",
       "description": "Square at left with text lines to its right and a bottom line, struck through by a diagonal slash: no media preview layout.",
       "tags": [
@@ -590,6 +612,7 @@
       "fallback": "📝",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "media with text lines layout",
       "description": "Outline rounded square at top left, two short lines to its right and one long line below; no slash.",
       "tags": [
@@ -617,6 +640,7 @@
       "fallback": "🗂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bulleted list",
       "description": "Three filled dots on the left, each followed by a horizontal line.",
       "tags": [
@@ -644,6 +668,7 @@
       "fallback": "↔️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "collapse in rounded square",
       "description": "Rounded square outline with two small diagonal arrowheads inside pointing inward toward the center (collapse). The frame is a full rounded square, unlike the four loose corner brackets.",
       "tags": [
@@ -669,6 +694,7 @@
       "fallback": "↔️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "expand in rounded square",
       "description": "Rounded square outline with two diagonal arrows inside pointing outward to opposite corners (expand). Full rounded square frame, unlike the four loose corner brackets.",
       "tags": [
@@ -694,6 +720,7 @@
       "fallback": "⬅️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "left arrow",
       "description": "Thin open-chevron arrow pointing left with a horizontal shaft; no circle.",
       "tags": [
@@ -720,6 +747,7 @@
       "fallback": "🔁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "repeat arrows",
       "description": "Two plain curved arrows chasing each other in a square-ish loop (repeat). Outline only, no bolts.",
       "tags": [
@@ -748,6 +776,7 @@
       "fallback": "⏫",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "triple chevron up",
       "description": "Three stacked upward-pointing chevrons.",
       "tags": [
@@ -777,6 +806,7 @@
       "fallback": "✏️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "compose square with pencil",
       "description": "Rounded square outline with a pencil sticking out of the top right corner; new message or edit.",
       "tags": [
@@ -803,6 +833,7 @@
       "fallback": "✏",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "pencil",
       "description": "Solid filled pencil pointing down-left, diagonal, no square or box.",
       "tags": [
@@ -830,6 +861,7 @@
       "fallback": "❌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "backspace key",
       "description": "Outline left-pointing tag shape (backspace key) with an X inside.",
       "tags": [
@@ -855,6 +887,7 @@
       "fallback": "⌨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "keyboard",
       "description": "Outline rounded rectangle with rows of dots for keys and a long space bar at the bottom.",
       "tags": [
@@ -880,6 +913,7 @@
       "fallback": "📎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "paperclip",
       "description": "Outline paperclip tilted diagonally.",
       "tags": [
@@ -907,6 +941,7 @@
       "fallback": "🔧",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "slash in rounded square",
       "description": "Rounded square outline with a single short diagonal slash inside; slash command.",
       "tags": [
@@ -932,6 +967,7 @@
       "fallback": "🔨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "code brackets",
       "description": "Left angle bracket, slash and right angle bracket: </>.",
       "tags": [
@@ -960,6 +996,7 @@
       "fallback": "🚪",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "exit box with right arrow",
       "description": "Open rounded box missing its right side, with a right-pointing arrow leaving it; logout or share-out.",
       "tags": [
@@ -986,6 +1023,7 @@
       "fallback": "🔎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "magnifying glass",
       "description": "Plain outline magnifying glass, circle with handle at lower right; no tag or badge.",
       "tags": [
@@ -1012,6 +1050,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "magnifying glass with tag",
       "description": "Outline magnifying glass with a small price tag at the lower left; search by tag or hashtag.",
       "tags": [
@@ -1037,6 +1076,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tag label",
       "description": "Thin outline horizontal tag, upright (not tilted), pointed end on the right with a small solid dot hole; stroke only, no slash, no extra symbols.",
       "tags": [
@@ -1065,6 +1105,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out tag",
       "description": "Thin outline upright horizontal tag with a dot hole at the right, struck by a diagonal slash from top-left to bottom-right; outline, not filled, not tilted.",
       "tags": [
@@ -1091,6 +1132,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tag with filter funnel",
       "description": "Outline price tag with a small funnel at its top left corner; filter by tag.",
       "tags": [
@@ -1117,6 +1159,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tag with plus",
       "description": "Outline price tag with a plus sign at its lower left corner; add a tag.",
       "tags": [
@@ -1142,6 +1185,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tag with pencil",
       "description": "Outline price tag with a pencil at its upper right; edit a tag.",
       "tags": [
@@ -1167,6 +1211,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tag with letter A",
       "description": "Outline price tag with the letter A inside and the hole at the right; text label or name tag.",
       "tags": [
@@ -1194,6 +1239,7 @@
       "fallback": "↩️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "reply arrow with quote",
       "description": "Left-pointing curved reply arrow with a filled double quotation mark at the top right; reply with quote.",
       "tags": [
@@ -1219,6 +1265,7 @@
       "fallback": "⬅️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "reply arrow",
       "description": "Plain outline curved arrow pointing left (reply), no extras.",
       "tags": [
@@ -1244,6 +1291,7 @@
       "fallback": "➡️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "forward arrow with sliders",
       "description": "Right-pointing curved forward arrow with a small slider with ring knobs at the top left; forward with options.",
       "tags": [
@@ -1269,6 +1317,7 @@
       "fallback": "➡️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "forward arrow",
       "description": "Plain outline curved arrow pointing right (forward), no extras.",
       "tags": [
@@ -1294,6 +1343,7 @@
       "fallback": "📺",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "forward arrow in rounded square",
       "description": "Rounded square outline containing a small right-pointing curved forward arrow.",
       "tags": [
@@ -1319,6 +1369,7 @@
       "fallback": "🔗",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "chain link",
       "description": "Two interlocked outline chain links, diagonal; plain, no badge.",
       "tags": [
@@ -1346,6 +1397,7 @@
       "fallback": "🔗",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "broken chain link",
       "description": "Two chain link halves separated, with small spark lines between them: broken link.",
       "tags": [
@@ -1372,6 +1424,7 @@
       "fallback": "🔗",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "chain link with lock",
       "description": "Chain link with a filled gray padlock badge at the lower right; private or protected link.",
       "tags": [
@@ -1398,6 +1451,7 @@
       "fallback": "🔗",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "chain link with plus",
       "description": "Chain link with a plus sign at the upper left; add a link.",
       "tags": [
@@ -1423,6 +1477,7 @@
       "fallback": "🔗",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "chain link with sliders",
       "description": "Chain link with a small slider with ring knobs at the upper left; link settings.",
       "tags": [
@@ -1448,6 +1503,7 @@
       "fallback": "🔗",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "chain link with sparkles",
       "description": "Chain link surrounded by three small four-point sparkles; magic or new link.",
       "tags": [
@@ -1475,6 +1531,7 @@
       "fallback": "🔗",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "chain link with squiggle",
       "description": "Chain link of two loops with a handwritten squiggle (signature-like) at the lower right; no lock, plus or sparkles on it, unlike the other chain-link variants.",
       "tags": [
@@ -1500,6 +1557,7 @@
       "fallback": "➕",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "circle with three dots",
       "description": "Outline circle containing three horizontal dots; more options.",
       "tags": [
@@ -1528,6 +1586,7 @@
       "fallback": "ℹ",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "info in circle",
       "description": "Outline circle containing a lowercase i with serif base.",
       "tags": [
@@ -1555,6 +1614,7 @@
       "fallback": "❓",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "question mark in circle",
       "description": "Outline circle containing a question mark.",
       "tags": [
@@ -1583,6 +1643,7 @@
       "fallback": "❗️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "exclamation in circle",
       "description": "Outline circle with an exclamation mark.",
       "tags": [
@@ -1612,6 +1673,7 @@
       "fallback": "▶️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "play in circle",
       "description": "Outline circle with an outline play triangle pointing right.",
       "tags": [
@@ -1639,6 +1701,7 @@
       "fallback": "▶️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "play with circular arrows",
       "description": "Filled play triangle in the middle surrounded by two circular arrows; replay or looped playback.",
       "tags": [
@@ -1665,6 +1728,7 @@
       "fallback": "❌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "cross in circle",
       "description": "Outline circle with an X inside.",
       "tags": [
@@ -1695,6 +1759,7 @@
       "fallback": "✅",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "check mark in circle",
       "description": "Outline circle with a check mark inside.",
       "tags": [
@@ -1725,6 +1790,7 @@
       "fallback": "⬆️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "wavy badge with up arrow",
       "description": "Scalloped wavy-edged badge outline with an up arrow inside; upgrade or boost.",
       "tags": [
@@ -1753,6 +1819,7 @@
       "fallback": "🔓",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "open padlock",
       "description": "Outline padlock with the shackle open; unlocked.",
       "tags": [
@@ -1780,6 +1847,7 @@
       "fallback": "🔒",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "closed padlock",
       "description": "Outline padlock with the shackle closed; locked.",
       "tags": [
@@ -1808,6 +1876,7 @@
       "fallback": "🖼",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "photo picture",
       "description": "Rounded square outline with a mountain landscape and a sun dot at the upper right; whole frame.",
       "tags": [
@@ -1836,6 +1905,7 @@
       "fallback": "🖼",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "photo with pixel dots",
       "description": "Picture frame with mountain, open at the right where the edge dissolves into a grid of dots; pixelated or blurred photo.",
       "tags": [
@@ -1864,6 +1934,7 @@
       "fallback": "🤖",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "robot",
       "description": "Outline robot head with an antenna on top, two dot eyes and ear pieces on the sides; standalone head with no speech bubble.",
       "tags": [
@@ -1891,6 +1962,7 @@
       "fallback": "⭐️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bookmark",
       "description": "Outline bookmark ribbon with a V notch at the bottom; plain.",
       "tags": [
@@ -1919,6 +1991,7 @@
       "fallback": "⭐️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out bookmark",
       "description": "Bookmark ribbon struck through by a diagonal slash; remove bookmark.",
       "tags": [
@@ -1945,6 +2018,7 @@
       "fallback": "📁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "blank document",
       "description": "Outline rounded sheet with a folded top right corner; no content.",
       "tags": [
@@ -1973,6 +2047,7 @@
       "fallback": "📁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "document with eye",
       "description": "Document sheet with a folded corner and an eye at its lower left; view or preview file.",
       "tags": [
@@ -1999,6 +2074,7 @@
       "fallback": "📄",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two documents",
       "description": "Two overlapping outline sheets, one behind the other; copy.",
       "tags": [
@@ -2025,6 +2101,7 @@
       "fallback": "🗑",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "trash can",
       "description": "Outline waste bin with a lid and vertical ribs.",
       "tags": [
@@ -2053,6 +2130,7 @@
       "fallback": "🎶",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "music note with down arrow",
       "description": "Music note with a small down arrow at the upper left; download music or save audio.",
       "tags": [
@@ -2079,6 +2157,7 @@
       "fallback": "🎶",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "music note with plus",
       "description": "Music note with a plus sign at the upper left; add music.",
       "tags": [
@@ -2106,6 +2185,7 @@
       "fallback": "👁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "eye",
       "description": "Outline open eye with a ring pupil; no slash.",
       "tags": [
@@ -2136,6 +2216,7 @@
       "fallback": "👁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out eye",
       "description": "Outline open eye with a diagonal slash across it; thin stroke, hollow (not filled). Hidden or invisible.",
       "tags": [
@@ -2164,6 +2245,7 @@
       "fallback": "👁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out eye with lock",
       "description": "Slashed outline eye with a gray filled padlock at the lower right; hidden and locked.",
       "tags": [
@@ -2191,6 +2273,7 @@
       "fallback": "👁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "filled crossed-out eye",
       "description": "Solid white filled eye shape with a dark diagonal slash across it; filled counterpart of the thin outline slashed eye.",
       "tags": [
@@ -2218,6 +2301,7 @@
       "fallback": "⬇️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "download arrow in circle",
       "description": "Closed thin outline circle with a plain down arrow inside; no tray, no lock. Circle only.",
       "tags": [
@@ -2244,6 +2328,7 @@
       "fallback": "⬇️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "download in circle with lock",
       "description": "Circle with down arrow, circle open at the upper right, with a gray padlock at the lower right; locked download.",
       "tags": [
@@ -2270,6 +2355,7 @@
       "fallback": "⬇️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "download into tray",
       "description": "Down arrow above a shallow open tray with rounded ends; no circle, no box around it. Looks identical to the other tray download icon on the sheet; the two cannot be told apart.",
       "tags": [
@@ -2295,6 +2381,7 @@
       "fallback": "☁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "cloud download",
       "description": "Outline cloud with a down arrow leaving the bottom of it.",
       "tags": [
@@ -2321,6 +2408,7 @@
       "fallback": "⬇️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "download into box",
       "description": "Down arrow entering a closed rounded-square box from the top (import); the box outline is complete, unlike the open shallow tray.",
       "tags": [
@@ -2347,6 +2435,7 @@
       "fallback": "⬆️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "upload arrow from tray",
       "description": "Up arrow above a shallow open tray with rounded ends; outline, thin stroke. Mirror of the tray download icon; the filled up-arrow tray is a different icon.",
       "tags": [
@@ -2373,6 +2462,7 @@
       "fallback": "⬇️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "download arrow into tray (alt)",
       "description": "Down arrow above a shallow open tray with rounded ends; no circle, no box. Looks identical to the other tray download icon on the sheet; the two cannot be told apart.",
       "tags": [
@@ -2398,6 +2488,7 @@
       "fallback": "⬆️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "filled up arrow in circle",
       "description": "Solid white circle with a dark filled up arrow cut out of it.",
       "tags": [
@@ -2426,6 +2517,7 @@
       "fallback": "📤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "filled tray with up arrow",
       "description": "Solid white filled tray (thick box with lid-like top edge) with a up arrow rising out of it; filled, unlike the thin outline up-arrow tray.",
       "tags": [
@@ -2451,6 +2543,7 @@
       "fallback": "⬆️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "up arrow over line",
       "description": "Up arrow above a horizontal bar with a short vertical stub below it; move to top.",
       "tags": [
@@ -2476,6 +2569,7 @@
       "fallback": "🛡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "shield with power symbol",
       "description": "Outline shield with a power button symbol inside; protection on or off.",
       "tags": [
@@ -2504,6 +2598,7 @@
       "fallback": "🛡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "shield with exclamation",
       "description": "Outline shield with an exclamation mark inside; security warning.",
       "tags": [
@@ -2532,6 +2627,7 @@
       "fallback": "🛡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "shield with check mark",
       "description": "Outline shield with a check mark inside; protected or verified.",
       "tags": [
@@ -2560,6 +2656,7 @@
       "fallback": "📂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "folder",
       "description": "Plain outline closed folder with a tab at the top left; no arrow, no badge. Nearly identical to the other plain folder on the sheet; the two cannot be reliably told apart.",
       "tags": [
@@ -2586,6 +2683,7 @@
       "fallback": "📂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "folder with left arrow",
       "description": "Outline folder with a left-pointing arrow across it; move out of folder.",
       "tags": [
@@ -2611,6 +2709,7 @@
       "fallback": "📂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "folder with right arrow",
       "description": "Outline folder with a right-pointing arrow entering it; move into folder.",
       "tags": [
@@ -2636,6 +2735,7 @@
       "fallback": "📂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "folder with check mark",
       "description": "Outline folder with a check mark at its upper right; folder done or selected.",
       "tags": [
@@ -2663,6 +2763,7 @@
       "fallback": "📥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "archive box",
       "description": "Monochrome outline storage box with a lid and a short horizontal handle slot on the front; no arrow or cross.",
       "tags": [
@@ -2691,6 +2792,7 @@
       "fallback": "📥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "archive box with cross",
       "description": "Outline archive box with lid and an X mark in the middle of the front; differs from the plain box by the cross.",
       "tags": [
@@ -2720,6 +2822,7 @@
       "fallback": "📥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "archive box with down arrow",
       "description": "Outline archive box with lid and a down arrow on the front; means putting an item into the archive.",
       "tags": [
@@ -2747,6 +2850,7 @@
       "fallback": "📤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "archive box with up arrow",
       "description": "Outline archive box with lid and an up arrow on the front; means restoring an item from the archive.",
       "tags": [
@@ -2773,6 +2877,7 @@
       "fallback": "📢",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "large megaphone",
       "description": "Large outline megaphone pointing up-right with a handle underneath; thick body, no sound waves, no slash.",
       "tags": [
@@ -2803,6 +2908,7 @@
       "fallback": "📢",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "megaphone crossed out",
       "description": "Large outline megaphone with a diagonal slash across it; muted or disabled announcements.",
       "tags": [
@@ -2832,6 +2938,7 @@
       "fallback": "📢",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "small megaphone",
       "description": "Small outline megaphone pointing up-right with a handle; smaller and thinner than the large megaphone, no extras.",
       "tags": [
@@ -2861,6 +2968,7 @@
       "fallback": "📣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "megaphone with plus",
       "description": "Small outline megaphone with a plus sign at the bottom-left corner; create a new announcement.",
       "tags": [
@@ -2888,6 +2996,7 @@
       "fallback": "📣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "megaphone with sound lines",
       "description": "Outline megaphone pointing right with two short sound lines in front of the mouth; actively announcing.",
       "tags": [
@@ -2918,6 +3027,7 @@
       "fallback": "🔊",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speaker with sound waves",
       "description": "Outline speaker cone facing right with two curved sound waves; volume on.",
       "tags": [
@@ -2947,6 +3057,7 @@
       "fallback": "🔇",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speaker crossed out",
       "description": "Outline speaker cone drawn with a diagonal slash through it; no sound waves and no X. Slash is the muted mark.",
       "tags": [
@@ -2975,6 +3086,7 @@
       "fallback": "🔈",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speaker with x",
       "description": "Outline speaker cone with a separate X mark to its right; no slash. X is the muted mark.",
       "tags": [
@@ -3003,6 +3115,7 @@
       "fallback": "🔔",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bell",
       "description": "Plain outline bell with clapper, no badge, slash or text; notifications on.",
       "tags": [
@@ -3034,6 +3147,7 @@
       "fallback": "🔕",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bell crossed out",
       "description": "Outline bell with a diagonal slash through it; notifications muted or off.",
       "tags": [
@@ -3063,6 +3177,7 @@
       "fallback": "🔔",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bell with Z letters",
       "description": "Outline bell with small z z letters at the top right; snoozed or sleeping notifications.",
       "tags": [
@@ -3092,6 +3207,7 @@
       "fallback": "🔔",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bell with circular arc",
       "description": "Small outline bell in the lower left inside two concentric partial circular arcs; broadcast, live or subscription notification.",
       "tags": [
@@ -3121,6 +3237,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "rounded square with circle",
       "description": "Outline rounded square with a single circle in the center, like a camera lens or Instagram logo; no slash.",
       "tags": [
@@ -3151,6 +3268,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "rounded square with ring crossed out",
       "description": "Outline rounded square with a ring in the center (lens/camera-app style) and a diagonal slash through it; the frame is a square, unlike the slashed camera body with a viewfinder bump.",
       "tags": [
@@ -3179,6 +3297,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "video camera",
       "description": "Outline video camera: rounded rectangle body with a triangular lens on the right; plain, no frame corners or slash.",
       "tags": [
@@ -3209,6 +3328,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "video camera with frame corners",
       "description": "Outline video camera body containing four corner brackets like a viewfinder; screen or video frame capture.",
       "tags": [
@@ -3237,6 +3357,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "camera",
       "description": "Plain outline photo camera with a lens circle and a small flash dot at the top right; no badge or slash.",
       "tags": [
@@ -3266,6 +3387,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "camera with light bulb",
       "description": "Outline camera body with a bump on top and a small light bulb in place of the lens circle; the bulb sits inside the camera frame.",
       "tags": [
@@ -3294,6 +3416,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "camera with plus",
       "description": "Outline camera with a lens circle and a plus sign at the bottom-left corner; add a photo.",
       "tags": [
@@ -3321,6 +3444,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "camera crossed out",
       "description": "Outline camera body with a viewfinder bump on top, a lens circle, and a diagonal slash through it; camera shape, unlike the plain rounded square with ring.",
       "tags": [
@@ -3349,6 +3473,7 @@
       "fallback": "🎞",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "GIF in rounded square",
       "description": "Rounded square outline with the letters GIF inside; plain, no slash.",
       "tags": [
@@ -3375,6 +3500,7 @@
       "fallback": "🎞",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "GIF crossed out",
       "description": "Rounded square with the letters GIF and a diagonal slash through it; GIF disabled.",
       "tags": [
@@ -3401,6 +3527,7 @@
       "fallback": "❤️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "heart in dashed circle",
       "description": "Heart inside a circle drawn as dashed/segmented arcs, a story ring; favorite or liked story.",
       "tags": [
@@ -3431,6 +3558,7 @@
       "fallback": "❤️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "heart in dashed circle crossed out",
       "description": "Heart inside a dashed circle with a diagonal slash across it; story or favorite disabled.",
       "tags": [
@@ -3460,6 +3588,7 @@
       "fallback": "📖",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "plus in dashed circle",
       "description": "Plus sign inside a dashed/segmented circle ring; add a new story.",
       "tags": [
@@ -3487,6 +3616,7 @@
       "fallback": "📖",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "empty dashed circle",
       "description": "Empty circle ring broken into a few dashed arcs with gaps, nothing inside; a plain dashed ring without an outer second ring.",
       "tags": [
@@ -3516,6 +3646,7 @@
       "fallback": "⬅️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "reply arrow in dashed circle",
       "description": "Curved reply arrow pointing left inside a dashed circle ring; reply to a story.",
       "tags": [
@@ -3542,6 +3673,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "double dashed circle",
       "description": "Solid circle ring surrounded by an outer ring of short dashes with gaps; two concentric rings, inner continuous and outer dashed, unlike the single empty dashed ring.",
       "tags": [
@@ -3570,6 +3702,7 @@
       "fallback": "🖼",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "landscape picture in dashed circle",
       "description": "Mountains/landscape image outline inside a partially dashed circle; photo or media story.",
       "tags": [
@@ -3600,6 +3733,7 @@
       "fallback": "5️⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "back 5 seconds",
       "description": "Circular arrow pointing left (counter-clockwise) with the number 5 inside; rewind 5 seconds.",
       "tags": [
@@ -3626,6 +3760,7 @@
       "fallback": "2️⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "forward 25 seconds",
       "description": "Circular arrow pointing right (clockwise) with the number 25 inside; skip ahead 25 seconds.",
       "tags": [
@@ -3652,6 +3787,7 @@
       "fallback": "⏰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "clock with pencil",
       "description": "Clock face inside a partial circle with a pencil at the lower right; edit time or schedule.",
       "tags": [
@@ -3680,6 +3816,7 @@
       "fallback": "🕓",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "clock with counter-clockwise arrow",
       "description": "Clock with an arrow curving counter-clockwise at the top left; history or recently viewed.",
       "tags": [
@@ -3710,6 +3847,7 @@
       "fallback": "👣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "footprints in circle with arrow",
       "description": "Two shoe-print footprints inside a circle that ends in an arrow at the bottom right; trace, activity or history of visits.",
       "tags": [
@@ -3740,6 +3878,7 @@
       "fallback": "✅️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "double check mark in circular arrow",
       "description": "Circle drawn as an arrow arc with a double check mark inside; read, refresh or sync completed.",
       "tags": [
@@ -3770,6 +3909,7 @@
       "fallback": "⏲️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "stopwatch",
       "description": "Outline stopwatch circle with a top button and a single vertical hand; timer, not a clock with two hands.",
       "tags": [
@@ -3799,6 +3939,7 @@
       "fallback": "⏰️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "clock",
       "description": "Plain outline round clock face with two hands (hour and minute) pointing at about 7 o'clock; no arrow or badge.",
       "tags": [
@@ -3829,6 +3970,7 @@
       "fallback": "⏲️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "one-time view badge",
       "description": "Number 1 inside a circle whose right half is drawn as a faded dashed arc; view-once media.",
       "tags": [
@@ -3857,6 +3999,7 @@
       "fallback": "🥇",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "one with dashed overlapping circles",
       "description": "Number 1 inside a half circle followed by several overlapping dashed circle arcs fading to the right; resembles the dashed '1' icon but with a stack of dashed arcs. Meaning not clear.",
       "tags": [
@@ -3885,6 +4028,7 @@
       "fallback": "1️⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "1x speed",
       "description": "Text 1X between dashed horizontal lines at top and bottom; normal playback speed.",
       "tags": [
@@ -3912,6 +4056,7 @@
       "fallback": "2️⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "2x speed",
       "description": "Text 2X between dashed horizontal lines at top and bottom; double playback speed.",
       "tags": [
@@ -3941,6 +4086,7 @@
       "fallback": "🎥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "SD quality",
       "description": "Letters SD inside a rounded square outline; standard definition video quality.",
       "tags": [
@@ -3969,6 +4115,7 @@
       "fallback": "🎥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "HD quality",
       "description": "Letters HD inside a rounded square outline; high definition video quality, no lock.",
       "tags": [
@@ -3997,6 +4144,7 @@
       "fallback": "🎥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "HD with lock",
       "description": "Letters HD in a rounded square with a gray filled padlock at the bottom right; HD locked or premium-only.",
       "tags": [
@@ -4025,6 +4173,7 @@
       "fallback": "🎤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "microphone",
       "description": "Plain outline microphone on a stand with a U-shaped holder; no slash or extra symbols.",
       "tags": [
@@ -4055,6 +4204,7 @@
       "fallback": "🎙",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "microphone crossed out",
       "description": "Outline microphone with a diagonal slash through it; microphone muted.",
       "tags": [
@@ -4083,6 +4233,7 @@
       "fallback": "🎤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "microphone with translate",
       "description": "Microphone with an arrow pointing to a letter A at the top right; speech to text, voice transcription or translation.",
       "tags": [
@@ -4110,6 +4261,7 @@
       "fallback": "📞",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "phone handset",
       "description": "Plain outline telephone handset diagonal from top left to bottom right; no plus, keypad or arrows.",
       "tags": [
@@ -4141,6 +4293,7 @@
       "fallback": "📞",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "phone handset with plus",
       "description": "Outline phone handset with a plus sign at the top right; new call or add a participant to a call.",
       "tags": [
@@ -4168,6 +4321,7 @@
       "fallback": "☎️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "phone handset with keypad",
       "description": "Outline phone handset with a grid of dots (dial pad) at the top right; open the dialpad.",
       "tags": [
@@ -4196,6 +4350,7 @@
       "fallback": "🤖",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "robot assistant",
       "description": "Rounded robot head, two dot eyes and side ear panels, no antenna, sitting on a speech-bubble tail at bottom left (chatbot, AI assistant). The bubble tail distinguishes it from the plain robot head.",
       "tags": [
@@ -4227,6 +4382,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble",
       "description": "Plain outline rounded-square speech bubble with a tail at the bottom left; empty, squarish corners, no badge.",
       "tags": [
@@ -4258,6 +4414,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble with dot",
       "description": "Outline rounded-square speech bubble with a circle badge at the top right corner; unread or new message.",
       "tags": [
@@ -4287,6 +4444,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble with audio bars",
       "description": "Rounded-square speech bubble containing short vertical sound bars of different heights; voice message or voice chat.",
       "tags": [
@@ -4316,6 +4474,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble with incoming arrow",
       "description": "Speech bubble with a horizontal arrow entering from the left across its edge; join chat or incoming message.",
       "tags": [
@@ -4343,6 +4502,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble with reply arrow",
       "description": "Speech bubble with a curved reply arrow pointing left inside at the top right; reply to a message or forwarded message.",
       "tags": [
@@ -4371,6 +4531,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble with check mark",
       "description": "Rounded-square speech bubble containing a check mark that extends over the top right edge; message done or resolved.",
       "tags": [
@@ -4400,6 +4561,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "round speech bubble",
       "description": "Plain outline round/oval speech bubble with a tail at the bottom left; single bubble, no badge. Rounder than the squarish bubble.",
       "tags": [
@@ -4432,6 +4594,7 @@
       "fallback": "💡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "round speech bubble with light bulb",
       "description": "Outline round speech bubble with a small light bulb at its top right, partly outside the bubble outline; chat bubble, not a camera.",
       "tags": [
@@ -4461,6 +4624,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two overlapping speech bubbles outline",
       "description": "Two overlapping round speech bubbles drawn in thin outline (both hollow), one behind the other.",
       "tags": [
@@ -4491,6 +4655,7 @@
       "fallback": "💭",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two overlapping speech bubbles filled",
       "description": "Two overlapping round speech bubbles, the front one solid white and the back one partly solid; filled, unlike the outline pair.",
       "tags": [
@@ -4521,6 +4686,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two speech bubbles with cross",
       "description": "Two overlapping outline speech bubbles with an X in the front one; close chat or delete conversation.",
       "tags": [
@@ -4549,6 +4715,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two speech bubbles with arrow",
       "description": "Two overlapping outline speech bubbles with a right arrow entering from the left; join or move into a conversation.",
       "tags": [
@@ -4575,6 +4742,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble with info",
       "description": "Outline round speech bubble containing a lowercase i; information or help message.",
       "tags": [
@@ -4605,6 +4773,7 @@
       "fallback": "💤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble with Z letters",
       "description": "Outline round speech bubble with z z letters inside; muted, sleeping or snoozed chat.",
       "tags": [
@@ -4634,6 +4803,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speech bubble with link",
       "description": "Outline round speech bubble with a chain link in its front corner; link to a message or shared link.",
       "tags": [
@@ -4662,6 +4832,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sparkles in square with pinched sides",
       "description": "Square speech-bubble-like frame with sparkles; the middle of each side bends inward toward the centre (pinched sides). Twin of n 172, which has straight sides.",
       "tags": [
@@ -4691,6 +4862,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sparkles in square with straight sides",
       "description": "Square speech-bubble-like frame with sparkles and straight sides. Twin of n 171, whose sides bend inward toward the centre.",
       "tags": [
@@ -4720,6 +4892,7 @@
       "fallback": "📥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "download into tray",
       "description": "Down arrow inside a small circle, set above an open tray; circle plus tray. Plain arrow-and-tray icons have no circle; the circle-only icon has no tray.",
       "tags": [
@@ -4748,6 +4921,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "unlocked padlock in filled bubble",
       "description": "Solid white speech bubble with an open padlock cut out in it; unlocked or public chat.",
       "tags": [
@@ -4776,6 +4950,7 @@
       "fallback": "💬",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "locked padlock in filled bubble",
       "description": "Solid white speech bubble with a closed padlock cut out in it; private or encrypted chat.",
       "tags": [
@@ -4805,6 +4980,7 @@
       "fallback": "🔒",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "filled padlock with star",
       "description": "Solid white padlock with a star cut out of its body; premium lock or favorite locked.",
       "tags": [
@@ -4835,6 +5011,7 @@
       "fallback": "🔒",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "padlock",
       "description": "Plain outline closed padlock with a rounded body; no star, no bubble, not filled.",
       "tags": [
@@ -4867,6 +5044,7 @@
       "fallback": "🔞",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "18+ in circle",
       "description": "Number 18 inside a circle outline; age restriction for adults.",
       "tags": [
@@ -4895,6 +5073,7 @@
       "fallback": "🔞",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "18 in circle crossed out",
       "description": "Number 18 inside a circle with a diagonal slash across it; adult content hidden or not allowed.",
       "tags": [
@@ -4922,6 +5101,7 @@
       "fallback": "📍",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person standing on a pin circle",
       "description": "Person standing on a circular ring with arms at the sides; location or live position.",
       "tags": [
@@ -4951,6 +5131,7 @@
       "fallback": "📍",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person on ring crossed out",
       "description": "Person standing on a circular ring with a diagonal slash through it; location sharing off.",
       "tags": [
@@ -4978,6 +5159,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "user in circle with dot",
       "description": "Person silhouette inside a circle outline with a solid dot at the lower right; user avatar with online status or badge.",
       "tags": [
@@ -5007,6 +5189,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "user in rounded square",
       "description": "Person head and shoulders inside a rounded-square outline; plain, square frame (not circle), no badge.",
       "tags": [
@@ -5037,6 +5220,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "user in frame with sparkles",
       "description": "Person in a rounded frame with sparkles at its corners; profile enhanced, AI avatar or premium profile.",
       "tags": [
@@ -5066,6 +5250,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "user in rounded square with signature",
       "description": "Person in a rounded-square outline with a handwritten squiggle at the bottom right; signed profile or edit profile.",
       "tags": [
@@ -5093,6 +5278,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person",
       "description": "Plain outline person: round head over shoulders; no frame, no badge, no slash.",
       "tags": [
@@ -5125,6 +5311,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person crossed out",
       "description": "Outline person with a diagonal slash through it; blocked user or removed contact.",
       "tags": [
@@ -5153,6 +5340,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person with question mark",
       "description": "Outline person with a question mark at its lower left; unknown user or non-contact.",
       "tags": [
@@ -5181,6 +5369,7 @@
       "fallback": "➕",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person with plus",
       "description": "Outline person with a plus sign at its lower left; add a contact or friend.",
       "tags": [
@@ -5208,6 +5397,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person with check mark",
       "description": "Outline person with a check mark at its lower left; verified, approved or confirmed user.",
       "tags": [
@@ -5237,6 +5427,7 @@
       "fallback": "🗣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person with sound waves",
       "description": "Outline person with curved sound waves at its right; speaking user or voice chat speaker.",
       "tags": [
@@ -5266,6 +5457,7 @@
       "fallback": "👥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two people",
       "description": "Two outline people side by side, the front one larger; plain group or contacts.",
       "tags": [
@@ -5297,6 +5489,7 @@
       "fallback": "👥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two people with stars",
       "description": "Two outline people with two small stars above them; favorite contacts or top users.",
       "tags": [
@@ -5325,6 +5518,7 @@
       "fallback": "👥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two people with plus",
       "description": "Two outline people with a plus sign at the bottom left; add members or create a group.",
       "tags": [
@@ -5352,6 +5546,7 @@
       "fallback": "👥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person with surrounding group",
       "description": "Central outline person with smaller people-arcs on both sides; community, team or large group.",
       "tags": [
@@ -5382,6 +5577,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person with list lines",
       "description": "Small outline person at the left with two horizontal lines at the right; contact list or user details.",
       "tags": [
@@ -5412,6 +5608,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person in circle with enter arrow",
       "description": "Person inside a circle outline with an arrow pointing in from the left; log in, join or sign in.",
       "tags": [
@@ -5440,6 +5637,7 @@
       "fallback": "🎯",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "person in crosshair",
       "description": "Person inside a circle with crosshair tick marks on four sides; target user or locate person.",
       "tags": [
@@ -5469,6 +5667,7 @@
       "fallback": "👥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "two-person default avatar",
       "description": "Default avatar with two generic users (the bust from n 200, twice): the left person is larger and in front, the right one sits a little lower and is smaller. Group or shared avatar.",
       "tags": [
@@ -5498,6 +5697,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "solid person in rounded square",
       "description": "Rounded-square outline containing a solid filled person bust (head and shoulders); filled avatar placeholder, unlike the outline profile card.",
       "tags": [
@@ -5527,6 +5727,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "filled user avatar circle",
       "description": "Solid white filled circle with a person silhouette (head and shoulders) cut out; filled disc, unlike the outline person and square-framed user.",
       "tags": [
@@ -5557,6 +5758,7 @@
       "fallback": "🎁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gift box outline",
       "description": "Thin-outline gift box with a bow on top and a vertical ribbon line; hollow, narrow lid.",
       "tags": [
@@ -5586,6 +5788,7 @@
       "fallback": "🎁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gift box filled",
       "description": "Solid white filled gift box with a bow and a vertical ribbon gap; wide lid, filled, unlike the thin outline gift.",
       "tags": [
@@ -5615,6 +5818,7 @@
       "fallback": "⭐️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "star outline",
       "description": "Five-pointed star, outline only, rounded corners, thin stroke; empty inside. Slightly smaller and lighter than the other outline star.",
       "tags": [
@@ -5644,6 +5848,7 @@
       "fallback": "🎭",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "theater masks",
       "description": "Two overlapping outline drama masks, a smiling one in front and a second one behind at upper right.",
       "tags": [
@@ -5674,6 +5879,7 @@
       "fallback": "🎭",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "happy comedy mask",
       "description": "Single outline theater mask with closed smiling eyes and a smile; shield-shaped face.",
       "tags": [
@@ -5702,6 +5908,7 @@
       "fallback": "🎭",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sad tragedy mask",
       "description": "Single outline theater mask with sad eyebrows, open eyes and a downturned mouth; shield-shaped face.",
       "tags": [
@@ -5730,6 +5937,7 @@
       "fallback": "🙂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sticker with plus",
       "description": "Outline sticker with a smiley face and a peeled bottom-right corner, with a plus sign at the lower left (add sticker).",
       "tags": [
@@ -5757,6 +5965,7 @@
       "fallback": "🙁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tilted sad square face",
       "description": "Rounded square tilted sideways with a sad, slightly crooked face; square shape instead of a circle.",
       "tags": [
@@ -5784,6 +5993,7 @@
       "fallback": "🙂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "smiling face outline",
       "description": "Plain round outline face with two dot eyes and a simple smile; thin stroke, no extras.",
       "tags": [
@@ -5814,6 +6024,7 @@
       "fallback": "🙂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "smiley with plus",
       "description": "Outline smiley face with dot eyes and smile, with a plus sign at the lower right overlapping the circle (add reaction).",
       "tags": [
@@ -5840,6 +6051,7 @@
       "fallback": "🙂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "smiley with pencil",
       "description": "Outline smiley face with a pencil at the lower right crossing the circle edge (edit emoji).",
       "tags": [
@@ -5866,6 +6078,7 @@
       "fallback": "😀",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "grinning face",
       "description": "Outline face with big open grin showing teeth, dot eyes; wider open mouth than the plain smile.",
       "tags": [
@@ -5893,6 +6106,7 @@
       "fallback": "😀",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "star-struck grinning face",
       "description": "Grinning face with open mouth and teeth, with two sparkles at top left and right.",
       "tags": [
@@ -5921,6 +6135,7 @@
       "fallback": "😝",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "squinting face with tongue",
       "description": "Face with X-shaped squeezed eyes and tongue sticking out of an open mouth.",
       "tags": [
@@ -5949,6 +6164,7 @@
       "fallback": "🤔",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "thinking face",
       "description": "Face with raised eyebrow and a hand with finger at the chin at lower left.",
       "tags": [
@@ -5977,6 +6193,7 @@
       "fallback": "😐",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "neutral face",
       "description": "Round outline face with dot eyes and a straight horizontal mouth line.",
       "tags": [
@@ -6004,6 +6221,7 @@
       "fallback": "😨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "worried open-mouth face",
       "description": "Face with wide eyes, raised brows and a small open mouth; anxious or shocked.",
       "tags": [
@@ -6033,6 +6251,7 @@
       "fallback": "☹️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sad face",
       "description": "Round outline face with dot eyes and a downturned mouth.",
       "tags": [
@@ -6060,6 +6279,7 @@
       "fallback": "😡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "angry face",
       "description": "Round outline face with slanted angry brows over the eyes and a frowning mouth.",
       "tags": [
@@ -6087,6 +6307,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sticker with peeled corner",
       "description": "Plain empty outline circle sticker with the top-right corner peeled back; no face or plus.",
       "tags": [
@@ -6113,6 +6334,7 @@
       "fallback": "🐻",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "hamster face",
       "description": "Outline round animal face with two small round ears, dot eyes, nose and mouth; looks like a hamster or bear.",
       "tags": [
@@ -6141,6 +6363,7 @@
       "fallback": "🎉",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "party popper",
       "description": "Outline party popper cone at lower left with confetti and streamers bursting to the upper right.",
       "tags": [
@@ -6172,6 +6395,7 @@
       "fallback": "👋",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "waving hand",
       "description": "Outline open hand raised with fingers pointing up and slightly tilted, thumb at the left; the more upright of the two waving hands; no motion marks.",
       "tags": [
@@ -6200,6 +6424,7 @@
       "fallback": "👍",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "thumbs up",
       "description": "Outline fist with the thumb pointing up.",
       "tags": [
@@ -6230,6 +6455,7 @@
       "fallback": "👎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "thumbs down",
       "description": "Outline fist with the thumb pointing down.",
       "tags": [
@@ -6258,6 +6484,7 @@
       "fallback": "👆",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "swipe hand with angle brackets",
       "description": "Pointing hand with index finger up and left and right angle brackets above; horizontal swipe gesture.",
       "tags": [
@@ -6285,6 +6512,7 @@
       "fallback": "👆",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tap hand with dotted circle",
       "description": "Upright pointing hand, index finger up, with a small dotted circle (ring of dots) above the fingertip; tap gesture. Dots, not solid arcs.",
       "tags": [
@@ -6313,6 +6541,7 @@
       "fallback": "👆",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tap hand beside vertical line",
       "description": "Hand tilted to the right with dotted circle at the fingertip and a vertical bar at the left; edge or side tap gesture.",
       "tags": [
@@ -6342,6 +6571,7 @@
       "fallback": "👆",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "tap hand with ripple rings",
       "description": "Upright pointing hand, index finger up, with concentric solid (continuous) arcs above the fingertip; ripple. Solid arcs, not a dotted circle.",
       "tags": [
@@ -6371,6 +6601,7 @@
       "fallback": "✋️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "raised open palm",
       "description": "Outline hand with four fingers and thumb, palm facing forward, upright; stop sign gesture.",
       "tags": [
@@ -6400,6 +6631,7 @@
       "fallback": "🚫",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out palm",
       "description": "Raised open palm with a diagonal slash across it.",
       "tags": [
@@ -6427,6 +6659,7 @@
       "fallback": "👏",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "clapping hands with sparkles",
       "description": "Two outline hands clapping, with three sparkle stars around.",
       "tags": [
@@ -6456,6 +6689,7 @@
       "fallback": "👋",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "waving hand tilted",
       "description": "Outline open hand tilted further, about 45 degrees, fingers pointing up-left and the palm toward the lower right; more tilted than the other waving hand. Hard to separate from it.",
       "tags": [
@@ -6484,6 +6718,7 @@
       "fallback": "🍔",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "hamburger",
       "description": "Outline burger with a top bun with sesame seeds and a bottom bun, filling line between.",
       "tags": [
@@ -6513,6 +6748,7 @@
       "fallback": "🎂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "birthday cake with candle",
       "description": "Small outline cake in a bowl shape with a single lit candle on top.",
       "tags": [
@@ -6543,6 +6779,7 @@
       "fallback": "🎂",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "birthday cake with plus",
       "description": "Outline cake with a single candle, with a plus sign at the lower left; add a birthday.",
       "tags": [
@@ -6570,6 +6807,7 @@
       "fallback": "🛁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bathtub with shower",
       "description": "Outline bathtub on little feet with a shower head and water drops above it.",
       "tags": [
@@ -6597,6 +6835,7 @@
       "fallback": "🏳️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "flag on pole",
       "description": "Outline flag on a vertical pole with a wavy top edge, flying to the right.",
       "tags": [
@@ -6626,6 +6865,7 @@
       "fallback": "🪧",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "hanging sign",
       "description": "Tilted outline rectangular sign hanging from a point on two strings at the top.",
       "tags": [
@@ -6654,6 +6894,7 @@
       "fallback": "⛱️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "beach umbrella on waves",
       "description": "Outline beach umbrella planted in the sand above wavy water line.",
       "tags": [
@@ -6685,6 +6926,7 @@
       "fallback": "📍",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "small map pin",
       "description": "Narrow, slim teardrop map pin with a small circle inside; smaller than the other pin.",
       "tags": [
@@ -6716,6 +6958,7 @@
       "fallback": "📍",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "large map pin",
       "description": "Wider, taller teardrop map pin with a larger circle inside; heavier than the slim pin.",
       "tags": [
@@ -6747,6 +6990,7 @@
       "fallback": "🗺",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "location arrow",
       "description": "Outline navigation arrow pointing to the upper right, with a notch at the back.",
       "tags": [
@@ -6778,6 +7022,7 @@
       "fallback": "🏠",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "house with square window",
       "description": "Outline house with a peaked roof, chimney, and a small square window in the center of the front; closed front, no door opening.",
       "tags": [
@@ -6806,6 +7051,7 @@
       "fallback": "🏡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "house with arched door",
       "description": "Outline house with a peaked roof, chimney and an arched doorway opening in the front; no window.",
       "tags": [
@@ -6834,6 +7080,7 @@
       "fallback": "💼",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "briefcase",
       "description": "Outline closed briefcase with a handle on top and a horizontal seam.",
       "tags": [
@@ -6864,6 +7111,7 @@
       "fallback": "🎓",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "graduation cap",
       "description": "Outline mortarboard academic cap with a hanging tassel.",
       "tags": [
@@ -6895,6 +7143,7 @@
       "fallback": "👓",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "round glasses",
       "description": "Two round outline lenses joined by a bridge, with small arms at the sides.",
       "tags": [
@@ -6923,6 +7172,7 @@
       "fallback": "🎶",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "beamed music notes",
       "description": "Two eighth notes connected by a beam at the top; outline.",
       "tags": [
@@ -6954,6 +7204,7 @@
       "fallback": "🔫",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "pistol",
       "description": "Outline handgun pointing left with a grip and trigger guard.",
       "tags": [
@@ -6980,6 +7231,7 @@
       "fallback": "🎞",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "film strip",
       "description": "Outline filmstrip frame with perforation holes down both sides and a window in the centre.",
       "tags": [
@@ -7010,6 +7262,7 @@
       "fallback": "🎮",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "game controller",
       "description": "Outline gamepad with a plus-shaped D-pad on the left and two buttons on the right.",
       "tags": [
@@ -7040,6 +7293,7 @@
       "fallback": "⚽️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "soccer ball",
       "description": "Round outline football with black pentagon patches pattern.",
       "tags": [
@@ -7068,6 +7322,7 @@
       "fallback": "⚪️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "empty circle",
       "description": "Plain outline circle with nothing inside.",
       "tags": [
@@ -7098,6 +7353,7 @@
       "fallback": "⬜️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "empty rounded square",
       "description": "Plain outline rounded square with nothing inside.",
       "tags": [
@@ -7126,6 +7382,7 @@
       "fallback": "⚪️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "overlapping circle and square",
       "description": "Outline circle partly behind an outline rounded square at lower right; shapes overlap.",
       "tags": [
@@ -7156,6 +7413,7 @@
       "fallback": "❤️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "heart outline",
       "description": "Outline heart with thin rounded stroke, empty inside.",
       "tags": [
@@ -7186,6 +7444,7 @@
       "fallback": "☁️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "cloud outline",
       "description": "Outline cloud with flat bottom and two bumps, empty inside.",
       "tags": [
@@ -7215,6 +7474,7 @@
       "fallback": "⭐️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "star outline pointed",
       "description": "Five-pointed outline star with rounded corners, a thicker stroke and somewhat sharper points than the other outline star; empty inside.",
       "tags": [
@@ -7244,6 +7504,7 @@
       "fallback": "🚫",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out star",
       "description": "Outline star with a diagonal slash through it; unfavorite or remove from favorites.",
       "tags": [
@@ -7270,6 +7531,7 @@
       "fallback": "📸",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "lightning bolt outline thin",
       "description": "Outline lightning bolt, medium width, slanted to the right with rounded corners; the shortest and widest of the three plain bolts.",
       "tags": [
@@ -7302,6 +7564,7 @@
       "fallback": "📸",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out lightning bolt",
       "description": "Outline lightning bolt with a diagonal slash through it; disabled energy or flash off.",
       "tags": [
@@ -7329,6 +7592,7 @@
       "fallback": "⚡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "lightning bolt outline wide",
       "description": "Outline lightning bolt, taller and more upright than the others, sharper tip; the tallest of the three plain bolts.",
       "tags": [
@@ -7360,6 +7624,7 @@
       "fallback": "⚡️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "lightning bolt outline narrow",
       "description": "Outline lightning bolt, slim and compact, thinner than the other two plain bolts and slightly tilted.",
       "tags": [
@@ -7391,6 +7656,7 @@
       "fallback": "⚡️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "lightning bolt with plus",
       "description": "Outline lightning bolt with a plus sign at the lower left; add energy or boost.",
       "tags": [
@@ -7417,6 +7683,7 @@
       "fallback": "🔄",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "lightning bolts with cycle arrows",
       "description": "Two solid filled lightning bolts (one top-left, one bottom-right) with two small curved arrows between them forming a refresh cycle; a bolt-plus-cycle icon, unlike the plain arrow loop.",
       "tags": [
@@ -7447,6 +7714,7 @@
       "fallback": "#️⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "hashtag",
       "description": "Hash sign (#) with bold thick strokes, slanted verticals and two horizontal bars; large.",
       "tags": [
@@ -7477,6 +7745,7 @@
       "fallback": "#️⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "hashtag with up arrow",
       "description": "Hash sign with an up arrow at the lower right; trending or increasing tag.",
       "tags": [
@@ -7506,6 +7775,7 @@
       "fallback": "#️⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "small hashtag",
       "description": "Small hash sign (#) with thin light strokes; smaller and lighter than the bold hash.",
       "tags": [
@@ -7535,6 +7805,7 @@
       "fallback": "💡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "light bulb",
       "description": "Standalone outline light bulb with a screw base and no rays, no bubble, no camera.",
       "tags": [
@@ -7566,6 +7837,7 @@
       "fallback": "☀️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sun",
       "description": "Outline sun: a circle with eight rays; larger circle and short rays close to it.",
       "tags": [
@@ -7598,6 +7870,7 @@
       "fallback": "🌝",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crescent moon with sparkles",
       "description": "Outline crescent moon with two four-point sparkle stars at the upper right; thin stroke, hollow.",
       "tags": [
@@ -7629,6 +7902,7 @@
       "fallback": "✅",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "stacked circles with check mark",
       "description": "Three overlapping outline circles in a row, the front one with a check mark; multiple selected or done.",
       "tags": [
@@ -7658,6 +7932,7 @@
       "fallback": "📺",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "AirPlay screen",
       "description": "Outline rounded screen with a small triangle at the bottom pointing up (casting); the screen is wider and the triangle smaller than the other AirPlay icon.",
       "tags": [
@@ -7685,6 +7960,7 @@
       "fallback": "🪟",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "picture in picture",
       "description": "Landscape picture-in-picture: a wide outline screen with a small inward arrow at its upper-left corner and a small wide landscape rectangle at the lower right.",
       "tags": [
@@ -7711,6 +7987,7 @@
       "fallback": "🪟",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "phone with circle",
       "description": "Outline tall rounded rectangle (phone) with a circle at the lower right corner.",
       "tags": [
@@ -7739,6 +8016,7 @@
       "fallback": "🪟",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "picture in picture portrait",
       "description": "Portrait picture-in-picture: a tall outline screen with a small inward arrow at its upper-left corner and a small tall portrait rectangle at the lower right.",
       "tags": [
@@ -7766,6 +8044,7 @@
       "fallback": "📌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "push pin",
       "description": "Outline thumbtack pin with a flat top and a needle pointing down; plain.",
       "tags": [
@@ -7795,6 +8074,7 @@
       "fallback": "📌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out push pin",
       "description": "Outline thumbtack pin with a diagonal slash through it; unpin.",
       "tags": [
@@ -7821,6 +8101,7 @@
       "fallback": "📌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "push pin with motion lines",
       "description": "Thumbtack pin at upper right with three horizontal speed lines on the left; pin quickly or fast pinned.",
       "tags": [
@@ -7847,6 +8128,7 @@
       "fallback": "⭕️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "concentric circles with dotted ring",
       "description": "Solid circle inside another circle, surrounded by an outer ring of dots; record or focus target.",
       "tags": [
@@ -7876,6 +8158,7 @@
       "fallback": "✨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "ring of radial dashes",
       "description": "Dense ring of many short radial dashes of two alternating lengths around an empty centre; busier than the sparse spinner.",
       "tags": [
@@ -7903,6 +8186,7 @@
       "fallback": "✨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "radial spinner of dashes",
       "description": "Sparse ring of about twelve evenly spaced short radial dashes of equal length around an empty centre; spinner or loading look.",
       "tags": [
@@ -7930,6 +8214,7 @@
       "fallback": "📎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "three overlapping diamonds pointing left",
       "description": "Three left-pointing diamonds in a row: the front one is solid and fully visible; the middle solid one and the leftmost dotted-outline one are partly hidden behind it.",
       "tags": [
@@ -7959,6 +8244,7 @@
       "fallback": "📦",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "stacked slanted panels",
       "description": "Three parallel slanted outline panels stacked behind one another, the front one a closed parallelogram; tilted layers (not a square frame).",
       "tags": [
@@ -7988,6 +8274,7 @@
       "fallback": "📦",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "cube",
       "description": "Outline isometric cube with three visible faces.",
       "tags": [
@@ -8018,6 +8305,7 @@
       "fallback": "🖼",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "panorama frame",
       "description": "Wide rounded rectangle with concave top and bottom edges, like a panoramic frame.",
       "tags": [
@@ -8044,6 +8332,7 @@
       "fallback": "☀️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sun with rays small",
       "description": "Outline sun: a small circle with eight thin rays set further out; smaller circle and longer rays than the other sun.",
       "tags": [
@@ -8072,6 +8361,7 @@
       "fallback": "🌙",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crescent moon with sparkles filled",
       "description": "Crescent moon with two four-point sparkle stars at the upper right; the moon is thicker/solid, the sparkles are filled, heavier than the thin moon.",
       "tags": [
@@ -8100,6 +8390,7 @@
       "fallback": "♾",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "sine wave",
       "description": "Single wave curve crossing a horizontal axis line, a smooth sine shape.",
       "tags": [
@@ -8129,6 +8420,7 @@
       "fallback": "🎙",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "audio waveform",
       "description": "Jagged heartbeat-like line with sharp peaks, centred on a baseline.",
       "tags": [
@@ -8161,6 +8453,7 @@
       "fallback": "🛜",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "AirPlay screen large",
       "description": "Outline rounded screen with a small triangle at the bottom pointing up (casting); near-identical AirPlay, with slightly more compact proportions than the other one.",
       "tags": [
@@ -8187,6 +8480,7 @@
       "fallback": "👤",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "Face ID",
       "description": "Four rounded corner brackets framing a face with two eye dashes, a nose line and a smile.",
       "tags": [
@@ -8216,6 +8510,7 @@
       "fallback": "✈️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "Telegram logo in rounded square",
       "description": "Rounded square outline with a paper plane inside pointing to the upper right.",
       "tags": [
@@ -8244,6 +8539,7 @@
       "fallback": "🔞",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "XXX label",
       "description": "Wide rounded rectangle containing the bold letters XXX.",
       "tags": [
@@ -8271,6 +8567,7 @@
       "fallback": "📄",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "square with four horizontal bars",
       "description": "Rounded square with four horizontal bars: at the top a bar filling the top of the square with a slightly narrower bar under it; at the bottom a narrower bar above a bar that nearly fills the bottom of the square.",
       "tags": [
@@ -8300,6 +8597,7 @@
       "fallback": "🔣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "dice face four",
       "description": "Rounded square with four hollow circle pips in a two-by-two grid.",
       "tags": [
@@ -8331,6 +8629,7 @@
       "fallback": "📷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "QR code",
       "description": "Three outline squares at corners and scattered small squares in the lower right quadrant; QR code layout.",
       "tags": [
@@ -8359,6 +8658,7 @@
       "fallback": "💊",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "pill capsule",
       "description": "Outline capsule tilted diagonally, with a dividing line in the middle.",
       "tags": [
@@ -8390,6 +8690,7 @@
       "fallback": "✏️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "eraser with baseline",
       "description": "Thin outline eraser, a tilted rounded rectangle with a dividing line, sitting on a short horizontal baseline underneath.",
       "tags": [
@@ -8417,6 +8718,7 @@
       "fallback": "💧",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "water drop outline",
       "description": "Monochrome outline teardrop, empty inside, pointed top and round bottom. Thin stroke; no fill level, unlike the half-filled drop.",
       "tags": [
@@ -8445,6 +8747,7 @@
       "fallback": "💧",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "half-filled water drop",
       "description": "Solid white teardrop whose lower part is filled with a wavy liquid level while the top part is outline only; the filled-in variant of the empty drop outline.",
       "tags": [
@@ -8474,6 +8777,7 @@
       "fallback": "🖍",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "pencil tip in circle",
       "description": "Thin outline circle containing a large letter A formed by a sharpened pencil tip, with a pencil point in the middle. Looks like a drawing-app markup or pen tool.",
       "tags": [
@@ -8502,6 +8806,7 @@
       "fallback": "🖌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "paint brush flat",
       "description": "Outline flat paint brush with a wide bristle head and short handle, tilted diagonally, handle bottom-left. Wider and flatter than the round artist brush.",
       "tags": [
@@ -8529,6 +8834,7 @@
       "fallback": "🖌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "artist brush",
       "description": "Outline round artist paintbrush with a pointed bristle tip at bottom-left and a long thin handle going up-right. No sparkles, unlike the magic brush.",
       "tags": [
@@ -8556,6 +8862,7 @@
       "fallback": "🖌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "artist brush with sparkles",
       "description": "Outline round artist brush diagonal, with three four-point sparkles around its tip; the brush from the plain version plus sparkles, signalling AI or effects.",
       "tags": [
@@ -8586,6 +8893,7 @@
       "fallback": "🧽",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "eraser",
       "description": "Outline eraser, a tilted rounded rectangle with a dividing band line; no baseline underneath.",
       "tags": [
@@ -8613,6 +8921,7 @@
       "fallback": "🫥",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "smiley in dashed rounded square",
       "description": "Smiling face (two eyes and a smile) inside a rounded square made of dashed outline segments; face-selection or sticker cutout frame.",
       "tags": [
@@ -8642,6 +8951,7 @@
       "fallback": "🪄",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "magic wand with stars",
       "description": "Diagonal outline magic wand going from bottom-right to top-left, with three small solid stars at the upper-left tip. Solid stars, not four-point sparkles.",
       "tags": [
@@ -8671,6 +8981,7 @@
       "fallback": "👩‍🎨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "eyedropper",
       "description": "Diagonal pipette with a round rubber bulb at the top right and a pointed glass tip at the bottom left; outline with a solid bulb.",
       "tags": [
@@ -8697,6 +9008,7 @@
       "fallback": "🖌",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "scribble line",
       "description": "Single freehand curvy line looping like a scribble, thick rounded stroke, no other elements; drawing or pen stroke.",
       "tags": [
@@ -8726,6 +9038,7 @@
       "fallback": "🔃",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "flip triangles horizontal",
       "description": "Two triangles mirrored side by side, left one an outline and right one with stripes, a mirror axis between them; flip horizontally. No arrow above, unlike the next icon.",
       "tags": [
@@ -8752,6 +9065,7 @@
       "fallback": "↩️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "flip triangles with arrow",
       "description": "Two outlined mirrored triangles side by side with a double-headed horizontal arrow above them; mirror flip control, with the arrow that the other mirror icon lacks.",
       "tags": [
@@ -8779,6 +9093,7 @@
       "fallback": "🔡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "text box with plus",
       "description": "Rounded square outline with a letter T inside and a plus sign sticking out of its bottom-left corner; add a text field or caption.",
       "tags": [
@@ -8806,6 +9121,7 @@
       "fallback": "🔡",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "text box with sparkles",
       "description": "Dashed-corner rounded square with a letter T inside and three four-point sparkles at its corners; AI or auto text.",
       "tags": [
@@ -8834,6 +9150,7 @@
       "fallback": "🅰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bold letter A",
       "description": "Solid thick white capital letter A, no frame; plain text/font symbol, filled strokes.",
       "tags": [
@@ -8863,6 +9180,7 @@
       "fallback": "🅰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "outline letter A",
       "description": "Capital letter A drawn as a thin double outline (hollow letter), no frame; outlined text style, unlike the solid A.",
       "tags": [
@@ -8892,6 +9210,7 @@
       "fallback": "🅰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "letter A on white square",
       "description": "Dark capital A cut out of a solid white rounded square; bright white background.",
       "tags": [
@@ -8920,6 +9239,7 @@
       "fallback": "🅰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "letter A on gray square",
       "description": "White capital A on a solid dark-gray rounded square; dark translucent background, the inverse of the white-square A.",
       "tags": [
@@ -8949,6 +9269,7 @@
       "fallback": "🗣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "arrow to letter A",
       "description": "Right arrow pointing to a letter A, both thin outline strokes; text translation or insert-text. No padlock, unlike the next icon.",
       "tags": [
@@ -8976,6 +9297,7 @@
       "fallback": "🗣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "arrow to letter A with lock",
       "description": "Right arrow pointing to a letter A with a solid padlock at its bottom-right; the locked version of the arrow-to-A icon.",
       "tags": [
@@ -9005,6 +9327,7 @@
       "fallback": "✂️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crop",
       "description": "Crop tool: two overlapping right-angle brackets, one at top-left and one at bottom-right, thin outline stroke.",
       "tags": [
@@ -9031,6 +9354,7 @@
       "fallback": "📝",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "text in scan frame",
       "description": "Four rounded corner brackets framing several short horizontal text lines inside; text recognition or scan text. Lines inside distinguish it from the empty frame.",
       "tags": [
@@ -9058,6 +9382,7 @@
       "fallback": "↔️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "expand corners",
       "description": "Four separate corner brackets at the outer corners of the cell with an empty middle (fullscreen, expand). No frame, no arrows; the brackets sit at the edges, unlike the collapse brackets near the center.",
       "tags": [
@@ -9085,6 +9410,7 @@
       "fallback": "↔️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "collapse corners",
       "description": "Four short corner brackets clustered near the center with a cross-shaped gap between them, hooks turned inward (exit fullscreen, minimize). No outer square, no arrows.",
       "tags": [
@@ -9112,6 +9438,7 @@
       "fallback": "🖼",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "rotate square",
       "description": "Outline square with a curved arrow arching up-right and pointing counter-clockwise on its top edge; rotate image left.",
       "tags": [
@@ -9139,6 +9466,7 @@
       "fallback": "🖼",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "rounded square split in two",
       "description": "Rounded square outline with a horizontal dividing line in the middle and a vertical line in the bottom half, forming three panels; layout or collage grid.",
       "tags": [
@@ -9167,6 +9495,7 @@
       "fallback": "🖼",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out grid",
       "description": "Rounded square outline split into four quadrants with a diagonal slash across it; no layout or remove the grid.",
       "tags": [
@@ -9195,6 +9524,7 @@
       "fallback": "➕",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "stacked squares with plus",
       "description": "Two overlapping rounded squares with a plus sign in the front one; add or duplicate a new item, slide or layer.",
       "tags": [
@@ -9224,6 +9554,7 @@
       "fallback": "📈",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "line chart",
       "description": "L-shaped axes with a jagged rising line graph inside, thin outline; plain statistics. No dots or ticks, unlike the tick-marked chart.",
       "tags": [
@@ -9254,6 +9585,7 @@
       "fallback": "📈",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "line chart with axis ticks",
       "description": "Curved rising line graph on axes that carry small tick marks along the left and bottom edges; more detailed than the plain line chart.",
       "tags": [
@@ -9285,6 +9617,7 @@
       "fallback": "📊",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "bar chart in rounded square",
       "description": "Rounded square outline with three vertical bars of different heights inside; stats or histogram, boxed.",
       "tags": [
@@ -9315,6 +9648,7 @@
       "fallback": "🌐",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "globe",
       "description": "Outline globe with latitude and longitude lines in a circle; world, web or language.",
       "tags": [
@@ -9348,6 +9682,7 @@
       "fallback": "🏧",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "ATM with down arrow",
       "description": "ATM slot on top with a down arrow and a compact stack of notes below (cash deposit/withdraw); fewer stacked lines than the other ATM icon, near-identical.",
       "tags": [
@@ -9377,6 +9712,7 @@
       "fallback": "💰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "coin stack with TON coin",
       "description": "Stack of coins at the bottom with a round coin on top bearing the TON triangle-like logo; solid white shapes with cut-out lines.",
       "tags": [
@@ -9407,6 +9743,7 @@
       "fallback": "🪙",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "half-striped circle",
       "description": "Circle where the left half is solid with diagonal stripes and the right half is a dashed outline arc; contrast, shade or percent fill.",
       "tags": [
@@ -9436,6 +9773,7 @@
       "fallback": "💎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "TON logo in circle",
       "description": "Thin outline circle with the TON logo (downward triangle with a vertical center line) inside; circle around it.",
       "tags": [
@@ -9465,6 +9803,7 @@
       "fallback": "💎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "diamond outline",
       "description": "Outline brilliant-cut gemstone with faceted top and a pointed bottom, thin stroke; plain version with no arrow or sparkle.",
       "tags": [
@@ -9495,6 +9834,7 @@
       "fallback": "💎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "diamond with right arrow badge",
       "description": "Solid white gem with a round badge containing a right arrow at its bottom-right corner; send or transfer a gem.",
       "tags": [
@@ -9523,6 +9863,7 @@
       "fallback": "💎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gems exchange arrows",
       "description": "Two small outline diamonds, top-left and bottom-right, joined by two curved arrows forming a cycle; swap or trade gems.",
       "tags": [
@@ -9551,6 +9892,7 @@
       "fallback": "🔨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "auction gavel",
       "description": "Judge's gavel hammer, diagonal, resting on a small base block with a flat line; outline strokes.",
       "tags": [
@@ -9581,6 +9923,7 @@
       "fallback": "🪙",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "dollar in circle",
       "description": "Thin outline circle with a dollar sign inside; plain currency coin without arrows or dashes.",
       "tags": [
@@ -9612,6 +9955,7 @@
       "fallback": "🪙",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "dollar circle with up arrow",
       "description": "Outline circle with a dollar sign and a bold up arrow protruding from its lower-right; income, top-up or earnings growth.",
       "tags": [
@@ -9642,6 +9986,7 @@
       "fallback": "🤑",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "dashed dollar circle with arrow",
       "description": "Dashed-outline circle with a dollar sign and a circular clockwise arrowhead at the top right; pending, recurring or refresh payment.",
       "tags": [
@@ -9672,6 +10017,7 @@
       "fallback": "🏪",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "shop storefront",
       "description": "Solid white shop front with a striped scalloped awning and a door and window; filled, not outline.",
       "tags": [
@@ -9701,6 +10047,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crossed-out price tag",
       "description": "Solid white filled tilted price tag with a hole at the top right and a diagonal slash cut through it; filled, tilted counterpart of the outline slashed tag.",
       "tags": [
@@ -9730,6 +10077,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "solid price tag",
       "description": "Solid white filled price tag, tilted diagonally with a punched hole at the top right; filled counterpart of the thin outline tilted tag; no slash.",
       "tags": [
@@ -9760,6 +10108,7 @@
       "fallback": "🏷",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "outline price tag",
       "description": "Thin-outline price tag, tilted diagonally with a hole near the top right; outline counterpart of the solid tilted tag; no slash.",
       "tags": [
@@ -9790,6 +10139,7 @@
       "fallback": "🅰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "translate A and Chinese character",
       "description": "A Latin letter A overlapping a Chinese-style character with a small marker above; language translation icon.",
       "tags": [
@@ -9817,6 +10167,7 @@
       "fallback": "📟",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "screen or notebook",
       "description": "Rounded rectangle with a large panel on the left and a few short lines on the right; reads as a TV or monitor, or as a notebook. Meaning unclear.",
       "tags": [
@@ -9845,6 +10196,7 @@
       "fallback": "🌀",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "rounded square with two rings",
       "description": "Rounded square outline with two concentric circles inside (a ring around a smaller ring); looks like a lens or target. Meaning not certain.",
       "tags": [
@@ -9874,6 +10226,7 @@
       "fallback": "🔳",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "stacked square frames",
       "description": "A rounded square frame with extra offset lines on its right side and top edge, like cards stacked behind; upright square, unlike the slanted panel stack.",
       "tags": [
@@ -9903,6 +10256,7 @@
       "fallback": "📅",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "calendar",
       "description": "Rounded square outline calendar with two binding tabs at the top and a header line; empty, without arrows.",
       "tags": [
@@ -9932,6 +10286,7 @@
       "fallback": "📅",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "calendar with up arrow",
       "description": "Outline calendar with binding tabs and an up arrow at its bottom-right corner; schedule, postpone or export.",
       "tags": [
@@ -9960,6 +10315,7 @@
       "fallback": "⌛️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "hourglass",
       "description": "Outline hourglass with rounded body, sand at top with wavy surface and a heap at the bottom; time or waiting.",
       "tags": [
@@ -9991,6 +10347,7 @@
       "fallback": "💎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "TON logo",
       "description": "Bare TON logo: downward-pointing triangle with a vertical center line and rounded corners; no circle around it.",
       "tags": [
@@ -10020,6 +10377,7 @@
       "fallback": "👛",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "wallet",
       "description": "Outline wallet, a wide rounded rectangle with a small clasp circle on the right side; money or balance.",
       "tags": [
@@ -10049,6 +10407,7 @@
       "fallback": "💰",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "ATM slot with cash stack",
       "description": "ATM slot on top with a down arrow and a stack of notes with more layered lines below (withdraw cash); near-identical to the other ATM icon, only the stack looks taller.",
       "tags": [
@@ -10077,6 +10436,7 @@
       "fallback": "⏲",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "speedometer",
       "description": "Outline circular gauge with a needle pointing upper-right and small dots around the dial; speed or performance.",
       "tags": [
@@ -10107,6 +10467,7 @@
       "fallback": "🧭",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "compass",
       "description": "Thin outline circle with a diagonal compass needle inside; navigation or explore.",
       "tags": [
@@ -10136,6 +10497,7 @@
       "fallback": "✅",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "checked square with back arrow",
       "description": "Rounded square with a check mark inside and a curved arrow pointing left from its top-left corner; reuse or done and return.",
       "tags": [
@@ -10165,6 +10527,7 @@
       "fallback": "🆕",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "NEW badge",
       "description": "Solid white rounded pill with the word NEW cut out in dark letters; new feature label.",
       "tags": [
@@ -10195,6 +10558,7 @@
       "fallback": "✨",
       "format": "tgs",
       "repaint": true,
+      "animated": true,
       "name": "three sparkles",
       "description": "Three solid four-point sparkle stars, one large on the right and two small on the left; plain shine or AI magic. No frame.",
       "tags": [
@@ -10226,6 +10590,7 @@
       "fallback": "1⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "shield badge 1",
       "description": "Solid white shield badge, flat top, rounded bottom point, dark number 1; the single-digit shield.",
       "tags": [
@@ -10256,6 +10621,7 @@
       "fallback": "2⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "rounded square badge 2",
       "description": "Solid white squircle badge with dark number 2 inside; rounded square shape.",
       "tags": [
@@ -10285,6 +10651,7 @@
       "fallback": "3⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "shield badge 3",
       "description": "Solid white wide shield with a concave top edge, pointed bottom, dark number 3 inside.",
       "tags": [
@@ -10314,6 +10681,7 @@
       "fallback": "4⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "diamond badge 4",
       "description": "Solid white rounded diamond (rhombus) badge with dark number 4 inside.",
       "tags": [
@@ -10344,6 +10712,7 @@
       "fallback": "5⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "pentagon badge 5",
       "description": "Solid white rounded pentagon badge with a dark number 5 inside, point at the bottom.",
       "tags": [
@@ -10373,6 +10742,7 @@
       "fallback": "6⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "hexagon badge 6",
       "description": "Solid white rounded hexagon badge with a dark number 6 inside, points at top and bottom.",
       "tags": [
@@ -10402,6 +10772,7 @@
       "fallback": "7⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "heptagon badge 7",
       "description": "Solid white rounded seven-sided badge with a dark number 7 inside.",
       "tags": [
@@ -10431,6 +10802,7 @@
       "fallback": "8⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "octagon badge 8",
       "description": "Solid white rounded octagon badge with a dark number 8 inside.",
       "tags": [
@@ -10460,6 +10832,7 @@
       "fallback": "9⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "circle badge 9",
       "description": "Solid white plain circle with a dark number 9 inside.",
       "tags": [
@@ -10489,6 +10862,7 @@
       "fallback": "1⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "shield badge 10",
       "description": "Solid white rounded-square-like shield with a pointed bottom, dark number 10; two digits, flat top.",
       "tags": [
@@ -10518,6 +10892,7 @@
       "fallback": "2⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "notched badge 20",
       "description": "Solid white badge with a notched or V-cut top edge and flat bottom, dark number 20 inside.",
       "tags": [
@@ -10546,6 +10921,7 @@
       "fallback": "3⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "notched shield badge 30",
       "description": "Solid white badge with a V-notched top and a pointed bottom, dark number 30 inside.",
       "tags": [
@@ -10574,6 +10950,7 @@
       "fallback": "4⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crown-top badge 40",
       "description": "Solid white badge with a crown-like zigzag top and a tapered bottom, dark number 40; crown top, no round shield point.",
       "tags": [
@@ -10603,6 +10980,7 @@
       "fallback": "5⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crown-top shield badge 50",
       "description": "Solid white shield with a crown-like zigzag top and a pointed bottom, dark number 50; zigzag top like the 40 badge, but the bottom is a pointed shield tip.",
       "tags": [
@@ -10632,6 +11010,7 @@
       "fallback": "6⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "wavy star badge 60",
       "description": "Solid white scalloped six-lobed star-like badge with a dark number 60 inside.",
       "tags": [
@@ -10661,6 +11040,7 @@
       "fallback": "7⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "scalloped badge 70",
       "description": "Solid white scalloped seal with wavy lobes, dark number 70; same seal shape as 80, only the number differs.",
       "tags": [
@@ -10690,6 +11070,7 @@
       "fallback": "8⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "scalloped badge 80",
       "description": "Solid white scalloped seal with wavy lobes, dark number 80; the same seal shape as 70, only the number differs.",
       "tags": [
@@ -10719,6 +11100,7 @@
       "fallback": "9⃣",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "hexagon shield badge 90",
       "description": "Solid white hexagon-style shield, flat top, pointed bottom, dark number 90.",
       "tags": [
@@ -10748,6 +11130,7 @@
       "fallback": "👑",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "crown",
       "description": "Solid white crown with three points ending in round balls, flat base; filled, no outline.",
       "tags": [
@@ -10780,6 +11163,7 @@
       "fallback": "🌟",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "star with circular arrow",
       "description": "Outline star in a circle made of a circular arrow that ends with an arrowhead at bottom-left; recurring or refreshed favorite or rating.",
       "tags": [
@@ -10810,6 +11194,7 @@
       "fallback": "📁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "folder",
       "description": "Plain outline folder with a tab at the top left; empty front, no badge or arrow. Nearly identical to the other plain folder; the two cannot be reliably told apart.",
       "tags": [
@@ -10838,6 +11223,7 @@
       "fallback": "📁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "folder with plus",
       "description": "Outline folder with a plus sign at its bottom-right corner; new folder.",
       "tags": [
@@ -10865,6 +11251,7 @@
       "fallback": "📁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "folder with up arrow",
       "description": "Outline folder with an up arrow in the middle; upload or move out of a folder.",
       "tags": [
@@ -10892,6 +11279,7 @@
       "fallback": "📁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "folder with down arrow",
       "description": "Outline folder with a down arrow in the middle; download or save to a folder.",
       "tags": [
@@ -10919,6 +11307,7 @@
       "fallback": "🎁",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "gift box with plus",
       "description": "Outline gift box with a ribbon bow and a plus sign at its bottom-right corner; add a gift.",
       "tags": [
@@ -10947,6 +11336,7 @@
       "fallback": "🧩",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "puzzle in rounded square",
       "description": "Rounded square outline split into four interlocking jigsaw puzzle pieces; plugin, extension or integration.",
       "tags": [
@@ -10977,6 +11367,7 @@
       "fallback": "🔨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "anvil with leaf and hammer",
       "description": "Outline anvil with a leaf-like sparkle above its horn and a hammer handle to the right; thin stroke, hollow.",
       "tags": [
@@ -11007,6 +11398,7 @@
       "fallback": "🔨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "solid anvil with hammer",
       "description": "Solid white filled anvil with a hammer on top; filled counterpart of the outline anvil.",
       "tags": [
@@ -11037,6 +11429,7 @@
       "fallback": "💎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "diamond with sparkles",
       "description": "Outline faceted gem with two small four-point sparkles at its top-left and bottom-right; shiny gem.",
       "tags": [
@@ -11067,6 +11460,7 @@
       "fallback": "✨",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "Ai with sparkles",
       "description": "The letters Ai in thin outline with solid four-point sparkles on the upper left; artificial intelligence.",
       "tags": [
@@ -11095,6 +11489,7 @@
       "fallback": "💎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "solid gem with star",
       "description": "Solid white filled flat-top gem with a dark four-point sparkle cut out in the center.",
       "tags": [
@@ -11124,6 +11519,7 @@
       "fallback": "💎",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "outline gem with star",
       "description": "Outline flat-top gem with rounded corners and a solid four-point sparkle in the center; outline counterpart of the solid gem.",
       "tags": [
@@ -11153,6 +11549,7 @@
       "fallback": "🔖",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "0% tag",
       "description": "Tilted rounded tag outline with the text 0% inside; zero percent offer, discount or free.",
       "tags": [
@@ -11183,6 +11580,7 @@
       "fallback": "⚡️",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "lightning with sparkles",
       "description": "Outline lightning bolt with four small four-point sparkles around it; energy, boost or fast AI.",
       "tags": [
@@ -11215,6 +11613,7 @@
       "fallback": "✅",
       "format": "tgs",
       "repaint": true,
+      "animated": false,
       "name": "verified check in scalloped seal",
       "description": "Outline scalloped badge with a check mark inside; verified or approved account.",
       "tags": [

@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 # Regenerates the raster test fixtures in crates/tge/tests/fixtures/:
 #   alpha.webm     VP9 with alpha, 100x100, 30 fps, 2 s, encoded by libvpx-vp9
-#   alpha.yuva420p the same video decoded by libvpx, raw yuva420p frames back to back
-# Needs ffmpeg built with libvpx.
+#   alpha.yuva420p   the same video decoded by libvpx, raw yuva420p frames back to back
+#   lossy-alpha.webp 32x32 lossy webp with alpha (VP8X, ALPH and VP8 chunks), encoded by libwebp
+# Needs ffmpeg built with libvpx and libwebp.
 set -euo pipefail
 
 repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 out_dir="$repo_root/crates/tge/tests/fixtures"
 webm="$out_dir/alpha.webm"
 raw="$out_dir/alpha.yuva420p"
+webp="$out_dir/lossy-alpha.webp"
 
 command -v ffmpeg >/dev/null || { echo "error: ffmpeg is not on PATH" >&2; exit 1; }
 mkdir -p "$out_dir"
@@ -39,4 +41,10 @@ if [[ "$actual" -ne "$expected" ]]; then
   echo "error: $raw has $actual bytes, expected $expected (60 frames)" >&2
   exit 1
 fi
-printf 'wrote %s and %s\n' "$webm" "$raw"
+
+# Red growing downwards, alpha growing rightwards.
+ffmpeg -hide_banner -loglevel error -y -f lavfi \
+  -i "color=c=black:s=32x32,format=rgba,geq=r='255*Y/H':g=0:b=0:a='255*X/W'" \
+  -frames:v 1 -c:v libwebp -lossless 0 -fflags +bitexact "$webp"
+
+printf 'wrote %s, %s and %s\n' "$webm" "$raw" "$webp"

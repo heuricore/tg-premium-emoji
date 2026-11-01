@@ -8,6 +8,9 @@ const ALPHA_WEBM: &[u8] = include_bytes!("fixtures/alpha.webm");
 /// `ALPHA_WEBM` decoded by libvpx: 60 yuva420p frames back to back.
 const ALPHA_YUVA: &[u8] = include_bytes!("fixtures/alpha.yuva420p");
 const FRAME_BYTES: usize = 100 * 100 * 2 + 50 * 50 * 2;
+/// libwebp lossy 32x32 with alpha (VP8X, ALPH and `VP8 ` chunks): red grows downwards, alpha
+/// rightwards.
+const LOSSY_ALPHA_WEBP: &[u8] = include_bytes!("fixtures/lossy-alpha.webp");
 
 const SEGMENT: [u8; 4] = [0x18, 0x53, 0x80, 0x67];
 const CLUSTER: [u8; 4] = [0x1F, 0x43, 0xB6, 0x75];
@@ -91,6 +94,50 @@ fn encode_webp(data: &[u8], w: u32, h: u32, color: ColorType) -> Vec<u8> {
         .encode(data, w, h, color)
         .unwrap();
     out
+}
+
+fn riff_chunk(fourcc: &[u8; 4], payload: &[u8]) -> Vec<u8> {
+    let mut out = fourcc.to_vec();
+    out.extend_from_slice(&(payload.len() as u32).to_le_bytes());
+    out.extend_from_slice(payload);
+    if payload.len() % 2 == 1 {
+        out.push(0);
+    }
+    out
+}
+
+fn riff_webp(chunks: &[Vec<u8>]) -> Vec<u8> {
+    let body = chunks.concat();
+    let mut out = b"RIFF".to_vec();
+    out.extend_from_slice(&(body.len() as u32 + 4).to_le_bytes());
+    out.extend_from_slice(b"WEBP");
+    out.extend_from_slice(&body);
+    out
+}
+
+/// VP8X chunk: feature flags, then the canvas size.
+fn vp8x(flags: u8, w: u32, h: u32) -> Vec<u8> {
+    let mut payload = vec![flags, 0, 0, 0];
+    payload.extend_from_slice(&(w - 1).to_le_bytes()[..3]);
+    payload.extend_from_slice(&(h - 1).to_le_bytes()[..3]);
+    riff_chunk(b"VP8X", &payload)
+}
+
+/// `VP8 ` chunk whose key frame header declares `w`x`h`, followed by noise.
+fn vp8_chunk(w: u16, h: u16) -> Vec<u8> {
+    let mut payload = vec![0x10, 0x02, 0x00, 0x9D, 0x01, 0x2A];
+    payload.extend_from_slice(&w.to_le_bytes());
+    payload.extend_from_slice(&h.to_le_bytes());
+    payload.extend(pseudo_random(7, 256));
+    riff_chunk(b"VP8 ", &payload)
+}
+
+/// VP8L chunk whose header declares `w`x`h`, followed by noise.
+fn vp8l_chunk(w: u32, h: u32) -> Vec<u8> {
+    let mut payload = vec![0x2F];
+    payload.extend_from_slice(&((w - 1) | ((h - 1) << 14)).to_le_bytes());
+    payload.extend(pseudo_random(7, 256));
+    riff_chunk(b"VP8L", &payload)
 }
 
 #[test]
@@ -285,5 +332,81 @@ fn garbage_and_truncated_webp_are_errors() {
     let bytes = encode_webp(&gradient(), 100, 100, ColorType::Rgba8);
     for cut in [0, 12, 20, 30, bytes.len() / 2] {
         assert!(webp::decode(&bytes[..cut]).is_err(), "cut at {cut}");
+    }
+}
+
+#[test]
+fn lossy_webp_with_alpha_decodes() {
+    let img = webp::decode(LOSSY_ALPHA_WEBP).unwrap();
+    assert_eq!((img.w, img.h), (32, 32));
+    assert!(pixel(&img, 0, 16)[3] < 16, "left edge is transparent");
+    let [top_r, _, _, top_a] = pixel(&img, 31, 0);
+    let [bottom_r, _, _, bottom_a] = pixel(&img, 31, 31);
+    assert!(top_a > 230 && bottom_a > 230, "right edge is opaque");
+    assert!(
+        top_r < 40 && bottom_r > 200,
+        "red {top_r} at top, {bottom_r} at bottom"
+    );
+}
+
+#[test]
+fn damaged_webp_never_panics() {
+    // Every prefix, then byte flips anywhere, chunk sizes and frame headers included.
+    for cut in 0..LOSSY_ALPHA_WEBP.len() {
+        let _ = webp::decode(&LOSSY_ALPHA_WEBP[..cut]);
+    }
+    for seed in 1..=300u32 {
+        let mut bytes = LOSSY_ALPHA_WEBP.to_vec();
+        let noise = pseudo_random(seed.wrapping_mul(0x9E37_79B9), 6);
+        for &[at, flip] in noise.as_chunks::<2>().0 {
+            let at = usize::from(at) % bytes.len();
+            bytes[at] ^= flip | 1;
+        }
+        let _ = webp::decode(&bytes);
+    }
+}
+
+#[test]
+fn extended_lossless_webp_decodes() {
+    let rgba = gradient();
+    let mut bytes = Vec::new();
+    let mut encoder = WebPEncoder::new(&mut bytes);
+    encoder.set_exif_metadata(b"Exif\0\0".to_vec());
+    encoder.encode(&rgba, 100, 100, ColorType::Rgba8).unwrap();
+    assert_eq!(&bytes[12..16], b"VP8X");
+    assert!(webp::decode(&bytes).unwrap().px == rgba, "pixels differ");
+}
+
+#[test]
+fn webp_frame_must_match_canvas() {
+    // The image chunk is checked before decoding, so the noise after its header is never read.
+    for image in [vp8_chunk(2000, 2000), vp8l_chunk(2000, 2000)] {
+        let bytes = riff_webp(&[vp8x(0, 100, 100), image]);
+        let err = webp::decode(&bytes).unwrap_err();
+        assert!(err.to_string().contains("2000x2000"), "{err}");
+    }
+}
+
+#[test]
+fn animated_webp_is_rejected() {
+    // ANMF payload: x, y, width - 1, height - 1, duration (3 bytes each), flags, then the frame.
+    let mut frame = vec![0; 6];
+    frame.extend_from_slice(&[99, 0, 0, 99, 0, 0, 100, 0, 0, 0]);
+    frame.extend(vp8_chunk(100, 100));
+    let flagged = riff_webp(&[
+        vp8x(0x02, 100, 100),
+        riff_chunk(b"ANIM", &[0; 6]),
+        riff_chunk(b"ANMF", &frame),
+    ]);
+    // A still VP8X image that also carries an animation frame without the animation flag.
+    let still = encode_webp(&[9; 2 * 2 * 4], 2, 2, ColorType::Rgba8);
+    let stray = riff_webp(&[
+        vp8x(0x10, 2, 2),
+        still[12..].to_vec(),
+        riff_chunk(b"ANMF", &[0; 24]),
+    ]);
+    for bytes in [flagged, stray] {
+        let err = webp::decode(&bytes).unwrap_err();
+        assert!(err.to_string().contains("animated"), "{err}");
     }
 }

@@ -64,8 +64,9 @@ pub fn run(ctx: &Ctx, short_name: &str, catalog: Option<CatalogChoice>) -> Resul
 
     let sources = download_all(&api, &ctx.env.home.join("cache").join("src"), &fetched)?;
     let icons = render_all(&fetched, &sources)?;
-    let (dir, pack, report) = write_pack(&ctx.env, target, &name, &title, &fetched, &icons)?;
-    emit(ctx, &dir, &pack, &report, &icons);
+    let (dir, pack, report, seeded_from) =
+        write_pack(&ctx.env, target, &name, &title, &fetched, &icons)?;
+    emit(ctx, &dir, &pack, &report, &icons, seeded_from.as_deref());
     Ok(())
 }
 
@@ -206,7 +207,7 @@ fn write_pack(
     title: &str,
     fetched: &[FetchedEmoji],
     icons: &HashMap<String, Rendered>,
-) -> Result<(PathBuf, Pack, MergeReport), Error> {
+) -> Result<(PathBuf, Pack, MergeReport, Option<String>), Error> {
     let catalog_dir = Catalogs::writable_dir(env, target)?;
     let packs = catalog_dir.join("packs");
     let folder = pack_folder(&packs, name)?.unwrap_or_else(|| name.to_string());
@@ -216,6 +217,19 @@ fn write_pack(
         .map(|(id, icon)| (id.clone(), icon.frame_suspect()))
         .collect();
     let now = utc_now();
+    // a pack that exists only in a lower catalog must not be shadowed by an unlabeled copy
+    let mut seed: Option<(String, Pack)> = None;
+    if !pack_dir.join("pack.json").exists() {
+        let (catalogs, _) = Catalogs::discover(env);
+        seed = catalogs
+            .find_pack(name)
+            .map(|(catalog, pack)| (catalog.meta.id.clone(), pack));
+    }
+    let seeded_from = seed.as_ref().map(|(id, _)| id.clone());
+    if let Some(id) = &seeded_from {
+        eprintln!("pack {name}: starting from labels in catalog {id}");
+    }
+    let mut seed = seed.map(|(_, pack)| pack);
     let mut report = MergeReport::default();
     // dropped without `commit` (pack.json not written), it puts the previous previews back
     let mut swap: Option<PreviewSwap> = None;
@@ -223,7 +237,14 @@ fn write_pack(
         &pack_dir.join("pack.json"),
         MAX_PACK_JSON_BYTES,
         |existing: Option<Pack>| {
-            let (pack, merged) = merge(existing, name, title, fetched, &suspect, &now);
+            let (pack, merged) = merge(
+                existing.or_else(|| seed.take()),
+                name,
+                title,
+                fetched,
+                &suspect,
+                &now,
+            );
             report = merged;
             remove_staging_leftovers(&pack_dir);
             let staged = stage_previews(&pack_dir, &pack, icons)?;
@@ -234,7 +255,7 @@ fn write_pack(
     if let Some(swap) = swap {
         swap.commit();
     }
-    Ok((catalog_dir, pack, report))
+    Ok((catalog_dir, pack, report, seeded_from))
 }
 
 /// Staging folders left by a build that was killed mid-swap. Called under the pack's lock, so no
@@ -355,6 +376,7 @@ fn emit(
     pack: &Pack,
     report: &MergeReport,
     icons: &HashMap<String, Rendered>,
+    seeded_from: Option<&str>,
 ) {
     let mut errors = Vec::new();
     let mut frames = Vec::new();
@@ -390,6 +412,7 @@ fn emit(
         json!({
             "pack": pack.short_name,
             "dir": dir.display().to_string(),
+            "seeded_from": seeded_from,
             "report": {
                 "added": report.added,
                 "image_changed": report.image_changed,

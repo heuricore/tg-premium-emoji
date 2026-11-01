@@ -52,7 +52,23 @@ impl Catalog {
             .filter(|p| p.is_dir())
             .collect();
         dirs.sort();
-        dirs.iter().filter_map(|d| load_pack(d)).collect()
+        dirs.iter()
+            .filter_map(|d| load_pack(d).ok().flatten())
+            .collect()
+    }
+
+    /// Problems (path and reason) of pack folders whose `pack.json` exists but does not load.
+    pub fn pack_problems(&self) -> Vec<String> {
+        let Ok(entries) = fs::read_dir(self.dir.join("packs")) else {
+            return Vec::new();
+        };
+        let mut dirs: Vec<PathBuf> = entries
+            .filter_map(Result::ok)
+            .map(|e| e.path())
+            .filter(|p| p.is_dir())
+            .collect();
+        dirs.sort();
+        dirs.iter().filter_map(|d| load_pack(d).err()).collect()
     }
 
     /// The folder of the pack `short_name` under this catalog, matched ignoring ASCII case.
@@ -84,12 +100,22 @@ pub fn pack_folder(packs: &Path, name: &str) -> io::Result<Option<String>> {
     Ok(matches.into_iter().next())
 }
 
-fn load_pack(dir: &Path) -> Option<Pack> {
+/// `Ok(None)` when the folder has no `pack.json`; `Err` is a "path: reason" message.
+fn load_pack(dir: &Path) -> Result<Option<Pack>, String> {
     let path = dir.join("pack.json");
-    if fs::metadata(&path).ok()?.len() > MAX_PACK_JSON_BYTES {
-        return None;
+    let fail = |reason: String| format!("{}: {reason}", path.display());
+    let meta = match fs::metadata(&path) {
+        Ok(m) => m,
+        Err(e) if e.kind() == io::ErrorKind::NotFound => return Ok(None),
+        Err(e) => return Err(fail(e.to_string())),
+    };
+    if meta.len() > MAX_PACK_JSON_BYTES {
+        return Err(fail(format!("larger than {MAX_PACK_JSON_BYTES} bytes")));
     }
-    serde_json::from_str(&fs::read_to_string(path).ok()?).ok()
+    let text = fs::read_to_string(&path).map_err(|e| fail(e.to_string()))?;
+    serde_json::from_str(&text)
+        .map(Some)
+        .map_err(|e| fail(format!("invalid pack.json: {e}")))
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -129,6 +155,20 @@ impl Catalogs {
             }
         }
         (Catalogs { catalogs }, issues)
+    }
+
+    /// `discover`, with every discovery issue and unloadable pack reported as a stderr warning.
+    pub fn discover_warn(env: &Env) -> Catalogs {
+        let (catalogs, issues) = Self::discover(env);
+        for issue in issues {
+            eprintln!("warning: {}: {}", issue.file.display(), issue.message);
+        }
+        for catalog in &catalogs.catalogs {
+            for problem in catalog.pack_problems() {
+                eprintln!("warning: {problem}");
+            }
+        }
+        catalogs
     }
 
     pub fn find_pack(&self, short_name: &str) -> Option<(&Catalog, Pack)> {
@@ -213,7 +253,7 @@ fn local_dir(env: &Env) -> PathBuf {
     env.home.join("catalogs").join("local")
 }
 
-fn same_dir(a: &Path, b: &Path) -> bool {
+pub fn same_dir(a: &Path, b: &Path) -> bool {
     match (fs::canonicalize(a), fs::canonicalize(b)) {
         (Ok(a), Ok(b)) => a == b,
         _ => a == b,

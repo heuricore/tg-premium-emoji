@@ -15,7 +15,7 @@ struct Sheet {
 }
 
 pub fn run(ctx: &Ctx, short_name: &str) -> Result<(), Error> {
-    let (catalogs, _) = Catalogs::discover(&ctx.env);
+    let catalogs = Catalogs::discover_warn(&ctx.env);
     let (catalog, pack) = catalogs.require_pack(short_name)?;
     let pack_dir = catalog.pack_dir(&pack.short_name).ok_or_else(|| {
         Error::Runtime(format!(

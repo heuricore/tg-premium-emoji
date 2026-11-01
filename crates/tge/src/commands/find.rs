@@ -55,7 +55,7 @@ pub fn run(ctx: &Ctx, args: Args) -> Result<(), Error> {
     if query.is_empty() {
         return Err(Error::Usage("query has no searchable words".into()));
     }
-    let (catalogs, _) = Catalogs::discover(&ctx.env);
+    let catalogs = Catalogs::discover_warn(&ctx.env);
     let packs: Vec<_> = catalogs
         .visible_packs()
         .into_iter()
@@ -103,8 +103,13 @@ pub fn run(ctx: &Ctx, args: Args) -> Result<(), Error> {
         let e = c.emoji;
         let html = tg_emoji_html(&e.id, &e.fallback);
         let confidence = e.confidence.map(|v| json!(v));
+        let description_line = e
+            .description
+            .as_deref()
+            .map(|d| format!("\n  {d}"))
+            .unwrap_or_default();
         lines.push(format!(
-            "{} #{} {} {} ({}) id {}\n  {html}",
+            "{} #{} {} {} ({}) id {}{description_line}\n  {html}",
             c.pack,
             e.n.unwrap_or_default(),
             e.fallback,
@@ -121,6 +126,8 @@ pub fn run(ctx: &Ctx, args: Args) -> Result<(), Error> {
             "n": e.n,
             "id": e.id,
             "name": e.name,
+            "description": e.description,
+            "fits": e.fits,
             "fallback": e.fallback,
             "confidence": confidence,
             "html": html,

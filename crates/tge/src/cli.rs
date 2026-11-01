@@ -80,7 +80,7 @@ pub enum Command {
     Label {
         /// Pack short name
         pack: String,
-        /// JSON array of edits, a file path or `-` for stdin
+        /// Path to a JSON file with an array of edits, or `-` for stdin (no inline JSON)
         #[arg(long, value_name = "FILE|-")]
         edits: String,
         /// Who made the edits (`human` protects them from later agent edits)

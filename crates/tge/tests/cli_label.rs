@@ -298,7 +298,7 @@ fn label_refuses_builtin() {
     assert!(doc["error"].as_str().unwrap().contains("read-only"));
     assert_eq!(sandbox.pack_text(), before);
 
-    // the same directory given as --catalog-dir is an explicit catalog and may be written
+    // the same directory given as --catalog-dir is still the built-in catalog
     sandbox
         .command()
         .arg("--json")
@@ -308,8 +308,43 @@ fn label_refuses_builtin() {
         .arg(sandbox.catalog.path())
         .args(args)
         .assert()
+        .code(1);
+    assert_eq!(sandbox.pack_text(), before);
+}
+
+#[test]
+fn label_writes_a_copy_of_the_builtin_catalog() {
+    let sandbox = Sandbox::new();
+    let copy = sandbox.home.path().join("copy");
+    copy_dir(sandbox.catalog.path(), &copy);
+    let file = sandbox.home.path().join("edits.json");
+    fs::write(&file, json!([{ "n": 2, "name": "x" }]).to_string()).unwrap();
+    sandbox
+        .command()
+        .arg("--json")
+        .arg("--builtin")
+        .arg(sandbox.catalog.path())
+        .arg("--catalog-dir")
+        .arg(&copy)
+        .args(["label", "demo", "--edits", file.to_str().unwrap()])
+        .assert()
         .success();
-    assert_eq!(sandbox.pack()["emoji"][1]["name"], "x");
+    let written: Value =
+        serde_json::from_str(&fs::read_to_string(copy.join("packs/demo/pack.json")).unwrap())
+            .unwrap();
+    assert_eq!(written["emoji"][1]["name"], "x");
+}
+
+#[test]
+fn label_rejects_an_edit_with_only_a_selector() {
+    let sandbox = Sandbox::new();
+    let before = sandbox.pack_text();
+    let file = sandbox.home.path().join("edits.json");
+    fs::write(&file, json!([{ "n": 2 }]).to_string()).unwrap();
+    sandbox
+        .cmd(&["label", "demo", "--edits", file.to_str().unwrap()])
+        .code(2);
+    assert_eq!(sandbox.pack_text(), before);
 }
 
 #[test]

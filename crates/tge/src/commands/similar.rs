@@ -6,7 +6,7 @@ use crate::similar::similar_groups;
 use crate::store::catalogs::Catalogs;
 
 pub fn run(ctx: &Ctx, pack_name: &str) -> Result<(), Error> {
-    let (catalogs, _) = Catalogs::discover(&ctx.env);
+    let catalogs = Catalogs::discover_warn(&ctx.env);
     let (_, pack) = catalogs.require_pack(pack_name)?;
 
     let mut lines = Vec::new();

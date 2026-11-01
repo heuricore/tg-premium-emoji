@@ -264,10 +264,14 @@ def is_link(path):
     return bool(getattr(info, "st_file_attributes", 0) & 0x400)
 
 
-def make_windows_link(target, link):
-    """Create a directory link: a symlink if allowed, else a junction."""
+def make_windows_link(target, link, symlink_target=None):
+    """Create a directory link: a symlink if allowed, else a junction.
+
+    A symlink points at the relative `symlink_target` when given (resolved against the link's
+    folder); a junction always needs the absolute `target`.
+    """
     try:
-        os.symlink(str(target), str(link), target_is_directory=True)
+        os.symlink(str(symlink_target or target), str(link), target_is_directory=True)
         return
     except (OSError, NotImplementedError):
         pass
@@ -289,7 +293,7 @@ def point_latest_windows(bin_dir, ver):
     temp = bin_dir / ("latest.tmp-%d" % os.getpid())
     if os.path.lexists(str(temp)):
         os.rmdir(str(temp))
-    make_windows_link(bin_dir / ver, temp)
+    make_windows_link(bin_dir / ver, temp, ver)
     try:
         if os.path.lexists(str(latest)):
             os.rmdir(str(latest))

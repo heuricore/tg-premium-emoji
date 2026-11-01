@@ -6,7 +6,7 @@ use crate::report::{PackReport, pack_report};
 use crate::store::catalogs::Catalogs;
 
 pub fn run(ctx: &Ctx, pack_name: Option<&str>) -> Result<(), Error> {
-    let (catalogs, _) = Catalogs::discover(&ctx.env);
+    let catalogs = Catalogs::discover_warn(&ctx.env);
     match pack_name {
         Some(name) => {
             let (catalog, pack) = catalogs.require_pack(name)?;

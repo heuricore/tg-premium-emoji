@@ -8,7 +8,7 @@ use crate::label::{LabelOutcome, apply_labels, parse_edits};
 use crate::model::pack::{By, Pack};
 use crate::output::Ctx;
 use crate::store::atomic::update_json;
-use crate::store::catalogs::{Catalogs, Role};
+use crate::store::catalogs::{Catalogs, Role, same_dir};
 use crate::validate::{Issue, MAX_PACK_JSON_BYTES, pack_issues};
 
 /// Edits are a small JSON array; anything bigger is a mistake.
@@ -16,12 +16,17 @@ const MAX_EDITS_BYTES: u64 = 1024 * 1024;
 
 pub fn run(ctx: &Ctx, pack_name: &str, edits: &str, by: By, force: bool) -> Result<(), Error> {
     let edits = parse_edits(&read_edits(edits)?)?;
-    let (catalogs, _) = Catalogs::discover(&ctx.env);
+    let catalogs = Catalogs::discover_warn(&ctx.env);
     let (catalog, pack) = catalogs.require_pack(pack_name)?;
-    if catalog.role == Role::Builtin {
+    let is_builtin_dir = ctx
+        .env
+        .builtin
+        .as_ref()
+        .is_some_and(|builtin| same_dir(builtin, &catalog.dir));
+    if catalog.role == Role::Builtin || is_builtin_dir {
         return Err(Error::Runtime(format!(
             "pack '{}' is in the built-in catalog {}, which is read-only; \
-             pass its directory as --catalog-dir to edit it",
+             editing a copy of a built-in pack arrives in Phase 2",
             pack.short_name,
             catalog.dir.display()
         )));

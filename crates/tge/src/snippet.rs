@@ -13,7 +13,18 @@ pub fn tg_emoji_html(id: &str, fallback: &str) -> String {
 }
 
 pub fn markdown_v2(id: &str, fallback: &str) -> String {
-    format!("![{fallback}](tg://emoji?id={id})")
+    format!("![{}](tg://emoji?id={id})", escape_markdown_v2(fallback))
+}
+
+fn escape_markdown_v2(s: &str) -> String {
+    let mut out = String::with_capacity(s.len());
+    for ch in s.chars() {
+        if "\\_*[]()~`>#+-=|{}.!".contains(ch) {
+            out.push('\\');
+        }
+        out.push(ch);
+    }
+    out
 }
 
 pub fn button_json(id: &str, text: &str) -> serde_json::Value {
@@ -45,6 +56,18 @@ mod tests {
         assert_eq!(
             markdown_v2("5368324170671202286", "✅"),
             "![✅](tg://emoji?id=5368324170671202286)"
+        );
+    }
+
+    #[test]
+    fn markdown_v2_escapes_reserved_chars_in_keycap_fallback() {
+        assert_eq!(
+            markdown_v2("1", "#\u{fe0f}\u{20e3}"),
+            "![\\#\u{fe0f}\u{20e3}](tg://emoji?id=1)"
+        );
+        assert_eq!(
+            markdown_v2("1", "*\u{fe0f}\u{20e3}"),
+            "![\\*\u{fe0f}\u{20e3}](tg://emoji?id=1)"
         );
     }
 

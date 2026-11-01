@@ -64,6 +64,25 @@ fn find_by_russian_tag() {
     assert_eq!(hit["id"], ID1);
     assert_eq!(hit["pack"], "demo");
     assert_eq!(hit["html"], tg_emoji_html(ID1, "✅"));
+    assert_eq!(hit["description"], "A green check mark");
+    assert!(hit["fits"].is_null());
+}
+
+#[test]
+fn find_warns_about_a_broken_pack_and_still_returns_hits() {
+    let sandbox = Sandbox::new();
+    let broken = sandbox.catalog.path().join("packs/broken");
+    fs::create_dir_all(&broken).unwrap();
+    fs::write(broken.join("pack.json"), "{ not json").unwrap();
+    let assert = sandbox.cmd(&["find", "check"]).success();
+    let output = assert.get_output().clone();
+    let doc: Value = serde_json::from_slice(&output.stdout).unwrap();
+    assert_eq!(doc["hits"][0]["id"], ID1);
+    let stderr = String::from_utf8(output.stderr).unwrap();
+    assert!(
+        stderr.contains("warning:") && stderr.contains("broken"),
+        "{stderr}"
+    );
 }
 
 #[test]

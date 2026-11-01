@@ -176,11 +176,15 @@ jobs:
       - name: Install the published release and find the built-in catalog
         env:
           TG_PREMIUM_EMOJI_HOME: ${{ runner.temp }}/tge-home
+          TGE_RELEASES_API: ${{ github.api_url }}/repos/${{ github.repository }}/releases
+          TAG: ${{ github.ref_name }}
         run: |
           if [ "$RUNNER_OS" = Windows ]; then py=python; else py=python3; fi
           "$py" scripts/install.py
           tge="$TG_PREMIUM_EMOJI_HOME/bin/latest/tge"
           if command -v cygpath > /dev/null; then tge=$(cygpath -u "$tge"); fi
-          "$tge" --version
+          version=$("$tge" --version)
+          echo "$version"
+          case "$version" in *"${TAG#v}"*) ;; *) echo "tge --version does not contain ${TAG#v}" >&2; exit 1 ;; esac
           "$tge" doctor --json | tee doctor.json
           jq -e 'any(.catalogs[]; .role == "builtin" and .id == "builtin")' doctor.json

@@ -565,3 +565,40 @@ fn catalog_dir_and_project_targets() {
         assert!(issues.is_empty(), "{issues:?}");
     }
 }
+
+#[test]
+fn rebuild_of_a_builtin_only_pack_keeps_its_labels() {
+    let sandbox = Sandbox::new();
+    sandbox.build("demo");
+    let mut pack = sandbox.pack();
+    pack["emoji"][0]["name"] = json!("disc");
+    pack["emoji"][0]["confidence"] = json!("high");
+    pack["emoji"][0]["by"] = json!("human");
+    fs::write(
+        sandbox.pack_dir().join("pack.json"),
+        serde_json::to_string_pretty(&pack).unwrap(),
+    )
+    .unwrap();
+    let labeled_id = pack["emoji"][0]["id"].as_str().unwrap().to_string();
+    let builtin = sandbox.root.path().join("builtin");
+    fs::rename(sandbox.local(), &builtin).unwrap();
+
+    let assert = sandbox
+        .command()
+        .arg("--builtin")
+        .arg(&builtin)
+        .args(["--json", "pack", "build", "demo"])
+        .assert()
+        .success();
+    let output = assert.get_output().clone();
+    let doc: Value = serde_json::from_slice(&output.stdout).unwrap();
+    assert!(doc["seeded_from"].is_string(), "{doc}");
+    let stderr = String::from_utf8(output.stderr).unwrap();
+    assert!(
+        stderr.contains("starting from labels in catalog"),
+        "{stderr}"
+    );
+    let local = emoji(&sandbox.pack(), &labeled_id).clone();
+    assert_eq!(local["name"], "disc");
+    assert_eq!(local["by"], "human");
+}

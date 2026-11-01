@@ -8,7 +8,7 @@ use crate::store::catalogs::Catalogs;
 const MIN_ID_DIGITS: usize = 5;
 
 pub fn run(ctx: &Ctx, pack_name: &str, target: &str, text: &str) -> Result<(), Error> {
-    let (catalogs, _) = Catalogs::discover(&ctx.env);
+    let catalogs = Catalogs::discover_warn(&ctx.env);
     let (_, pack) = catalogs
         .find_pack(pack_name)
         .ok_or_else(|| Error::Runtime(format!("pack '{pack_name}' not found")))?;

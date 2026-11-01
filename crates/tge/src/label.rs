@@ -74,6 +74,16 @@ pub fn parse_edits(text: &str) -> Result<Vec<LabelEdit>, Error> {
         .map_err(|e| Error::Usage(format!("invalid label edits: {e}")))?;
     for edit in &edits {
         edit.target()?;
+        if edit.name.is_none()
+            && edit.description.is_none()
+            && edit.tags.is_none()
+            && edit.fits.is_none()
+            && edit.confidence.is_none()
+        {
+            return Err(Error::Usage(
+                "each edit needs at least one field besides \"n\" or \"id\"".into(),
+            ));
+        }
     }
     Ok(edits)
 }

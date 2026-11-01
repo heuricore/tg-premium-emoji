@@ -54,9 +54,11 @@ For every element (a message line, a heading, a button, a status, a list marker)
    Useful filters: `--fits text|heading|list_item|button|status|divider`, `--pack`,
    `--repaint true` (monochrome emoji that take the text colour), `--format static|tgs|webm`,
    `--limit N` (default 10). No hits: try synonyms, the other language, fewer filters.
-3. **Choose by meaning, not by rank.** Read every hit's name and confidence; the first hit only
-   matched the words best. Prefer `high` over `medium`; check a `low` one on its preview before
-   using it. When two candidates are close, look at them (see "When in doubt").
+3. **Choose by meaning, not by rank.** Read every hit's name, description and confidence (and
+   `fits` in the JSON); the first hit only matched the words best. Prefer `high` over `medium`;
+   check a `low` one on its preview before using it. When two candidates are close, compare their
+   descriptions first and look at the preview sheet only if you are still unsure (see "When in
+   doubt").
 4. **Leave it out when nothing fits.** No emoji is better than a misleading one; say so in the
    table.
 5. **One emoji per element.** A button gets one icon; a line gets one marker.

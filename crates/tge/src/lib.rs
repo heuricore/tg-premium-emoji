@@ -6,6 +6,7 @@ pub mod output;
 pub mod paths;
 pub mod schema;
 pub mod search;
+pub mod snippet;
 pub mod store;
 pub mod validate;
 

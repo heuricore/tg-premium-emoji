@@ -284,6 +284,71 @@ fn download_fetches_file_bytes() {
     );
 }
 
+const MAX_DOWNLOAD: usize = 20 * 1024 * 1024;
+
+fn file_mock(file_body: impl Fn() -> Vec<u8> + Send + Sync + 'static) -> Mock {
+    Mock::start(move |url| {
+        if url.contains("/getFile") {
+            let body =
+                r#"{"ok":true,"result":{"file_id":"F","file_path":"custom_emoji/file_1.tgs"}}"#;
+            (200, body.as_bytes().to_vec())
+        } else {
+            (200, file_body())
+        }
+    })
+}
+
+#[test]
+fn download_cap_is_inclusive() {
+    let exact = file_mock(|| vec![7u8; MAX_DOWNLOAD]);
+    assert_eq!(exact.api().download("F").unwrap().len(), MAX_DOWNLOAD);
+    let over = file_mock(|| vec![7u8; MAX_DOWNLOAD + 1]);
+    assert!(over.api().download("F").is_err());
+}
+
+#[test]
+fn gzip_is_not_requested_and_raw_bytes_are_capped() {
+    let headers = Arc::new(Mutex::new(Vec::<String>::new()));
+    let seen = Arc::clone(&headers);
+    let server = Arc::new(tiny_http::Server::http("127.0.0.1:0").unwrap());
+    let base = format!("http://{}", server.server_addr().to_ip().unwrap());
+    let worker = {
+        let server = Arc::clone(&server);
+        std::thread::spawn(move || {
+            for request in server.incoming_requests() {
+                for h in request.headers() {
+                    if h.field.equiv("Accept-Encoding") {
+                        seen.lock().unwrap().push(h.value.to_string());
+                    }
+                }
+                let body = if request.url().contains("/getFile") {
+                    br#"{"ok":true,"result":{"file_path":"a/b.bin"}}"#.to_vec()
+                } else {
+                    // gzip magic followed by junk, larger than the cap when counted raw
+                    let mut raw = vec![0x1f, 0x8b, 0x08];
+                    raw.resize(MAX_DOWNLOAD + 1, 0);
+                    raw
+                };
+                let response = tiny_http::Response::from_data(body).with_header(
+                    "Content-Encoding: gzip"
+                        .parse::<tiny_http::Header>()
+                        .unwrap(),
+                );
+                let _ = request.respond(response);
+            }
+        })
+    };
+    let result = api_for(&base).download("F");
+    server.unblock();
+    worker.join().unwrap();
+    assert!(result.is_err());
+    assert!(
+        headers.lock().unwrap().is_empty(),
+        "Accept-Encoding sent: {:?}",
+        headers.lock().unwrap()
+    );
+}
+
 #[test]
 fn retries_after_429() {
     let calls = Arc::new(Mutex::new(0u32));

@@ -258,7 +258,8 @@ impl BotApi {
         let body = response
             .body_mut()
             .with_config()
-            .limit(limit)
+            // ureq errors when the body reaches the limit, so allow one extra byte
+            .limit(limit + 1)
             .read_to_vec()
             .map_err(|err| self.fail(format!("reading the response failed: {err}")))?;
         Ok((status, body))

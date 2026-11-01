@@ -1,0 +1,186 @@
+name: Release
+
+# Tag vX.Y.Z: run CI, build the 5 targets, smoke-render on each and compare with linux-x64,
+# check that each binary needs only system libraries, package, publish, then install the
+# published release with scripts/install.py on three OSes.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  version:
+    name: Tag matches VERSION
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: test "v$(tr -d '\r\n' < VERSION)" = "$GITHUB_REF_NAME"
+
+  build:
+    name: build ${{ matrix.name }}
+    needs: [ci, version]
+    strategy:
+      fail-fast: false
+      matrix:
+        # Both Linux targets go through zig, which links its libc++ and unwinder statically and
+        # targets glibc 2.17, the floor Rust itself supports on these targets.
+        include:
+          - { name: linux-x64, target: x86_64-unknown-linux-gnu, os: ubuntu-24.04, zig: ".2.17" }
+          - { name: linux-arm64, target: aarch64-unknown-linux-gnu, os: ubuntu-24.04, zig: ".2.17", run: "qemu-aarch64-static -L /usr/aarch64-linux-gnu" }
+          - { name: windows-x64, target: x86_64-pc-windows-msvc, os: windows-latest, exe: .exe, rustflags: "-C target-feature=+crt-static" }
+          - { name: macos-arm64, target: aarch64-apple-darwin, os: macos-latest }
+          - { name: macos-x64, target: x86_64-apple-darwin, os: macos-latest, run: "arch -x86_64" }
+    runs-on: ${{ matrix.os }}
+    env:
+      RUSTFLAGS: ${{ matrix.rustflags }}
+      BIN: target/${{ matrix.target }}/release/tge${{ matrix.exe }}
+      PLATFORM: ${{ matrix.name }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+      - uses: astral-sh/setup-uv@v7
+
+      - name: Install zig and cargo-zigbuild
+        if: matrix.zig
+        run: |
+          uv venv "$RUNNER_TEMP/zig"
+          uv pip install --python "$RUNNER_TEMP/zig" ziglang==0.17.0
+          echo "$RUNNER_TEMP"/zig/lib/python3*/site-packages/ziglang >> "$GITHUB_PATH"
+          cargo install --locked cargo-zigbuild@0.24.0
+
+      - name: Install qemu
+        if: matrix.name == 'linux-arm64'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-user-static libc6-arm64-cross
+
+      - name: Build
+        env:
+          TARGET: ${{ matrix.target }}
+          ZIG: ${{ matrix.zig }}
+        run: |
+          if [ -n "$ZIG" ]; then
+            cargo zigbuild --release --locked --target "$TARGET$ZIG"
+          else
+            cargo build --release --locked --target "$TARGET"
+          fi
+
+      - name: Check dynamic dependencies
+        run: uv run --no-project python tools/check_deps.py "$BIN"
+
+      - name: Smoke render
+        env:
+          RUN_PREFIX: ${{ matrix.run }}
+        run: bash tools/smoke.sh "$RUN_PREFIX" "$BIN" out
+
+      - uses: actions/upload-artifact@v5
+        with:
+          name: out-${{ matrix.name }}
+          path: out/
+          if-no-files-found: error
+
+      - name: Package
+        env:
+          COPYFILE_DISABLE: "1"
+        run: |
+          top="tge-${GITHUB_REF_NAME}-$PLATFORM"
+          mkdir -p "dist/$top"
+          cp "$BIN" "dist/$top/"
+          cp -R catalog "dist/$top/catalog"
+          cd dist
+          if [ "$RUNNER_OS" = Windows ]; then
+            asset="$top.zip"
+            7z a -tzip "$asset" "$top" > /dev/null
+          else
+            asset="$top.tar.gz"
+            tar -czf "$asset" "$top"
+          fi
+          if command -v sha256sum > /dev/null; then
+            hex=$(sha256sum "$asset" | cut -d ' ' -f 1)
+          else
+            hex=$(shasum -a 256 "$asset" | cut -d ' ' -f 1)
+          fi
+          printf '%s  %s\n' "$hex" "$asset" > "$asset.sha256"
+          cat "$asset.sha256"
+
+      - uses: actions/upload-artifact@v5
+        with:
+          name: dist-${{ matrix.name }}
+          path: |
+            dist/*.tar.gz
+            dist/*.zip
+            dist/*.sha256
+          if-no-files-found: error
+
+  compare:
+    name: Compare with linux-x64
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v6
+        with:
+          pattern: out-*
+          path: artifacts
+      - uses: astral-sh/setup-uv@v7
+      - run: uv run --no-project --with pillow --with numpy python tools/ci_compare.py artifacts
+
+  publish:
+    name: Publish
+    needs: [build, compare]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v6
+        with:
+          pattern: dist-*
+          path: dist
+          merge-multiple: true
+      - run: ls -l dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          fail_on_unmatched_files: true
+          prerelease: ${{ startsWith(github.ref_name, 'v0.0.') || contains(github.ref_name, '-') }}
+
+  install:
+    name: install.py on ${{ matrix.os }}
+    needs: publish
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install the published release and find the built-in catalog
+        env:
+          TG_PREMIUM_EMOJI_HOME: ${{ runner.temp }}/tge-home
+        run: |
+          if [ "$RUNNER_OS" = Windows ]; then py=python; else py=python3; fi
+          "$py" scripts/install.py
+          tge="$TG_PREMIUM_EMOJI_HOME/bin/latest/tge"
+          if command -v cygpath > /dev/null; then tge=$(cygpath -u "$tge"); fi
+          "$tge" --version
+          "$tge" doctor --json | tee doctor.json
+          jq -e 'any(.catalogs[]; .role == "builtin" and .id == "builtin")' doctor.json

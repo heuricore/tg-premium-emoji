@@ -1,0 +1,3 @@
+# rustc 1.98 overflows its default 8 MiB stack optimizing vp9dec at opt-level 3 (release builds).
+[env]
+RUST_MIN_STACK = "16777216"

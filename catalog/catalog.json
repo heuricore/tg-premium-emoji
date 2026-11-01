@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "id": "builtin",
+  "name": "Built-in",
+  "version": "0.1.0",
+  "author": "HeuriCore",
+  "license": "MIT for labels and metadata; emoji artwork belongs to its author, rendered from the public set t.me/addemoji/tgiosicons",
+  "description": "Built-in catalog shipped next to the tge binary in every release archive"
+}

@@ -5,7 +5,7 @@ fn version_flag() {
         .arg("--version")
         .assert()
         .success()
-        .stdout("tge 0.0.1\n");
+        .stdout(format!("tge {}\n", env!("CARGO_PKG_VERSION")));
 }
 
 #[test]

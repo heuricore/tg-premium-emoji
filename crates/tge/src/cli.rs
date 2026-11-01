@@ -112,6 +112,24 @@ pub enum Command {
         #[arg(long, value_name = "DIR")]
         out: PathBuf,
     },
+    /// Render frames of one source file as `<frame>.png` (developer tool, release smoke test)
+    #[command(hide = true)]
+    Render {
+        /// Source file
+        file: PathBuf,
+        /// Source format
+        #[arg(long, value_enum)]
+        format: Format,
+        /// Output directory
+        #[arg(long, value_name = "DIR")]
+        out: PathBuf,
+        /// Square side in pixels (default: 128 for tgs, the native size otherwise)
+        #[arg(long)]
+        size: Option<u32>,
+        /// 0-based frame indices (default: every frame; 12 sampled frames for tgs)
+        #[arg(long, value_delimiter = ',', value_name = "I,J,...")]
+        frames: Option<Vec<usize>>,
+    },
 }
 
 #[derive(Debug, Subcommand)]

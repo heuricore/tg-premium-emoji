@@ -90,6 +90,22 @@ fn dispatch(ctx: &Ctx, command: Option<Command>) -> Result<(), Error> {
         Some(Command::Pack {
             command: PackCommand::Preview { short_name },
         }) => commands::pack_preview::run(ctx, &short_name),
+        Some(Command::Render {
+            file,
+            format,
+            out,
+            size,
+            frames,
+        }) => commands::render::run(
+            ctx,
+            commands::render::Args {
+                file,
+                format,
+                out,
+                size,
+                frames,
+            },
+        ),
         Some(Command::Schema { out }) => {
             schema::write_all(&out)?;
             ctx.emit(

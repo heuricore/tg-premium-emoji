@@ -53,7 +53,57 @@ tasks:
   scripts-test:
     desc: Test the Python helper scripts
     cmds:
-      - uv run --with pytest pytest scripts/tests -q
+      - uv run --with pytest pytest scripts/tests tools/tests -q
+
+  dev-install:
+    desc: Build a release tge and install it with catalog/ as bin/dev, pointing bin/latest at it
+    platforms: [linux, darwin]
+    deps: [setup]
+    cmds:
+      - |
+        set -eu
+        if command -v c++ >/dev/null 2>&1; then
+          cargo build --release --locked -p tge
+          exe=target/release/tge
+        else
+          zig_dir=$(echo "$PWD"/.tools/zig/lib/python3*/site-packages/ziglang)
+          host=$(rustc -vV | sed -n 's/^host: //p')
+          PATH="$zig_dir:$PATH" cargo-zigbuild build --release --locked -p tge --target "$host"
+          exe="target/$host/release/tge"
+        fi
+        bin="${TG_PREMIUM_EMOJI_HOME:-$HOME/.tg-premium-emoji}/bin"
+        if [ -d "$bin/latest" ] && [ ! -L "$bin/latest" ]; then
+          echo "error: $bin/latest is a real directory, not a link; move it away first" >&2
+          exit 1
+        fi
+        mkdir -p "$bin/dev"
+        cp "$exe" "$bin/dev/.tge.tmp"
+        mv -f "$bin/dev/.tge.tmp" "$bin/dev/tge"
+        rm -rf -- "$bin/dev/catalog"
+        cp -R catalog "$bin/dev/catalog"
+        ln -sfn dev "$bin/latest"
+        echo "installed $bin/dev/tge; $bin/latest -> dev"
+
+  bump:
+    desc: Set the version in VERSION, Cargo.toml, Cargo.lock and plugin.json (task bump NEW=X.Y.Z)
+    requires:
+      vars: [NEW]
+    cmds:
+      - uv run python scripts/bump.py "{{.NEW}}"
+
+  release:
+    desc: Run the checks and tag the committed VERSION as v<VERSION>; pushing the tag is manual
+    cmds:
+      - task: check
+      - |
+        set -eu
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "error: commit or stash your changes first" >&2
+          exit 1
+        fi
+        version=$(cat VERSION)
+        git tag -a "v$version" -m "v$version"
+        echo "tagged v$version; publish with: git push origin HEAD v$version"
 
   check:
     desc: Format, lint and test (later tasks append steps)

@@ -302,9 +302,13 @@ mod tests {
         );
         assert_eq!(pack_folder(dir.path(), "other").unwrap(), None);
         fs::create_dir_all(dir.path().join("demo")).unwrap();
+        // On case-insensitive file systems (default macOS and Windows) "demo" is the same folder
+        // as "Demo", so there is no exact match to prefer.
+        let case_sensitive = fs::read_dir(dir.path()).unwrap().count() == 2;
+        let expected = if case_sensitive { "demo" } else { "Demo" };
         assert_eq!(
             pack_folder(dir.path(), "demo").unwrap().as_deref(),
-            Some("demo")
+            Some(expected)
         );
         assert_eq!(pack_folder(&dir.path().join("none"), "demo").unwrap(), None);
     }

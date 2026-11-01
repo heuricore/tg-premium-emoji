@@ -53,7 +53,8 @@ It writes to the personal `local` catalog; add `--catalog project` to write into
 source of the built-in catalog), pass the global `--catalog-dir <dir>` to every command of the
 session. It prints counts: new, changed (image replaced), gone, returned, total, and any emoji
 that failed to decode. A set with more than 1000 emoji is refused unless `--no-limit` is passed; ask
-the user before using it.
+the user before using it. Even then a `pack.json` is capped at 2 MiB, roughly 2000 labeled emoji;
+past that the build fails at the end and writes nothing.
 
 Rebuilding the same pack is a rescan, safe at any time: labels are kept and matched by id. New
 emoji arrive unlabeled. An emoji whose image was replaced keeps its labels but drops to `low` (unless
@@ -68,30 +69,38 @@ tge pack preview <short_name>
 It prints the absolute path of every sheet with its `n` range (`..._1.png  1-20`). Open each
 sheet with your file-reading tool when you label it, one sheet at a time.
 
+A big pack (hundreds of emoji, a dozen or more sheets) can be labeled in parallel when your agent
+can run workers: give each worker its own sheets. Every `label` call reads the current pack and
+writes it under a lock, so batches from parallel workers never overwrite each other.
+
 ## 3. Pass 1: names, tags, fits, confidence per sheet
 
-For each sheet, write one batch of edits covering every emoji on it and apply it:
+For each sheet, write one batch of edits covering every emoji on it to a JSON file with your
+file-writing tool (outside the catalog, for example a scratch or temp folder), then apply it:
 
-```bash
-tge label <short_name> --edits - <<'EOF'
+```json
 [
   {"n": 1, "name": "check mark in circle", "tags": ["галочка", "готово", "успех", "check", "done", "success"], "fits": ["status", "button"], "confidence": "high"},
   {"n": 2, "name": null, "confidence": "low"}
 ]
-EOF
 ```
 
-`--edits` takes a file path or `-` for stdin; a file written with your file tool works the same
-and avoids shell quoting issues on Windows. Each edit names exactly one of `n` or `id`. `name`,
-`description`, `fits` and `confidence` are tri-state: absent keeps the field, `null` clears it, a
-value sets it. `tags` replaces the whole list.
+```bash
+tge label <short_name> --edits <path to that file>
+```
+
+A file avoids shell quoting problems (Windows shells, Cyrillic, quotes inside descriptions);
+`--edits -` reads the same array from stdin when that is easier. Each edit names exactly one of
+`n` or `id`. `name`, `description`, `fits` and `confidence` are tri-state: absent keeps the field,
+`null` clears it, a value sets it. `tags` replaces the whole list.
 
 - Always send `confidence` with labels. An edit that leaves an emoji with a name, description,
   tags or fits but no confidence is rejected (exit 3) and nothing is written.
 - Never send an edit with only `n` or `id`: it changes nothing but still marks who labeled it.
 - Not recognized: `"name": null, "confidence": "low"`. Invent nothing; a guessed name sends the
   emoji to the wrong searches, while `low` puts it in the queue for a human.
-- Pass 1 needs no `description`; that is pass 2's job.
+- `description` may wait for pass 2, but when you already see what sets an emoji apart, write a
+  short one now: `tge find` shows descriptions to the agent that later picks emoji.
 
 The command prints what it applied, what it skipped because a human labeled it, and what it did
 not find. On exit 3 it lists the issues: fix the batch and resend it. If an issue points at a part
@@ -110,12 +119,19 @@ tge similar <short_name>
 It groups emoji whose names and tags overlap. Only emoji with a name take part, so run it after
 pass 1. These groups are where the next agent would confuse one emoji with another.
 
+`similar` sees only the labels. Two icons that look alike but got different names in pass 1 are
+not grouped, so also keep the look-alikes you noticed on the sheets while labeling.
+
 ## 5. Pass 2: distinguishing descriptions per group
 
 For each group, open the sheet or sheets that hold its numbers and look at the members side by
 side. Write a `description` for each that tells it apart from the others in the group: colour,
 shape, detail, direction, state. Refine a name or tags when the comparison shows they were too
 generic. Send one batch per group, with `confidence` again for any emoji whose certainty changed.
+
+Some packs contain twins that look the same on the sheet. Say so in both descriptions ("an
+identical-looking twin exists in this pack") and name any difference you can see, however small.
+Never point at another emoji by its number: numbers shift when the set is rescanned.
 
 A short description also helps for emoji outside any group, but groups come first.
 
@@ -140,18 +156,26 @@ Expect exit 0 and `ok`. Exit 3 lists the issues with the file they are in.
 
 ## Labels a human dictates
 
-When the user tells you what an emoji is, send their label with `--by human`:
+When the user tells you what an emoji is, or describes what it shows, write their words into the
+label and send it with `--by human`:
+
+```json
+[{"n": 17, "name": "Fragment logo", "tags": ["fragment", "фрагмент"], "confidence": "high"}]
+```
 
 ```bash
-tge label <short_name> --by human --edits - <<'EOF'
-[{"n": 17, "name": "Fragment logo", "tags": ["fragment", "фрагмент"], "confidence": "high"}]
-EOF
+tge label <short_name> --by human --edits <path to that file>
 ```
+
+Users often explain the shape rather than the meaning ("the sides bend inward", "two people, the
+left one bigger"). That is exactly what a distinguishing description needs: keep their detail.
+When they are unsure too, keep `low` and record both readings in the description.
 
 `by: human` protects the emoji: later agent edits are skipped and reported as such. Use
 `--force` only when the user explicitly asks to overwrite their own labels with yours.
 
 ## Finish
 
-Tell the user the pack's totals, how many emoji are `high`, `medium` and `low`, what is in the
-report queue, and that `emoji-design` can now search the pack.
+Tell the user the pack's total, what is left in the report queue (unlabeled, `low`,
+`frame_suspect`, gone) with the numbers, any twins you could not tell apart, and that
+`emoji-design` can now search the pack.

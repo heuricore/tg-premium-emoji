@@ -4834,7 +4834,7 @@
       "repaint": true,
       "animated": false,
       "name": "sparkles in square with pinched sides",
-      "description": "Square speech-bubble-like frame with sparkles; the middle of each side bends inward toward the centre (pinched sides). Twin of n 172, which has straight sides.",
+      "description": "Square speech-bubble-like frame with sparkles; the middle of each side bends inward toward the centre (pinched sides). A twin with straight sides exists in this pack.",
       "tags": [
         "волшебство",
         "ИИ",
@@ -4864,7 +4864,7 @@
       "repaint": true,
       "animated": false,
       "name": "sparkles in square with straight sides",
-      "description": "Square speech-bubble-like frame with sparkles and straight sides. Twin of n 171, whose sides bend inward toward the centre.",
+      "description": "Square speech-bubble-like frame with sparkles and straight sides. A twin whose sides bend inward toward the centre exists in this pack.",
       "tags": [
         "волшебство",
         "ИИ",
@@ -5669,7 +5669,7 @@
       "repaint": true,
       "animated": false,
       "name": "two-person default avatar",
-      "description": "Default avatar with two generic users (the bust from n 200, twice): the left person is larger and in front, the right one sits a little lower and is smaller. Group or shared avatar.",
+      "description": "Default avatar with two generic user busts: the left person is larger and in front, the right one sits a little lower and is smaller. Group or shared avatar.",
       "tags": [
         "групповой аватар",
         "два лица",

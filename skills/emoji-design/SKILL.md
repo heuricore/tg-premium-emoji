@@ -86,10 +86,15 @@ the user fixed.
 
 ## When in doubt: escalate
 
-1. **Text catalog**: the `tge find` output, names and confidence.
-2. **Preview sheet**: `tge pack preview <pack>` prints the sheets with their `n` ranges; open the
-   one holding the candidate and compare it with its neighbours.
-3. Inspecting one emoji at a larger size (`tge inspect`) arrives in Phase 2.
+1. **Text catalog**: the `tge find` output, names, descriptions and confidence.
+2. **One emoji's full record**: `tge show <pack> <n|id>` prints every label and flag plus the
+   preview sheet, row and column where it sits.
+3. **Preview sheet**: open that sheet with your file-reading tool and compare the candidate with
+   its neighbours.
+4. Inspecting one emoji at a larger size (`tge inspect`) arrives in Phase 2.
+
+A description that says "an identical-looking twin exists in this pack" means two emoji render
+the same; either one is fine, but use the same one everywhere on the screen or post.
 
 `pack X: N unlabeled` under the hits means part of that pack is invisible to search. Mention it,
 and offer the `pack-build` skill to finish labeling when the pack matters to the user. The same
@@ -125,7 +130,7 @@ the full id copied from `tge` output):
 
 | Element | Emoji | Why |
 |---|---|---|
-| Payment confirmed (first line) | `tgiosicons` #12 ✅ check mark in circle, id `ID` | Confirms success; filled green matches the other status icons |
+| Payment confirmed (first line) | `tgiosicons` #65 ✅ check mark in circle, id `ID` | Confirms success; monochrome outline like the other status icons, takes the text colour |
 | "Back" button | none | No arrow in the pack reads clearly as back; plain text label |
 
 Then give the snippets: the message text with the `tg-emoji` tags in place (HTML) or the

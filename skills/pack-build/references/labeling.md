@@ -40,6 +40,10 @@ tags), `Looks like #14 but green` (numbers change on rescan; describe the emoji 
 Describe only what is visible. When the emoji is not recognized you may still describe its
 shapes and colours so a human can finish the label, but do not guess a brand or meaning.
 
+Twins that look the same on the sheet: write "an identical-looking twin exists in this pack" in
+both descriptions, plus any difference you can see (stroke ends, a corner, how far a detail
+reaches). Describe each one on its own; never refer to another emoji by number.
+
 ## Tags
 
 Up to 24 tags of at most 40 characters, in Russian and English: what it depicts and what it is

@@ -58,10 +58,10 @@ versions other than `latest`; old versions do no harm otherwise.
 
 | Command | What it does |
 |---|---|
-| `tge find <words...> [--pack --catalog --fits --repaint --animated --format --limit]` | Search labeled emoji by meaning (Russian or English); prints ids and snippets |
+| `tge find <words...> [--pack --catalog --fits --repaint --animated --format --limit]` | Search labeled emoji by meaning (Russian or English); prints name, description, confidence, id and the HTML snippet |
 | `tge show <pack> <n\|id>...` | The full record of one or more emoji: every field, preview sheet and cell, snippets. Use it instead of reading `pack.json` |
 | `tge snippet <pack> <n\|id> [--text LABEL]` | HTML, MarkdownV2 and button snippets for one emoji |
-| `tge pack build <short_name> [--catalog local\|project]` | Download a set (needs `BOT_TOKEN`), render previews, write `pack.json`, keep labels |
+| `tge pack build <short_name> [--catalog local\|project] [--no-limit]` | Download a set (needs `BOT_TOKEN`), render previews, write `pack.json`, keep labels. Sets over 1000 emoji need `--no-limit` |
 | `tge pack preview <pack>` | Absolute paths of the preview sheets with the `n` range on each |
 | `tge label <pack> --edits <file\|-> [--by human] [--force]` | Apply a batch of label edits |
 | `tge similar <pack>` | Groups of look-alike emoji to describe apart |
@@ -94,6 +94,14 @@ A catalog is a folder with `catalog.json`, `packs/<short_name>/pack.json` and
 When the same pack (by `short_name`, case-insensitive) exists in two catalogs, the higher one wins
 entirely; fields are never merged. `tge pack build` writes to `local` unless given
 `--catalog project`. The built-in catalog is never written to.
+
+`tge catalogs` prints one line per catalog in priority order: role (`explicit`, `project`,
+`local`, `builtin`), the catalog's `id` from its `catalog.json`, its folder, and its pack count.
+Two lines can share an `id` (for example the repository source of the built-in catalog passed as
+`--catalog-dir`, and the installed copy next to the binary); the role and folder tell them apart.
+
+A `pack.json.lock` next to a `pack.json` is the lock `tge` takes while it updates the pack. It is
+expected, empty and harmless; leave it in place.
 
 ## State layout
 
@@ -129,10 +137,13 @@ Nothing is ever written into the plugin folder: it is replaced on every plugin u
 the sheet with your file-reading tool. A sheet is a grid of 5 columns and up to 20 cells (4 rows),
 one emoji per cell with its number `n` printed under the icon, on a dark background. Numbering is
 continuous across sheets: sheet 1 holds 1-20, sheet 2 holds 21-40, and so on. `n` is the position
-in the pack and the handle for `label`, `snippet` and the report.
+in the pack and the handle for `label`, `snippet`, `show` and the report. `tge show <pack> <n>`
+prints the exact sheet, row and column of one emoji.
 
-- Animated emoji show one frame, the one with the most visible area. When `frame_suspect` is set,
-  that frame may not represent the emoji; treat your reading of it as uncertain.
+- Animated emoji show one frame, the one with the most visible area. `animated: true` (in `show`
+  and `find --json`) means the emoji really moves; `format: tgs` alone does not, many tgs files
+  are still images. When `frame_suspect` is set, the shown frame may not represent the emoji;
+  treat your reading of it as uncertain.
 - Monochrome emoji (`repaint: true`) are drawn white: in Telegram they take the text colour.
 - An empty cell under a number means the emoji failed to render; it is flagged `frame_suspect`.
 
